@@ -41,7 +41,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
       />
       <p>
         <a
-          href="https://github.com/paritytech/polkadot-cloud/blob/main/packages/cloud-react/lib/connect/ExtensionsProvider/index.tsx"
+          href="https://github.com/polkadot-cloud/polkadot-cloud/blob/main/packages/cloud-react/lib/connect/ExtensionsProvider/index.tsx"
           target="_blank"
           rel="noreferrer"
         >

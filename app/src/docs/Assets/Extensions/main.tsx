@@ -30,7 +30,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
       <p>
         Web3 wallet extension data can be imported from{" "}
         <a
-          href="https://github.com/paritytech/polkadot-cloud/blob/1f7bae05926db53650c25168afd2b7fca2e57bf1/packages/assets/lib/extensions/index.tsx#L19"
+          href="https://github.com/polkadot-cloud/polkadot-cloud/blob/1f7bae05926db53650c25168afd2b7fca2e57bf1/packages/assets/lib/extensions/index.tsx#L19"
           target="_blank"
           rel="noreferrer"
         >
@@ -38,7 +38,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
         </a>{" "}
         and{" "}
         <a
-          href="https://github.com/paritytech/polkadot-cloud/blob/c8063cda7968bcc48e04878d445c9085f5927b63/packages/assets/lib/extensions/index.tsx#L52"
+          href="https://github.com/polkadot-cloud/polkadot-cloud/blob/c8063cda7968bcc48e04878d445c9085f5927b63/packages/assets/lib/extensions/index.tsx#L52"
           target="_blank"
           rel="noreferrer"
         >
@@ -157,7 +157,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
           To open a PR and add additional extensions to this list, refer to the
           instructions hosted in this package's{" "}
           <a
-            href="https://github.com/paritytech/polkadot-cloud/tree/main/packages/assets#adding-web-extension-wallets"
+            href="https://github.com/polkadot-cloud/polkadot-cloud/tree/main/packages/assets#adding-web-extension-wallets"
             target="_blank"
             rel="noreferrer"
           >

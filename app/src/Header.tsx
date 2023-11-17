@@ -51,7 +51,7 @@ export const Header = () => {
           Dark
         </button>
         <a
-          href="https://github.com/paritytech/polkadot-cloud"
+          href="https://github.com/polkadot-cloud/polkadot-cloud"
           target="_blank"
           rel="noreferrer"
         >

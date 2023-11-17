@@ -35,7 +35,7 @@ export const Footer = () => {
       <section>
         <h4>
           <a
-            href="https://github.com/paritytech/polkadot-cloud"
+            href="https://github.com/polkadot-cloud/polkadot-cloud"
             target="_blank"
             rel="noreferrer"
           >

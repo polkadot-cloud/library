@@ -17,9 +17,9 @@
     "UI"
   ],
   "bugs": {
-    "url": "https://github.com/paritytech/polkadot-cloud/issues"
+    "url": "https://github.com/polkadot-cloud/polkadot-cloud/issues"
   },
-  "homepage": "https://github.com/paritytech/polkadot-cloud#readme",
+  "homepage": "https://github.com/polkadot-cloud/polkadot-cloud#readme",
   "scripts": {
     "build:mock": "node ../../scripts/generatePackageJson.mjs -p assets",
     "build": "rm -fr dist && gulp && cp LICENSE dist && cp README.npm.md dist && mv dist/README.npm.md dist/README.md && node ../../scripts/generatePackageJson.mjs -p assets",

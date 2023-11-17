@@ -84,12 +84,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paritytech/polkadot-cloud.git"
+    "url": "git+https://github.com/polkadot-cloud/polkadot-cloud.git"
   },
   "keywords": [
     "Polkadot",
     "UI",
     "Substrate"
   ],
-  "homepage": "https://github.com/paritytech/polkadot-cloud#readme"
+  "homepage": "https://github.com/polkadot-cloud/polkadot-cloud#readme"
 }

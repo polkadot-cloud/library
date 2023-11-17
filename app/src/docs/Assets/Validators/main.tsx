@@ -22,7 +22,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
       <p>
         A list of validator operators are available as a{" "}
         <a
-          href="https://github.com/paritytech/polkadot-cloud/blob/main/packages/assets/lib/validators/index.ts"
+          href="https://github.com/polkadot-cloud/polkadot-cloud/blob/main/packages/assets/lib/validators/index.ts"
           target="_blank"
           rel="noreferrer"
         >
@@ -40,7 +40,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
           To open a PR to add an additional validator operator to this list,
           refer to the instructions hosted in this package's{" "}
           <a
-            href="https://github.com/paritytech/polkadot-cloud/tree/main/packages/assets#adding-validator-operators"
+            href="https://github.com/polkadot-cloud/polkadot-cloud/tree/main/packages/assets#adding-validator-operators"
             target="_blank"
             rel="noreferrer"
           >

@@ -12,9 +12,9 @@
     "Utilities"
   ],
   "bugs": {
-    "url": "https://github.com/paritytech/polkadot-cloud/issues"
+    "url": "https://github.com/polkadot-cloud/polkadot-cloud/issues"
   },
-  "homepage": "https://github.com/paritytech/polkadot-cloud#readme",
+  "homepage": "https://github.com/polkadot-cloud/polkadot-cloud#readme",
   "scripts": {
     "build:mock": "node ../../scripts/generatePackageJson.mjs -p utils",
     "build": "rm -fr dist && rollup -c  && mv dist/README.npm.md dist/README.md && node ../../scripts/generatePackageJson.mjs -p utils",

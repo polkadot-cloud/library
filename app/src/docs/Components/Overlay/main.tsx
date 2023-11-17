@@ -24,7 +24,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
       <p>
         An{" "}
         <a
-          href="https://github.com/paritytech/polkadot-cloud/blob/main/packages/cloud-react/lib/overlay/OverlayProvider/index.tsx"
+          href="https://github.com/polkadot-cloud/polkadot-cloud/blob/main/packages/cloud-react/lib/overlay/OverlayProvider/index.tsx"
           target="_blank"
           rel="noreferrer"
         >
@@ -32,7 +32,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
         </a>{" "}
         context and{" "}
         <a
-          href="https://github.com/paritytech/polkadot-cloud/blob/main/packages/cloud-react/lib/overlay/Overlay/index.tsx"
+          href="https://github.com/polkadot-cloud/polkadot-cloud/blob/main/packages/cloud-react/lib/overlay/Overlay/index.tsx"
           target="_blank"
           rel="noreferrer"
         >
