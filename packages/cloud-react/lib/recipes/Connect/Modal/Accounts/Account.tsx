@@ -1,4 +1,4 @@
-// Copyright 2023 @paritytech/polkadot-cloud authors & contributors
+// Copyright 2023 @polkadot-cloud/polkadot-cloud authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { faGlasses } from "@fortawesome/free-solid-svg-icons";
@@ -56,8 +56,8 @@ export const AccountButton = ({
     meta?.source === "ledger"
       ? Ledger
       : meta?.source === "vault"
-      ? PolkadotVault
-      : ExtensionIcons[meta?.source || ""] || undefined;
+        ? PolkadotVault
+        : ExtensionIcons[meta?.source || ""] || undefined;
 
   // Determine if this account is active (active account or proxy).
   const isActive =

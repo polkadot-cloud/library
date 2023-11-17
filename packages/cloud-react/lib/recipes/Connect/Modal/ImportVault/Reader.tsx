@@ -1,4 +1,4 @@
-// Copyright 2023 @paritytech/polkadot-cloud authors & contributors
+// Copyright 2023 @polkadot-cloud/polkadot-cloud authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { Any } from "../../../../utils/types";
@@ -56,12 +56,12 @@ export const Reader = () => {
       qrData === undefined
         ? `Waiting For QRCode`
         : isValidAddress(qrData)
-        ? formatAccountSs58(qrData, ss58)
-          ? `"Different Network Address`
-          : vaultAccountExists(qrData)
-          ? `Account Already Imported`
-          : `Address Received`
-        : `Invalid Address`
+          ? formatAccountSs58(qrData, ss58)
+            ? `"Different Network Address`
+            : vaultAccountExists(qrData)
+              ? `Account Already Imported`
+              : `Address Received`
+          : `Invalid Address`
     );
   }, [qrData]);
 

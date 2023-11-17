@@ -2,7 +2,7 @@
 
 This section aims to familiarise developers with Polkadot Cloud for the purpose of contributing to the project.
 
-Reach out to ross@parity.io or nikos@parity.io for clarification of any content within this document.
+Reach out to ross@parity.io or wirednkod@gmail.com for clarification of any content within this document.
 
 ## Submitting Pull Requests
 

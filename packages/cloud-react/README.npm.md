@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/polkadot-cloud/polkadot-cloud">
-    <img alt="polkadot-cloud" title="polkadot-cloud" src="https://raw.githubusercontent.com/paritytech/polkadot-cloud/main/app/public/img/cloud.png" width="80" />
+    <img alt="polkadot-cloud" title="polkadot-cloud" src="https://raw.githubusercontent.com/paripolkadot-cloudtytech/polkadot-cloud/main/app/public/img/cloud.png" width="80" />
   </a>
 </p>
 

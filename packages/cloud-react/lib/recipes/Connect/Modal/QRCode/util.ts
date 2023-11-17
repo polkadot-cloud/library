@@ -1,4 +1,4 @@
-// Copyright 2023 @paritytech/polkadot-cloud authors & contributors
+// Copyright 2023 @polkadot-cloud/polkadot-cloud authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { isString, u8aConcat, u8aToU8a } from "@polkadot/util";

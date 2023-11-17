@@ -28,9 +28,9 @@ The following table outlines the structure of a `ValidatorCommunity` entry:
 | Operator Name  | `name`       | Yes      | The chosen name of the operator.                                                            | `Validator Central`                                     |
 | Thumbnail Name | `thumbnail`  | Yes      | The name of your SVG component representing your thumbnail.                                 | _See Below_                                             |
 | Bio            | `bio`        | No       | A short description of your entity. Maximum 300 characters.                                 | `Summing up my validator identity in a sentence or so.` |
-| Email Address  | `email`      | No       | A public email address representing the operator.                                           | `validatorcentral@parity.io`                            |
-| Twitter Handle | `twitter`    | No       | The Twitter handle representing the operator.                                               | `@ParityTech`                                           |
-| Website URL    | `website`    | No       | A live and vlid secure URL to your website.                                                 | `https://parity.io`                                     |
+| Email Address  | `email`      | No       | A public email address representing the operator.                                           | `validatorcentral@polkadot.cloud`                       |
+| Twitter Handle | `twitter`    | No       | The Twitter handle representing the operator.                                               | `@polkadot-cloud`                                       |
+| Website URL    | `website`    | No       | A live and vlid secure URL to your website.                                                 | `https://polkadot.cloud`                                 |
 | Validator List | `validators` | Yes      | A list of validators grouped by network. At least 1 validator in 1 network must be defined. | _See Below_                                             |
 
 ### Example Operator
@@ -48,9 +48,9 @@ export const ValidatorCommunity = [
     name: 'Validator Central',
     thumbnail: 'ValidatorCentral',
     bio: 'Summing up my validator identity in a sentence or so. Maximum 300 characters.',
-    email: 'validatorcentral@parity.io',
-    twitter: '@ParityTech',
-    website: 'https://parity.io',
+    email: 'validatorcentral@polkadot.cloud',
+    twitter: '@Polkadot-cloud',
+    website: 'https://polkadot.cloud]',
     validators: {
       polkadot: [
       '1hYiMW8KSfUYChzCQSPGXvMSyKVqmyvMXqohjKr3oU5PCXF',

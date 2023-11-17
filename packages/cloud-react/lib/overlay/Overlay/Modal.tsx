@@ -1,4 +1,4 @@
-// Copyright 2023 @paritytech/polkadot-cloud authors & contributors
+// Copyright 2023 @polkadot-cloud/polkadot-cloud authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { ModalContainer } from "../../base/modal/ModalContainer";
@@ -136,8 +136,8 @@ export const Modal = ({
                 overflow: options?.disableScroll
                   ? "hidden"
                   : modalHeight >= modalMaxHeight
-                  ? "scroll"
-                  : "hidden",
+                    ? "scroll"
+                    : "hidden",
               }}
             >
               <ModalCard

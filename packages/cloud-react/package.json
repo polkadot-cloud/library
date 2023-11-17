@@ -5,7 +5,7 @@
   "type": "module",
   "contributors": [
     "Ross Bulat<ross@parity.io>",
-    "Nikolaos Kontakis<nikos@parity.io>"
+    "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
   "description": "React Components for Polkadot Dapps.",
   "keywords": [

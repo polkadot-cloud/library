@@ -1,4 +1,4 @@
-// Copyright 2023 @paritytech/polkadot-cloud authors & contributors
+// Copyright 2023 @polkadot-cloud/polkadot-cloud authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
@@ -29,8 +29,8 @@ export const SelectItem = ({
         hoverBorder
           ? "var(--accent-color-primary)"
           : selected
-          ? "var(--accent-color-primary)"
-          : "var(--border-primary-color)"
+            ? "var(--accent-color-primary)"
+            : "var(--border-primary-color)"
       }`,
       flexGrow: `${grow ? 1 : 0}`,
     }}
