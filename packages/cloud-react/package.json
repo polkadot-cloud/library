@@ -43,7 +43,7 @@
     "@polkadot-cloud/assets": "0.1.35",
     "@polkadot-cloud/core": "^1.0.48",
     "@polkadot-cloud/utils": "^0.0.25",
-    "@polkadot/keyring": "^12.5.1",
+    "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
     "@zondax/ledger-substrate": "^0.41.3",
