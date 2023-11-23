@@ -206,10 +206,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chainsafe/metamask-polkadot-adapter@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@chainsafe/metamask-polkadot-adapter/-/metamask-polkadot-adapter-0.5.1.tgz#04ecf78ce6cdcc63ebdc2c97f67d0c1efdb8bee8"
-  integrity sha512-t3/KoGTgayt2qQOmEWj5Gx8UVvqjhEuybMYadInWsvsDvmyhSKUxzGC8JlUSr4ww0Fa8Dzem21Hxo0FT9rxjyg==
+"@chainsafe/metamask-polkadot-adapter@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@chainsafe/metamask-polkadot-adapter/-/metamask-polkadot-adapter-0.6.0.tgz#6b11a4aca065ed77de15573c880fee50a637a3c0"
+  integrity sha512-/GYngaoKf6svvYDOvfxx7gK6cbPEYvOGv3HooCc8uGLAkpDZvs8SmLfx5k5s1PdDKyNfr9UB1x0TaNhE24PvqQ==
   dependencies:
     "@polkadot/api" "^10.9.1"
     "@polkadot/extension-inject" "^0.46.5"

@@ -32,7 +32,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@chainsafe/metamask-polkadot-adapter": "^0.5.1",
+    "@chainsafe/metamask-polkadot-adapter": "^0.6.0",
     "@chainsafe/metamask-polkadot-types": "^0.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
