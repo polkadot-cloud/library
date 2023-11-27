@@ -17,7 +17,7 @@
   "homepage": "https://github.com/polkadot-cloud/polkadot-cloud#readme",
   "scripts": {
     "build:mock": "node ../../scripts/generatePackageJson.mjs -p utils",
-    "build": "rm -fr dist && tsup lib/index.ts --format cjs,esm --clean && yarn run copy",
+    "build": "rm -fr dist && tsup && yarn run copy",
     "copy": "cp ./README.npm.md dist/README.md && cp ./LICENSE ./dist/LICENSE && node ../../scripts/generatePackageJson.mjs -p utils",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "test": "vitest run",

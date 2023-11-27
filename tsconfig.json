@@ -4,7 +4,6 @@
     "rootDir": ".",
     "declaration": true,
     "declarationMap": false,
-    "incremental": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,

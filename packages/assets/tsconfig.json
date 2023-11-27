@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
+    "incremental": true,
     "composite": true,
     "declarationDir": ".",
     "rootDir": "./lib",
