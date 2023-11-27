@@ -60,7 +60,7 @@ export const generateExportEntries = async ({ ignore }) => {
     "./lib/index.tsx",
     generateExportLines(components, "./")
   );
-
+};
 
 // Generate export lines for an array of items.
 const generateExportLines = (items, basePath) =>
