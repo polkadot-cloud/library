@@ -4,14 +4,14 @@ SPDX-License-Identifier: GPL-3.0-only */
 import {
   AccountCard,
   IconProps,
-} from "@packages/cloud-react/lib/recipes/AccountCard";
+} from "@packages/cloud-recipes/lib/AccountCard";
 import { SimpleEditor } from "@docs/SimpleEditor";
 import { Switch } from "@packages/cloud-react/lib/base/inputs/Switch";
 import { Demo } from "@docs/Demo";
 
 export const AccountCardPageSimple = () => {
   const code = `
-import { AccountCard, IconProps, } from "@polkadot-cloud/react/recipes/AccountCard";
+import { AccountCard, IconProps } from "@polkadot-cloud/react/AccountCard";
 ...
 const iconProps: IconProps = {}; // or { position = "left" }; <- "left" is the default option
 ...

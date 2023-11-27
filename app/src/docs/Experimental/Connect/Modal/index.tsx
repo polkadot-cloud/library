@@ -6,7 +6,7 @@ import { Doc } from "./main";
 export const ModalConnect = () => {
   return (
     <div className="doc">
-      <Doc npm="@polkadot-cloud/react" folder="Recipes/ModalConnect" />
+      <Doc npm="@polkadot-cloud/recipes" folder="ModalConnect" />
     </div>
   );
 };

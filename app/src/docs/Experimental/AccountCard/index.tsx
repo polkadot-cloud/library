@@ -5,6 +5,6 @@ import { Doc } from "./main";
 
 export const AccountCard = () => (
   <div className="doc">
-    <Doc npm="@polkadot-cloud/react" folder="Experimental/AccountCard" />
+    <Doc npm="@polkadot-cloud/recipes" folder="AccountCard" />
   </div>
 );

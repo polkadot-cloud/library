@@ -54,8 +54,8 @@ export default !(function (t) {
         ? "string" == typeof t
           ? t
           : "string" == typeof t.content
-          ? t.content
-          : t.content.map(s).join("")
+            ? t.content
+            : t.content.map(s).join("")
         : "";
     },
     g = function (n) {
@@ -75,13 +75,13 @@ export default !(function (t) {
                     openedBraces: 0,
                   })
               : e.length > 0 && "punctuation" === o.type && "{" === o.content
-              ? e[e.length - 1].openedBraces++
-              : e.length > 0 &&
-                e[e.length - 1].openedBraces > 0 &&
-                "punctuation" === o.type &&
-                "}" === o.content
-              ? e[e.length - 1].openedBraces--
-              : (i = !0)),
+                ? e[e.length - 1].openedBraces++
+                : e.length > 0 &&
+                    e[e.length - 1].openedBraces > 0 &&
+                    "punctuation" === o.type &&
+                    "}" === o.content
+                  ? e[e.length - 1].openedBraces--
+                  : (i = !0)),
           (i || "string" == typeof o) &&
             e.length > 0 &&
             0 === e[e.length - 1].openedBraces)

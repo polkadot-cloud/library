@@ -4,13 +4,13 @@ SPDX-License-Identifier: GPL-3.0-only */
 import {
   AccountCard,
   IconProps,
-} from "@packages/cloud-react/lib/recipes/AccountCard";
+} from "@packages/cloud-recipes/lib/AccountCard";
 import { SimpleEditor } from "@docs/SimpleEditor";
 import { Demo } from "@docs/Demo";
 
 export const AccountCardPageSimpleMoreProps = () => {
   const code = `
-import { AccountCard, IconProps, } from "@polkadot-cloud/react/recipes/AccountCard";
+import { AccountCard, IconProps, } from "@polkadot-cloud/recipes/AccountCard";
 ...
 const iconProps: IconProps = {
   copy: true,

@@ -7,7 +7,7 @@ import {
   ExtraComponentProps,
   IconProps,
   TitleProps,
-} from "@packages/cloud-react/lib/recipes/AccountCard";
+} from "@packages/cloud-recipes/lib/AccountCard";
 import { SimpleEditor } from "@docs/SimpleEditor";
 import { Grid } from "@packages/cloud-react/lib/base/structure/Grid";
 import { HPosition } from "@packages/cloud-react/lib/utils/types";

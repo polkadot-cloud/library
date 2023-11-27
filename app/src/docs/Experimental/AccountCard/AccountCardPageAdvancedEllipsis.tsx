@@ -4,13 +4,13 @@ SPDX-License-Identifier: GPL-3.0-only */
 import {
   AccountCard,
   IconProps,
-} from "@packages/cloud-react/lib/recipes/AccountCard";
+} from "@packages/cloud-recipes/lib/AccountCard";
 import { Grid } from "@packages/cloud-react/lib/base/structure/Grid";
 import { SimpleEditor } from "@docs/SimpleEditor";
 import { Demo } from "@docs/Demo";
 
 export const AccountCardPageAdvancedEllipsis = () => {
-  const codeB = `import { AccountCard, IconProps, } from "@polkadot-cloud/react/recipes/AccountCard";
+  const codeB = `import { AccountCard, IconProps, } from "@polkadot-cloud/recipes/AccountCard";
 ...
 const iconPropsLeft: IconProps = {
   // position defaults to "left"

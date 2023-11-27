@@ -5,13 +5,13 @@ import {
   AccountCard,
   ExtraComponentProps,
   IconProps,
-} from "@packages/cloud-react/lib/recipes/AccountCard";
+} from "@packages/cloud-recipes/lib/AccountCard";
 import { Button } from "@packages/cloud-react/lib/buttons/Button";
 import { SimpleEditor } from "@docs/SimpleEditor";
 import { Demo } from "@docs/Demo";
 
 export const AccountCardPageAdvancedExtraComponent = () => {
-  const code = `import { AccountCard, IconProps, ExtraComponentProps } from "@packages/cloud-react/lib/recipes/AccountCard";
+  const code = `import { AccountCard, IconProps, ExtraComponentProps } from "@packages/cloud-recipes/lib/AccountCard";
 ...
 
 // Note: space/size of main component is automatically calculated based on the given sizes from the icon and extra component; 

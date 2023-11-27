@@ -11,11 +11,11 @@ import {
   Connect,
   connectInfo,
   ConnectConfigProvider,
-} from "@packages/cloud-react/lib/recipes/Connect";
+} from "@packages/cloud-recipes/lib/Connect";
 import type {
   ConnectType,
   DappInfo,
-} from "@packages/cloud-react/lib/recipes/Connect";
+} from "@packages/cloud-recipes/lib/Connect";
 import { ModalConnectWalletSettings } from "./ModalConnectWalletSettings";
 
 const walletSettings: ConnectType = {
@@ -42,7 +42,7 @@ export const Doc = ({ folder, npm }: DocProps) => {
         title="Web/Hardware Wallets Connect component"
         subtitle="A light-weight and Connect recipe for connecting to web/hardware wallets."
         npm={npm}
-        status="stable"
+        status="experimental"
       />
       <h4>Introduction</h4>
       <p>
