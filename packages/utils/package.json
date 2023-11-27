@@ -17,15 +17,23 @@
   "homepage": "https://github.com/polkadot-cloud/polkadot-cloud#readme",
   "scripts": {
     "build:mock": "node ../../scripts/generatePackageJson.mjs -p utils",
-    "build": "rm -fr dist && rollup -c  && mv dist/README.npm.md dist/README.md && node ../../scripts/generatePackageJson.mjs -p utils",
+    "build": "rm -fr dist && tsup lib/index.ts --format cjs,esm --clean && cp ./README.npm.md dist/README.md && node ../../scripts/generatePackageJson.mjs -p utils",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "bignumber.js": "^9.1.1",
     "@polkadot/keyring": "^12.6.1",
-    "@polkadot/util": "^12.5.1"
+    "@polkadot/util": "^12.5.1",
+    "bignumber.js": "^9.1.1"
+  },
+  "peerDependencies": {
+    "@polkadot/keyring": "^12.6.1",
+    "@polkadot/util": "^12.5.1",
+    "bignumber.js": "^9.1.1"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1"
   }
 }
