@@ -3,6 +3,6 @@
   "packages/assets": "0.1.35",
   "packages/cloud-core": "1.0.48",
   "packages/cloud-react": "0.1.132",
-  "packages/cloud-receipts": "0.0.5",
+  "packages/cloud-recipes": "0.0.5",
   "packages/utils": "0.0.25"
 }
