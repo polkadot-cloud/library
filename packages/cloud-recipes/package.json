@@ -37,7 +37,7 @@
     "@ledgerhq/hw-transport-webhid": "^6.27.20",
     "@polkadot-cloud/assets": "0.1.35",
     "@polkadot-cloud/core": "^1.0.48",
-    "@polkadot-cloud/react": "^0.1.134",
+    "@polkadot-cloud/react": "^0.1.137",
     "@polkadot-cloud/utils": "^0.0.25",
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
@@ -62,7 +62,7 @@
     "@ledgerhq/hw-transport-webhid": "^6.27.20",
     "@polkadot-cloud/assets": "0.1.35",
     "@polkadot-cloud/core": "^1.0.48",
-    "@polkadot-cloud/react": "^0.1.134",
+    "@polkadot-cloud/react": "^0.1.137",
     "@polkadot-cloud/utils": "^0.0.25",
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
@@ -77,6 +77,6 @@
     "react-qr-reader": "^2.2.1"
   },
   "devDependencies": {
-    "@polkadot-cloud/react": "^0.1.134"
+    "@polkadot-cloud/react": "^0.1.137"
   }
 }
