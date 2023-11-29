@@ -27,7 +27,7 @@
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "peerDependencies": {
-    "framer-motion": "^10.16.5",
+    "framer-motion": "^10.16.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -46,6 +46,6 @@
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
-    "framer-motion": "^10.16.5"
+    "framer-motion": "^10.16.7"
   }
 }
