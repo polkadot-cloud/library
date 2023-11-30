@@ -38,7 +38,7 @@
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
     "bignumber.js": "^9.1.2",
-    "framer-motion": "^10.16.7",
+    "framer-motion": "^10.16.9",
     "lodash.throttle": "^4.1.1",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
