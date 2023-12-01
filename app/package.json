@@ -47,6 +47,6 @@
     "react-router-dom": "^6.20.0",
     "react-simple-code-editor": "^0.13.1",
     "stylelint": "^15.11.0",
-    "svgo": "^3.0.4"
+    "svgo": "^3.0.5"
   }
 }
