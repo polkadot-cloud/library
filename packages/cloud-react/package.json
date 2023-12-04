@@ -27,19 +27,16 @@
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
   "peerDependencies": {
-    "framer-motion": "^10.16.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "dependencies": {
     "@chainsafe/metamask-polkadot-adapter": "^0.6.0",
-    "@chainsafe/metamask-polkadot-types": "^0.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@ledgerhq/hw-transport-webhid": "^6.28.0",
     "@polkadot-cloud/assets": "0.1.35",
     "@polkadot-cloud/core": "^1.0.48",
     "@polkadot-cloud/utils": "^0.0.25",
