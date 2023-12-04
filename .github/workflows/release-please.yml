@@ -8,7 +8,7 @@ jobs:
   release-please-repo:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: google-github-actions/release-please-action@v4
         with:
           # Commit to start releases from. This can be removed after the first release PR is merged.
           last-release-sha: 27283aff707ce928deb4440d80512fbdc1b04e83
