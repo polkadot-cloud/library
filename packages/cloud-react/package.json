@@ -43,6 +43,6 @@
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
-    "framer-motion": "^10.16.12"
+    "framer-motion": "^10.16.14"
   }
 }
