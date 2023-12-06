@@ -32,8 +32,5 @@
   "peerDependencies": {
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1"
-  },
-  "devDependencies": {
-    "tsup": "^8.0.1"
   }
 }
