@@ -1,0 +1,30 @@
+# Information about the contents of this package.
+
+directory: 
+  - name: Polkicon: 
+    description: A light-weight and customisable Polkadot Icon.
+    doc: https://polkadot.cloud/polkicon
+
+  - name: Extensions Provider
+    description: Discover available web3 exensions and manage their status.
+    doc: https://polkadot.cloud/extensions-provider
+
+  - name: Extension Accounts Provider
+    description: Connect to web extensions and subscribe to accounts.
+    doc: https://polkadot.cloud/extension-accounts-provider
+
+  - name: Odometer
+    description: An odometer effect used for numbers and balances.
+    doc: https://polkadot.cloud/odometer
+
+  - name: Overlay
+    description: Overlay Provider and UI component for modals and overlaying content.
+    doc: https://polkadot.cloud/overlay
+
+  - name: Charts
+    description: Light-weight charts for displaying simple statistics.
+    doc: https://polkadot.cloud/charts
+
+  - name: Buttons
+    description: A small collection of plug-and-play button components.
+    doc: https://polkadot.cloud/buttons

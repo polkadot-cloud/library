@@ -1,0 +1,10 @@
+# Information about the contents of this package.
+
+directory: 
+  - name: Base: 
+    description: A collection of reusable utilities for manipulating string / number / arrays etc.
+    doc: https://polkadot.cloud/base-utilities
+
+  - name: Unit
+    description: A collection of reusable utilities for manipulating chain units.
+    doc: https://polkadot.cloud/unit_utilities
