@@ -1,19 +1,17 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import fs from "fs";
-import { dirFilesExist } from "./index.mjs";
+import fs from "fs/promises";
+import { checkFilesExistInPackage } from "./utils.mjs";
 
-const matchName = (dir, files) => {
+// Checks that a generated package name matches that in the dist/package.json file.
+const matchName = async (dir, files) => {
   for (let file of files) {
-    fs.stat(`${dir}${file}/dist/package.json`, (err) => {
-      if (err) {
-        console.error(`❌ dist/package.json file not found in ${dir}${file}`);
-        return;
-      }
-      const json = JSON.parse(
-        fs.readFileSync(`${dir}${file}/dist/package.json`).toString()
-      );
+    try {
+      const filePath = `${dir}${file}/dist/package.json`;
+
+      // Read and parse package.json file.
+      const json = JSON.parse(await fs.readFile(filePath));
 
       // Remove "cloud-" prefix from the name if it exists.
       const nameFromFile = file.startsWith("cloud-")
@@ -25,25 +23,21 @@ const matchName = (dir, files) => {
           `❌ package.json name field does not match the naming requirement`
         );
       }
-    });
+    } catch (err) {
+      console.error(`❌ dist/package.json file not found in ${dir}${file}`);
+    }
   }
 };
 
 try {
-  // Ensure that the package directory exists.
-  fs.readdir("./packages", async (err, files) => {
-    if (err) {
-      console.error(`❌ Packages folder not found`);
-      return;
-    }
+  // Get packages.
+  const packages = await fs.readdir("./packages");
 
-    // Check `dist` exist in each package.
-    await dirFilesExist("./packages/", files, ["dist"]);
+  // Check the dist folder exists in each package.
+  await checkFilesExistInPackage(packages, ["dist"]);
+  matchName("./packages/", packages);
 
-    matchName("./packages/", files);
-
-    console.log(`✅ Post-build integrity checks complete.`);
-  });
+  console.log("✅ Post-build integrity checks complete.");
 } catch (e) {
-  console.error(`❌ Could not complete integrity checks.`);
+  console.error("❌ Could not complete integrity checks.");
 }

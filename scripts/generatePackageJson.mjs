@@ -2,15 +2,11 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import fs from "fs";
-import { join, dirname } from "path";
+import { join } from "path";
 import { format } from "prettier";
 import { exit } from "process";
 import minimist from "minimist";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const packagesDir = join(__dirname, "..", "packages");
+import { getPackagesDirectory } from "./utils.mjs";
 
 // Scope of packages to be published.
 const scope = "polkadot-cloud";
@@ -37,7 +33,7 @@ const hardcoded = main
   : {};
 
 // Loop packages to generate `package.json`.
-const pathtoPackage = join(packagesDir, packageName);
+const pathtoPackage = join(getPackagesDirectory(), packageName);
 const pathToFile = join(pathtoPackage, "package.json");
 try {
   // Read `package.json` of the package.

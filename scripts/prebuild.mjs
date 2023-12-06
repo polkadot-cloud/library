@@ -1,72 +1,49 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import fs from "fs";
-import { dirFilesExist } from "./index.mjs";
+import fs from "fs/promises";
+import { checkFilesExistInPackage, checkFoldersInDirectory } from "./utils.mjs";
 
-const dirFoldersOnly = async (dir, files) => {
+const matchScripts = async (dir, files) => {
   for (let file of files) {
-    fs.stat(`${dir}${file}`, (err, stat) => {
-      if (err) {
-        console.error(`❌ Folder in packages directory not found`);
-        return;
-      }
-      if (!stat.isDirectory()) {
-        console.error(`❌ Packages directory must only contain folders.`);
-      }
-    });
-  }
-};
+    try {
+      const filePath = `${dir}${file}/package.json`;
 
-const matchScripts = (dir, files) => {
-  for (let file of files) {
-    fs.stat(`${dir}${file}/package.json`, (err) => {
-      if (err) {
-        console.error(`❌ package.json file not found in ${dir}${file}`);
-        return;
-      }
-      const json = JSON.parse(
-        fs.readFileSync(`${dir}${file}/package.json`).toString()
-      );
+      // Read and parse package.json file.
+      const json = JSON.parse(await fs.readFile(filePath));
 
       const scripts = Object.keys(json?.scripts || {});
-      if (
-        [
-          scripts.indexOf("build:mock"),
-          scripts.indexOf("build"),
-          scripts.indexOf("clear"),
-        ].includes("-1")
-      ) {
+
+      // Check if all required scripts are present.
+      const requiredScripts = ["build:mock", "build", "clear"];
+      if (!requiredScripts.every((script) => scripts.includes(script))) {
         console.error(
-          `❌ All of the scripts field in package.json are required to have build:mock, build and clear properties`
+          `❌ All of the scripts field in package.json are required to have build:mock, build, and clear properties`
         );
       }
-    });
+    } catch (err) {
+      console.error(`❌ package.json file not found in ${dir}${file}`);
+    }
   }
 };
 
 try {
   // Ensure that the package directory exists.
-  fs.readdir("./packages", async (err, files) => {
-    if (err) {
-      console.error(`❌ Packages folder not found`);
-      return;
-    }
+  const files = await fs.readdir("./packages");
 
-    // Ensure packages directory only contains folders.
-    await dirFoldersOnly("./packages/", files);
+  // Ensure packages directory only contains folders.
+  await checkFoldersInDirectory("./packages/", files);
 
-    // Check `LICENSE`, `README.md`, `README.npm.md`, `package.json`, `lib` exist in each package.
-    await dirFilesExist("./packages/", files, [
-      "README.md",
-      "README.npm.md",
-      "package.json",
-      "lib",
-    ]);
-    matchScripts("./packages/", files);
+  // Check `LICENSE`, `README.md`, `README.npm.md`, `package.json`, `lib` exist in each package.
+  await checkFilesExistInPackage(files, [
+    "README.md",
+    "README.npm.md",
+    "package.json",
+    "lib",
+  ]);
+  matchScripts("./packages/", files);
 
-    console.log(`✅ Pre-build integrity checks complete.`);
-  });
+  console.log("✅ Pre-build integrity checks complete.");
 } catch (e) {
-  console.error(`❌ Could not complete integrity checks.`);
+  console.error("❌ Could not complete integrity checks.");
 }
