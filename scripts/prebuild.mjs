@@ -12,7 +12,6 @@ import {
 import { PACKAGE_REQUIRED_SCRIPTS, PACKAGE_REQUIRED_FILES } from "./config.mjs";
 
 try {
-  // Get all packages.
   const packages = await fs.readdir(getPackagesDirectory());
 
   // Ensure all package directories exist.
@@ -37,13 +36,12 @@ try {
         PACKAGE_REQUIRED_SCRIPTS
       )
     ) {
-      throw `❌ Scripts missing field in package.json. Must have ${PACKAGE_REQUIRED_SCRIPTS.join(
+      throw `❌ Missing script field(s) in package.json. Must have ${PACKAGE_REQUIRED_SCRIPTS.join(
         ", "
       )} properties`;
     }
   }
 
-  // Checks succeeded.
   console.log("✅ Pre-build packages integrity checks succeeded.");
 } catch (err) {
   console.error(err);
