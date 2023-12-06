@@ -6,7 +6,7 @@
     "Ross Bulat<ross@parity.io>",
     "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
-  "description": "Utilities for Polkadot Dapps.",
+  "description": "Common utility functions to aid in Polkadot dApp development.",
   "keywords": [
     "Polkadot",
     "Utilities"
@@ -31,8 +31,7 @@
   },
   "peerDependencies": {
     "@polkadot/keyring": "^12.6.1",
-    "@polkadot/util": "^12.5.1",
-    "bignumber.js": "^9.1.1"
+    "@polkadot/util": "^12.5.1"
   },
   "devDependencies": {
     "tsup": "^8.0.1"
