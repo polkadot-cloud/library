@@ -4,83 +4,70 @@
 import fs from "fs";
 import { join } from "path";
 import { format } from "prettier";
-import { exit } from "process";
 import minimist from "minimist";
 import { getPackagesDirectory } from "./utils.mjs";
+import { PACKAGE_SCOPE, REQUIRED_PACKAGE_JSON_KEYS } from "./config.mjs";
 
-// Scope of packages to be published.
-const scope = "polkadot-cloud";
+// Retrieve arguments from command.
+const { p: packageName, m: main } = minimist(process.argv.slice(2));
 
-const argv = minimist(process.argv.slice(2));
-
-const { p: packageName, m: main } = argv;
-
-if (!packageName) {
-  console.error("❌ Please provide package name with the -p flag");
-  exit();
-}
-// Hardcoded properties that will be included in resulting `package.json`.
-// Ignored if no `main` entry is provided.
-const hardcoded = main
-  ? {
-      types: "index.d.ts",
-      main,
-      module: main,
-      typescript: {
-        definition: "index.d.ts",
-      },
-    }
-  : {};
-
-// Loop packages to generate `package.json`.
-const pathtoPackage = join(getPackagesDirectory(), packageName);
-const pathToFile = join(pathtoPackage, "package.json");
 try {
-  // Read `package.json` of the package.
-  const json = JSON.parse(fs.readFileSync(pathToFile).toString());
+  // A package name must be provided.
+  if (!packageName) {
+    throw "❌ Please provide package name with the -p flag";
+  }
 
-  // Keys to copy from the file.
-  const keys = [
-    "name",
-    "license",
-    "version",
-    "keywords",
-    "bugs",
-    "homepage",
-    "contributors",
-    "description",
-    "dependencies",
-    "peerDependencies",
-  ];
+  // Package directory.
+  const packagePath = join(getPackagesDirectory(), packageName);
 
-  // Get properties of interest.
-  const filtered = Object.entries(json).filter((k) => {
-    return keys.includes(k[0]);
-  });
+  // Read package's `package.json`.
+  const packageJson = JSON.parse(
+    fs.readFileSync(join(packagePath, "package.json")).toString()
+  );
+
+  // Get required package properties.
+  const requiredProperties = Object.entries(packageJson).filter((k) =>
+    REQUIRED_PACKAGE_JSON_KEYS.includes(k[0])
+  );
 
   // If the package folder name starts with `cloud-` remove this from the npm published package
   // name.
-  let publishName = json.name.split(`${scope}-`)[1];
+  let publishName = packageJson.name.split(`${PACKAGE_SCOPE}-`)[1];
   if (publishName.startsWith("cloud-")) {
     // remove "cloud-"" from the start of `publishName`.
     publishName = publishName.slice("cloud-".length);
   }
 
-  // Replace `name` with scope and package name.
-  filtered[0] = ["name", `@${scope}/${publishName}`];
+  // Add `name` with npm package name to the begining of required fields.
+  requiredProperties.unshift(["name", `@${PACKAGE_SCOPE}/${publishName}`]);
 
-  // Merge properties with `hardcoded`.
-  const merged = Object.assign({}, Object.fromEntries(filtered), hardcoded);
+  // Finalise package.json properties. If main is provided, add typescript related properties.
+  //
+  // TODO: this could be improved.
+  const merged = Object.assign(
+    {},
+    Object.fromEntries(requiredProperties),
+    main
+      ? {
+          types: "index.d.ts",
+          main,
+          module: main,
+          typescript: {
+            definition: "index.d.ts",
+          },
+        }
+      : {}
+  );
 
-  // Format merged JSON
+  // Format merged JSON.
   format(JSON.stringify(merged), { parser: "json" }).then((data) => {
     // Create `dist` directory if it doesn't exist.
-    if (!fs.existsSync(`${pathtoPackage}/dist`)) {
-      fs.mkdirSync(`${pathtoPackage}/dist`);
+    if (!fs.existsSync(`${packagePath}/dist`)) {
+      fs.mkdirSync(`${packagePath}/dist`);
     }
 
     // Write `package.json` to the bundle.
-    fs.writeFile(`${pathtoPackage}/dist/package.json`, data, (err) => {
+    fs.writeFile(`${packagePath}/dist/package.json`, data, (err) => {
       if (err) {
         console.error(`❌ ${err.message}`);
       }
