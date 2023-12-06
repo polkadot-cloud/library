@@ -8,3 +8,9 @@ directory:
   - name: Unit
     description: A collection of reusable utilities for manipulating chain units.
     doc: https://polkadot.cloud/unit_utilities
+
+npm: 
+  title: "Polkadot Cloud: Utils"
+  contents: 
+    - item: Collection of reusable utilities for manipulating string / number / arrays etc.
+    - item: Collection of reusable utilities for manipulating chain units.
