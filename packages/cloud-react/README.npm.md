@@ -26,7 +26,7 @@
 
 ## Docs
 
-- [Polkadot Cloud Docs: Installation](https://polkadot.cloud/polkicon): Install and start using `@polkadot‑cloud/react`.
+- [Polkadot Cloud Docs: Installation](https://polkadot.cloud/installation): Install and start using `@polkadot‑cloud/react`.
 
 - [Polkadot Cloud Docs: Components (Polkicon)](https://polkadot.cloud/polkicon): Browse Cloud React Components.
 
