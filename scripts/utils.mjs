@@ -6,11 +6,13 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 // Gets the packages directory from the current directory.
-export const getPackagesDirectory = () =>
-  join(dirname(fileURLToPath(import.meta.url)), "..", "packages");
+export const getPackagesDirectory = () => {
+  return join(dirname(fileURLToPath(import.meta.url)), "..", "packages");
+};
 
-// Checks whether files exist in a package directory.
-export const checkFilesExistInPackage = async (pkgs, files) => {
+// Checks that all given files are present in all the provided packages.
+export const checkFilesExistInPackages = async (pkgs, files) => {
+  let allFilesExist = true;
   await Promise.all(
     pkgs.map(async (pkg) => {
       await Promise.all(
@@ -19,23 +21,44 @@ export const checkFilesExistInPackage = async (pkgs, files) => {
             await fs.stat(`./packages/${pkg}/${file}`);
           } catch (err) {
             console.error(`❌ ${file} not found in ${pkg}`);
+            allFilesExist = false;
           }
         })
       );
     })
   );
+  return allFilesExist;
 };
 
 // Checks whether the provided folders exist in a directory.
-export const checkFoldersInDirectory = async (dir, files) => {
-  for (let file of files) {
+export const checkFoldersInDirectory = async (dir, folders) => {
+  let allFoldersExist = true;
+
+  for (let folder of folders) {
     try {
-      const stat = await fs.stat(`${dir}${file}`);
+      const stat = await fs.stat(`${dir}/${folder}`);
       if (!stat.isDirectory()) {
-        console.error(`❌ ${dir} must only contain folders.`);
+        console.error(`❌ ${dir}/${folder} is not a directory.`);
+        allFoldersExist = false;
       }
     } catch (err) {
-      console.error(`❌ Folder in ${dir} not found`);
+      console.error(`❌ Folder in ${dir}/${folder} not found`);
+      allFoldersExist = false;
     }
   }
+  return allFoldersExist;
+};
+
+// Checks whether properties exist in an object.
+export const allPropertiesExist = (obj, properties) => {
+  return properties.every((property) => obj.includes(property));
+};
+
+// Attempts to retrieve a package.json's scripts property, or returns an empty object.
+export const getPackageScripts = async (pkg) => {
+  const file = await fs.readFile(
+    `${getPackagesDirectory()}/${pkg}/package.json`,
+    "utf-8"
+  );
+  return Object.keys(JSON.parse(file)?.scripts || {}) || {};
 };

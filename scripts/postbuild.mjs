@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import fs from "fs/promises";
-import { checkFilesExistInPackage } from "./utils.mjs";
+import { checkFilesExistInPackages } from "./utils.mjs";
 
 // Checks that a generated package name matches that in the dist/package.json file.
 const matchName = async (dir, files) => {
@@ -34,7 +34,7 @@ try {
   const packages = await fs.readdir("./packages");
 
   // Check the dist folder exists in each package.
-  await checkFilesExistInPackage(packages, ["dist"]);
+  await checkFilesExistInPackages(packages, ["dist"]);
   matchName("./packages/", packages);
 
   console.log("✅ Post-build integrity checks complete.");
