@@ -30,7 +30,7 @@ export const PACKAGE_REQUIRED_SCRIPTS = ["build:mock", "build", "clear"];
 // --------------------------------------------------------------
 // Required package.json properties to copy to the package build.
 // --------------------------------------------------------------
-export const REQUIRED_PACKAGE_JSON_KEYS = [
+export const PACKAGE_REQUIRED_JSON_KEYS = [
   "license",
   "version",
   "keywords",

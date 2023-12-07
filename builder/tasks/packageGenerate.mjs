@@ -11,7 +11,7 @@ import {
   getSourcePackageJson,
   writePackageJsonToOutput,
 } from "../utils.mjs";
-import { REQUIRED_PACKAGE_JSON_KEYS } from "../config.mjs";
+import { PACKAGE_REQUIRED_JSON_KEYS } from "../config.mjs";
 
 export const run = async ({ p: packageName, m: main }) => {
   try {
@@ -32,7 +32,7 @@ export const run = async ({ p: packageName, m: main }) => {
     // Required properties to be copied to the npm build package.json file.
     // --------------------------------------------------------------------
     const requiredProperties = Object.entries(sourcePackageJson).filter((k) =>
-      REQUIRED_PACKAGE_JSON_KEYS.includes(k[0])
+      PACKAGE_REQUIRED_JSON_KEYS.includes(k[0])
     );
 
     //Inject formatted package `name` into required properties.
