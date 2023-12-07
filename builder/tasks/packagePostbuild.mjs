@@ -6,8 +6,8 @@ import {
   checkFilesExistInPackages,
   formatNpmPackageName,
   getPackagesDirectory,
-} from "./utils.mjs";
-import { PACKAGE_OUTPUT } from "./config.mjs";
+} from "../utils.mjs";
+import { PACKAGE_OUTPUT } from "../config.mjs";
 
 try {
   const packages = await fs.readdir(getPackagesDirectory());

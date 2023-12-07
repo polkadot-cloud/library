@@ -8,8 +8,11 @@ import {
   checkFoldersInDirectory,
   getPackageScripts,
   getPackagesDirectory,
-} from "./utils.mjs";
-import { PACKAGE_REQUIRED_SCRIPTS, PACKAGE_REQUIRED_FILES } from "./config.mjs";
+} from "../utils.mjs";
+import {
+  PACKAGE_REQUIRED_SCRIPTS,
+  PACKAGE_REQUIRED_FILES,
+} from "../config.mjs";
 
 try {
   const packages = await fs.readdir(getPackagesDirectory());
