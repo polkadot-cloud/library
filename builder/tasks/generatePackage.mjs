@@ -1,7 +1,6 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import fs from "fs";
 import { join } from "path";
 import {
   addTypescriptPropertiesIfMain,
@@ -9,9 +8,10 @@ import {
   formatJson,
   formatNpmPackageName,
   getPackagesDirectory,
+  getSourcePackageJson,
   writePackageJsonToOutput,
 } from "../utils.mjs";
-import { PACKAGE_OUTPUT, REQUIRED_PACKAGE_JSON_KEYS } from "../config.mjs";
+import { REQUIRED_PACKAGE_JSON_KEYS } from "../config.mjs";
 
 export const run = async ({ p: packageName, m: main }) => {
   try {
@@ -27,9 +27,7 @@ export const run = async ({ p: packageName, m: main }) => {
 
     // Source package.json as a parsed JSON object.
     // ----------------------------------------------
-    const sourcePackageJson = JSON.parse(
-      fs.readFileSync(join(packagePath, "package.json")).toString()
-    );
+    const sourcePackageJson = await getSourcePackageJson(packagePath);
 
     // Required properties to be copied to the npm build package.json file.
     // --------------------------------------------------------------------
@@ -49,24 +47,17 @@ export const run = async ({ p: packageName, m: main }) => {
     // Format final package.json for output.
     // -------------------------------------
     const packageJson = await formatJson(finalProperties);
-    if (!packageJson) {
-      throw "❌ Could not format package.json";
-    }
 
     // Create output directory if it does not exist.
     // --------------------------------------------
-    if (!(await ensurePackageOutputExists(packagePath))) {
-      throw `❌ Could not create ${packageName} ${PACKAGE_OUTPUT} directory`;
-    }
+    await ensurePackageOutputExists(packagePath);
 
     // Write package.json to the output directory.
     // -------------------------------------------
-    if (!(await writePackageJsonToOutput(packagePath, packageJson))) {
-      throw `❌ Could not write package.json for ${packageName}`;
-    }
+    await writePackageJsonToOutput(packagePath, packageJson);
 
     console.log(`✅ package.json injected into package ${packageName}.`);
-  } catch (e) {
-    console.error(`❌ Could not generate  ${packageName} package.json:`, e);
+  } catch (err) {
+    console.error(`❌ Could not generate  ${packageName} package.json:`, err);
   }
 };

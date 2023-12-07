@@ -86,6 +86,12 @@ export const formatJson = async (json) => {
 // Package generation utils
 //--------------------------------------------------
 
+// Get the source package.json file for a package.
+export const getSourcePackageJson = async (path) => {
+  const file = await fs.readFile(`${path}/package.json`, "utf-8");
+  return JSON.parse(file.toString());
+};
+
 // Checks whether properties exist in an object.
 export const allPropertiesExist = (obj, properties) => {
   return properties.every((property) => obj.includes(property));
@@ -118,22 +124,12 @@ export const addTypescriptPropertiesIfMain = (main, json) => {
 
 // Creates a package output directory if it does not exist.
 export const ensurePackageOutputExists = async (path) => {
-  try {
-    if (!(await fs.stat(`${path}/${PACKAGE_OUTPUT}`))) {
-      await fs.mkdir(`${path}/${PACKAGE_OUTPUT}`);
-    }
-    return true;
-  } catch (err) {
-    return false;
+  if (!(await fs.stat(`${path}/${PACKAGE_OUTPUT}`))) {
+    await fs.mkdir(`${path}/${PACKAGE_OUTPUT}`);
   }
 };
 
 // Writes a package.json file to a directory.
 export const writePackageJsonToOutput = async (path, data) => {
-  try {
-    await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
-    return true;
-  } catch (e) {
-    return false;
-  }
+  await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
 };
