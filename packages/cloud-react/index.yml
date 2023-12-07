@@ -1,7 +1,7 @@
 # Information about the contents of this package.
 
 directory: 
-  - name: Polkicon: 
+  - name: Polkicon
     description: A light-weight and customisable Polkadot Icon.
     doc: https://polkadot.cloud/polkicon
 
