@@ -2,42 +2,35 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import fs from "fs/promises";
-import { checkFilesExistInPackages } from "./utils.mjs";
-
-// Checks that a generated package name matches that in the dist/package.json file.
-const matchName = async (dir, files) => {
-  for (let file of files) {
-    try {
-      const filePath = `${dir}${file}/dist/package.json`;
-
-      // Read and parse package.json file.
-      const json = JSON.parse(await fs.readFile(filePath));
-
-      // Remove "cloud-" prefix from the name if it exists.
-      const nameFromFile = file.startsWith("cloud-")
-        ? file.slice("cloud-".length)
-        : file;
-
-      if (json?.name !== `@polkadot-cloud/${nameFromFile}`) {
-        console.error(
-          `❌ package.json name field does not match the naming requirement`
-        );
-      }
-    } catch (err) {
-      console.error(`❌ dist/package.json file not found in ${dir}${file}`);
-    }
-  }
-};
+import {
+  checkFilesExistInPackages,
+  formatNpmPackageName,
+  getPackagesDirectory,
+} from "./utils.mjs";
+import { PACKAGE_OUTPUT } from "./config.mjs";
 
 try {
-  // Get packages.
-  const packages = await fs.readdir("./packages");
+  const packages = await fs.readdir(getPackagesDirectory());
 
-  // Check the dist folder exists in each package.
-  await checkFilesExistInPackages(packages, ["dist"]);
-  matchName("./packages/", packages);
+  // Check the correct output folder exists in each package.
+  if (!(await checkFilesExistInPackages(packages, [PACKAGE_OUTPUT]))) {
+    throw `❌ ${PACKAGE_OUTPUT} folder missing for package.`;
+  }
+
+  for (let pkg of packages) {
+    // Read and parse package.json file.
+    const packageJson = JSON.parse(
+      await fs.readFile(
+        `${getPackagesDirectory()}/${pkg}/${PACKAGE_OUTPUT}/package.json`
+      )
+    );
+
+    if (packageJson?.name !== formatNpmPackageName(pkg)) {
+      throw `❌ package.json name field does not match the naming requirement`;
+    }
+  }
 
   console.log("✅ Post-build integrity checks complete.");
-} catch (e) {
-  console.error("❌ Could not complete integrity checks.");
+} catch (err) {
+  console.error("❌ Could not complete integrity checks.", err);
 }

@@ -28,7 +28,6 @@ try {
     )} files`;
   }
 
-  // Check integrity of each package.
   for (const pkg of packages) {
     if (
       !allPropertiesExist(

@@ -6,6 +6,11 @@
 // ----------------------------
 export const PACKAGE_SCOPE = "polkadot-cloud";
 
+// ----------------------------
+// Package build output folder.
+// ----------------------------
+export const PACKAGE_OUTPUT = "dist";
+
 // ----------------------------------------------
 // Files that are required to exist in a package.
 // ----------------------------------------------

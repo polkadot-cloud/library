@@ -4,6 +4,7 @@
 import fs from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { PACKAGE_SCOPE } from "./config.mjs";
 
 // Gets the packages directory from the current directory.
 export const getPackagesDirectory = () => {
@@ -61,4 +62,15 @@ export const getPackageScripts = async (pkg) => {
     "utf-8"
   );
   return Object.keys(JSON.parse(file)?.scripts || {}) || {};
+};
+
+// Formats npm package name from package source folder name.
+export const formatNpmPackageName = (name) => {
+  return `@${PACKAGE_SCOPE}/${removePrefix(name, "cloud-")}`;
+};
+
+// Remove a prefix from a string if it exists.
+export const removePrefix = (str, prefix) => {
+  const result = str.startsWith(prefix) ? str.slice("cloud-".length) : str;
+  return result;
 };
