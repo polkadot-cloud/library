@@ -2,16 +2,23 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import minimist from "minimist";
-import * as packageGenerate from "./tasks/packageGenerate.mjs";
+import * as packages from "./tasks/packages.mjs";
 
 const args = minimist(process.argv.slice(2));
 
 const { t: task, ...rest } = args;
 
 switch (task) {
-  // Generates a package.json for the provided package.
+  case "package-prebuild":
+    packages.prebuild();
+    break;
+
   case "package":
-    packageGenerate.run(rest);
+    packages.build(rest);
+    break;
+
+  case "package-postbuild":
+    packages.postbuild();
     break;
 
   default:

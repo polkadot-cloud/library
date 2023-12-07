@@ -83,13 +83,28 @@ export const formatJson = async (json) => {
 };
 
 //--------------------------------------------------
-// Package generation utils
+// Package build utils
 //--------------------------------------------------
+
+// Gets the list of packges.
+export const getPackages = async () => {
+  const packages = await fs.readdir(getPackagesDirectory());
+  return packages;
+};
 
 // Get the source package.json file for a package.
 export const getSourcePackageJson = async (path) => {
   const file = await fs.readFile(`${path}/package.json`, "utf-8");
   return JSON.parse(file.toString());
+};
+
+// Gets a dist package.json file.
+export const getDistPackageJson = async (path) => {
+  return JSON.parse(
+    await fs.readFile(
+      `${getPackagesDirectory()}/${path}/${PACKAGE_OUTPUT}/package.json`
+    )
+  );
 };
 
 // Checks whether properties exist in an object.
