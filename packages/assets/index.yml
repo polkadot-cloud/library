@@ -1,16 +1,16 @@
 # Information about the contents of this package.
 
-directory: 
+directory:
   - name: Web3 Wallet Extensions
     description: A list of popular Web3 wallet extensions with metadata and icons.
     doc: https://polkadot.cloud/extensions
-  
+
   - name: Validator Operators
     description: A list of Polkadot validator operators with metadata and thumbnails.
     doc: https://polkadot.cloud/validators
 
 npm:
   title: "Polkadot Cloud: Assets"
-  contents: 
+  contents:
     - item: A list of popular web3 extension wallets with metadata and their SVG icons.
     - item: A list of validator operators with metadata, and their SVG icons. Supported validator data.

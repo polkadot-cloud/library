@@ -1,7 +1,7 @@
 # Information about the contents of this package.
 
-directory: 
-  - name: Base: 
+directory:
+  - name: Base
     description: A collection of reusable utilities for manipulating string / number / arrays etc.
     doc: https://polkadot.cloud/base-utilities
 
@@ -9,8 +9,8 @@ directory:
     description: A collection of reusable utilities for manipulating chain units.
     doc: https://polkadot.cloud/unit_utilities
 
-npm: 
+npm:
   title: "Polkadot Cloud: Utils"
-  contents: 
+  contents:
     - item: Collection of reusable utilities for manipulating string / number / arrays etc.
     - item: Collection of reusable utilities for manipulating chain units.

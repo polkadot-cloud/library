@@ -15,7 +15,7 @@ export const PACKAGE_OUTPUT = "dist";
 // Files that are required to exist in a package.
 // ----------------------------------------------
 export const PACKAGE_REQUIRED_FILES = [
-  "index.yaml",
+  "index.yml",
   "lib",
   "package.json",
   "README.md",
