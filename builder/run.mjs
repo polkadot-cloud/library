@@ -9,15 +9,15 @@ const args = minimist(process.argv.slice(2));
 const { t: task, ...rest } = args;
 
 switch (task) {
-  case "package-prebuild":
+  case "prebuild":
     packages.prebuild();
     break;
 
-  case "package":
+  case "build":
     packages.build(rest);
     break;
 
-  case "package-postbuild":
+  case "postbuild":
     packages.postbuild();
     break;
 
