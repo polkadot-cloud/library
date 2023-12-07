@@ -1,6 +1,6 @@
 # Information about the contents of this package.
 
-directory: 
+directory:
   - name: Polkicon
     description: A light-weight and customisable Polkadot Icon.
     doc: https://polkadot.cloud/polkicon
@@ -29,9 +29,9 @@ directory:
     description: A small collection of plug-and-play button components.
     doc: https://polkadot.cloud/buttons
 
-npm: 
+npm:
   title: "Polkadot Cloud: React"
-  contents: 
+  contents:
     - item: Headless components provided as React context providers and hooks.
     - item: Fully functional UI implementations of headless components.
     - item: Useful UI components for Polkadot dApps.
