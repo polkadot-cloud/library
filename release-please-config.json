@@ -6,6 +6,6 @@
     "packages/cloud-core": {},
     "packages/cloud-react": {},
     "packages/utils": {},
-    "scripts": {}
+    "builder": {}
   }
 }

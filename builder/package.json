@@ -1,12 +1,12 @@
 {
-  "name": "polkadot-cloud-scripts",
+  "name": "polkadot-cloud-builder",
   "license": "GPL-3.0-only",
   "version": "0.1.0",
   "contributors": [
     "Ross Bulat<ross@parity.io>",
     "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
-  "description": "Polkadot Cloud Scripts",
+  "description": "Polkadot Cloud Builder",
   "scripts": {
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   }
