@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import minimist from "minimist";
-import * as generatePackage from "./generatePackage.mjs";
+import * as generatePackage from "./tasks/generatePackage.mjs";
 
 const args = minimist(process.argv.slice(2));
 

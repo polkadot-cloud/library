@@ -10,8 +10,8 @@ import {
   formatNpmPackageName,
   getPackagesDirectory,
   writePackageJsonToOutput,
-} from "./utils.mjs";
-import { PACKAGE_OUTPUT, REQUIRED_PACKAGE_JSON_KEYS } from "./config.mjs";
+} from "../utils.mjs";
+import { PACKAGE_OUTPUT, REQUIRED_PACKAGE_JSON_KEYS } from "../config.mjs";
 
 export const run = async ({ p: packageName, m: main }) => {
   try {
