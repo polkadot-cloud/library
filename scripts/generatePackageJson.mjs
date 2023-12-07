@@ -3,73 +3,72 @@
 
 import fs from "fs";
 import { join } from "path";
-import { format } from "prettier";
 import minimist from "minimist";
-import { formatNpmPackageName, getPackagesDirectory } from "./utils.mjs";
-import { REQUIRED_PACKAGE_JSON_KEYS } from "./config.mjs";
+import {
+  addTypescriptPropertiesIfMain,
+  ensurePackageOutputExists,
+  formatJson,
+  formatNpmPackageName,
+  getPackagesDirectory,
+  writePackageJsonToOutput,
+} from "./utils.mjs";
+import { PACKAGE_OUTPUT, REQUIRED_PACKAGE_JSON_KEYS } from "./config.mjs";
 
 // Retrieve arguments from command.
 const { p: packageName, m: main } = minimist(process.argv.slice(2));
 
 try {
   // A package name must be provided.
+  // --------------------------------
   if (!packageName) {
     throw "❌ Please provide package name with the -p flag";
   }
 
-  // Package directory.
+  // Full package directory path.
+  // ----------------------------
   const packagePath = join(getPackagesDirectory(), packageName);
 
-  // Read package's `package.json`.
-  const packageJson = JSON.parse(
+  // Source package.json as a parsed JSON object.
+  // ----------------------------------------------
+  const sourcePackageJson = JSON.parse(
     fs.readFileSync(join(packagePath, "package.json")).toString()
   );
 
-  // Get required package properties.
-  const requiredProperties = Object.entries(packageJson).filter((k) =>
+  // Required properties to be copied to the npm build package.json file.
+  // --------------------------------------------------------------------
+  const requiredProperties = Object.entries(sourcePackageJson).filter((k) =>
     REQUIRED_PACKAGE_JSON_KEYS.includes(k[0])
   );
 
-  // Add `name` with npm package name to the begining of required fields.
+  //Inject formatted package `name` into required properties.
+  // --------------------------------------------------------
   requiredProperties.unshift(["name", formatNpmPackageName(packageName)]);
 
-  // Finalise package.json properties. If main is provided, add typescript related properties.
-  //
-  // TODO: this could be improved.
-  const merged = Object.assign(
-    {},
-    Object.fromEntries(requiredProperties),
-    main
-      ? {
-          types: "index.d.ts",
-          main,
-          module: main,
-          typescript: {
-            definition: "index.d.ts",
-          },
-        }
-      : {}
-  );
+  // Format package.json as Typeacript module if `main` was provided.
+  // ----------------------------------------------------------------
+  let finalProperties = Object.fromEntries(requiredProperties);
+  finalProperties = addTypescriptPropertiesIfMain(main, finalProperties);
 
-  // Format merged JSON.
-  format(JSON.stringify(merged), { parser: "json" }).then((data) => {
-    // Create `dist` directory if it doesn't exist.
-    if (!fs.existsSync(`${packagePath}/dist`)) {
-      fs.mkdirSync(`${packagePath}/dist`);
-    }
+  // Format final package.json for output.
+  // -------------------------------------
+  const packageJson = await formatJson(finalProperties);
+  if (!packageJson) {
+    throw "❌ Could not format package.json";
+  }
 
-    // Write `package.json` to the bundle.
-    fs.writeFile(`${packagePath}/dist/package.json`, data, (err) => {
-      if (err) {
-        console.error(`❌ ${err.message}`);
-      }
-      console.debug(
-        `✅ package.json has been injected into ${packageName} bundle.`
-      );
-    });
-  });
+  // Create output directory if it does not exist.
+  // --------------------------------------------
+  if (!(await ensurePackageOutputExists(packagePath))) {
+    throw `❌ Could not create ${packageName} ${PACKAGE_OUTPUT} directory`;
+  }
+
+  // Write package.json to the output directory.
+  // -------------------------------------------
+  if (!(await writePackageJsonToOutput(packagePath, packageJson))) {
+    throw `❌ Could not write package.json for ${packageName}`;
+  }
+
+  console.log(`✅ package.json injected into package ${packageName}.`);
 } catch (e) {
-  console.error(
-    `❌ Could not find package.json in the specified package directory: ${packageName}`
-  );
+  console.error(`❌ Could not generate  ${packageName} package.json:`, e);
 }

@@ -4,7 +4,12 @@
 import fs from "fs/promises";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { PACKAGE_SCOPE } from "./config.mjs";
+import { PACKAGE_OUTPUT, PACKAGE_SCOPE } from "./config.mjs";
+import { format } from "prettier";
+
+//--------------------------------------------------
+// Directory and file validation utils
+//--------------------------------------------------
 
 // Gets the packages directory from the current directory.
 export const getPackagesDirectory = () => {
@@ -50,6 +55,37 @@ export const checkFoldersInDirectory = async (dir, folders) => {
   return allFoldersExist;
 };
 
+//--------------------------------------------------
+// Formatting utils
+//--------------------------------------------------
+
+// Formats npm package name from package source folder name.
+export const formatNpmPackageName = (name) => {
+  return `@${PACKAGE_SCOPE}/${removePrefix(name, "cloud-")}`;
+};
+
+// Remove a prefix from a string if it exists.
+export const removePrefix = (str, prefix) => {
+  const result = str.startsWith(prefix) ? str.slice("cloud-".length) : str;
+  return result;
+};
+
+// Formats a JSON string using prettier.
+export const formatJson = async (json) => {
+  try {
+    const data = await format(JSON.stringify(json), {
+      parser: "json",
+    });
+    return data;
+  } catch (err) {
+    return false;
+  }
+};
+
+//--------------------------------------------------
+// Package generation utils
+//--------------------------------------------------
+
 // Checks whether properties exist in an object.
 export const allPropertiesExist = (obj, properties) => {
   return properties.every((property) => obj.includes(property));
@@ -64,13 +100,40 @@ export const getPackageScripts = async (pkg) => {
   return Object.keys(JSON.parse(file)?.scripts || {}) || {};
 };
 
-// Formats npm package name from package source folder name.
-export const formatNpmPackageName = (name) => {
-  return `@${PACKAGE_SCOPE}/${removePrefix(name, "cloud-")}`;
+// Adds Typescript related properties to a package.json file.
+export const addTypescriptPropertiesIfMain = (main, json) => {
+  if (main) {
+    return {
+      ...json,
+      types: "index.d.ts",
+      main,
+      module: main,
+      typescript: {
+        definition: "index.d.ts",
+      },
+    };
+  }
+  return json;
 };
 
-// Remove a prefix from a string if it exists.
-export const removePrefix = (str, prefix) => {
-  const result = str.startsWith(prefix) ? str.slice("cloud-".length) : str;
-  return result;
+// Creates a package output directory if it does not exist.
+export const ensurePackageOutputExists = async (path) => {
+  try {
+    if (!(await fs.stat(`${path}/${PACKAGE_OUTPUT}`))) {
+      await fs.mkdir(`${path}/${PACKAGE_OUTPUT}`);
+    }
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+
+// Writes a package.json file to a directory.
+export const writePackageJsonToOutput = async (path, data) => {
+  try {
+    await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
