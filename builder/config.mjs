@@ -27,9 +27,9 @@ export const PACKAGE_REQUIRED_FILES = [
 // --------------------------------------------------------------------
 export const PACKAGE_REQUIRED_SCRIPTS = ["build:mock", "build", "clear"];
 
-// -------------------------------------------------------------
-// Required package.son properties to copy to the package build.
-// -------------------------------------------------------------
+// --------------------------------------------------------------
+// Required package.json properties to copy to the package build.
+// --------------------------------------------------------------
 export const REQUIRED_PACKAGE_JSON_KEYS = [
   "license",
   "version",
