@@ -70,7 +70,7 @@ export const build = async ({ p: packageName, m: main }) => {
     // A package name must be provided.
     // --------------------------------
     if (!packageName) {
-      throw "❌ Please provide package name with the -p flag";
+      throw "❌ Please provide package name with the -p argument";
     }
 
     // Full package directory path.
