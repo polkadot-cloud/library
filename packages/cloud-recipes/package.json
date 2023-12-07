@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
-    "build:mock": "node ../../scripts/generatePackageJson.mjs -p cloud-recipes -m index.js",
+    "build:mock": "node ../../scripts/builder.mjs -t package -p cloud-recipes -m index.js",
     "prebuild": "node ./scripts/prebuild.mjs",
     "build": "rm -fr dist && gulp --gulpfile gulpfile.cjs && mv dist/README.npm.md dist/README.md",
     "postbuild": "node ./scripts/postbuild.mjs",

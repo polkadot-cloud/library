@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
-    "build:mock": "node ../../scripts/generatePackageJson.mjs -p cloud-core",
-    "build": "rm -fr dist && gulp && mv dist/README.npm.md dist/README.md && node ../../scripts/generatePackageJson.mjs -p cloud-core",
-    "watch": "rm -fr dist && gulp && gulp --task watch",
+    "build:mock": "node ../../scripts/builder.mjs -t package -p cloud-core",
+    "build": "rm -fr dist && gulp && mv dist/README.npm.md dist/README.md && node ../../scripts/builder.mjs -t package -p cloud-core",
+    "watch": "rm -fr dist && gulp && gulp --t watch",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   }
 }
