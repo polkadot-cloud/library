@@ -2,5 +2,5 @@
 # NOTE: Recipes moving to a new repo. This file just satisfies build requirements.
 
 directory: 
-  - name: N/A: 
+  - name: N/A 
     doc: https://polkadot.cloud
