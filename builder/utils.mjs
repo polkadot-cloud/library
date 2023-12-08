@@ -8,7 +8,7 @@ import { PACKAGE_OUTPUT, PACKAGE_SCOPE } from "./config.mjs";
 import { format } from "prettier";
 
 //--------------------------------------------------
-// Directory and file validation utils
+// Directory and file validation  utils
 //--------------------------------------------------
 
 // Gets the packages directory from the current directory.
@@ -82,6 +82,13 @@ export const formatJson = async (json) => {
   }
 };
 
+// Bumps a semver patch version.
+export const bumpSemverPatch = (currentVersion) => {
+  const pieces = currentVersion.split(/[.]+/);
+  const incremet = Number(pieces.pop()) + 1;
+  return `${pieces.join(".")}.${incremet}`;
+};
+
 //--------------------------------------------------
 // Package build utils
 //--------------------------------------------------
@@ -90,21 +97,6 @@ export const formatJson = async (json) => {
 export const getPackages = async () => {
   const packages = await fs.readdir(getPackagesDirectory());
   return packages;
-};
-
-// Get the source package.json file for a package.
-export const getSourcePackageJson = async (path) => {
-  const file = await fs.readFile(`${path}/package.json`, "utf-8");
-  return JSON.parse(file.toString());
-};
-
-// Gets a dist package.json file.
-export const getDistPackageJson = async (path) => {
-  return JSON.parse(
-    await fs.readFile(
-      `${getPackagesDirectory()}/${path}/${PACKAGE_OUTPUT}/package.json`
-    )
-  );
 };
 
 // Checks whether properties exist in an object.
@@ -146,7 +138,50 @@ export const ensurePackageOutputExists = async (path) => {
   }
 };
 
-// Writes a package.json file to a directory.
+//--------------------------------------------------
+// Read and write utils
+//--------------------------------------------------
+
+// Gets release please manifest file.
+export const getReleasePleaseManifest = async () => {
+  const path = join(dirname(fileURLToPath(import.meta.url)), "..");
+  const file = await fs.readFile(
+    `${path}/.release-please-manifest.json`,
+    "utf-8"
+  );
+  return JSON.parse(file.toString());
+};
+
+// Writes a package.json file to output directory.
+export const writeReleasePleaseManifest = async (data) => {
+  const path = join(dirname(fileURLToPath(import.meta.url)), "..");
+  await fs.writeFile(`${path}/.release-please-manifest.json`, data);
+};
+
+// Get the source package.json file for a package.
+export const getSourcePackageJson = async (path) => {
+  const file = await fs.readFile(
+    `${getPackagesDirectory()}/${path}/package.json`,
+    "utf-8"
+  );
+  return JSON.parse(file.toString());
+};
+
+// Gets a dist package.json file.
+export const getDistPackageJson = async (path) => {
+  return JSON.parse(
+    await fs.readFile(
+      `${getPackagesDirectory()}/${path}/${PACKAGE_OUTPUT}/package.json`
+    )
+  );
+};
+
+// Writes a package.json file to source directory.
+export const writePackageJsonToSource = async (path, data) => {
+  await fs.writeFile(`${getPackagesDirectory()}/${path}/package.json`, data);
+};
+
+// Writes a package.json file to output directory.
 export const writePackageJsonToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
 };

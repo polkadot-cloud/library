@@ -5,6 +5,7 @@ import { join } from "path";
 import {
   addTypescriptPropertiesIfMain,
   allPropertiesExist,
+  bumpSemverPatch,
   checkFilesExistInPackages,
   checkFoldersInDirectory,
   ensurePackageOutputExists,
@@ -14,8 +15,11 @@ import {
   getPackageScripts,
   getPackages,
   getPackagesDirectory,
+  getReleasePleaseManifest,
   getSourcePackageJson,
   writePackageJsonToOutput,
+  writePackageJsonToSource,
+  writeReleasePleaseManifest,
 } from "../utils.mjs";
 import {
   PACKAGE_OUTPUT,
@@ -139,5 +143,48 @@ export const postbuild = async () => {
     console.log("✅ Post-build integrity checks complete.");
   } catch (err) {
     console.error("❌ Could not complete integrity checks.", err);
+  }
+};
+
+export const patch = async () => {
+  try {
+    const packages = await getPackages();
+
+    // Get Release Please manifest file to update.
+    // -------------------------------------------
+    const releasePleaseManifset = await getReleasePleaseManifest();
+
+    for (let pkg of packages) {
+      // Read and parse package.json file.
+      // ---------------------------------
+      const packageJson = await getSourcePackageJson(pkg);
+
+      // Bump version patch index.
+      // --------------------------
+      const newVersion = bumpSemverPatch(packageJson.version);
+
+      // Write updated package.json to the source directory.
+      // --------------------------------------------------
+      await writePackageJsonToSource(
+        pkg,
+        await formatJson({
+          ...packageJson,
+          version: newVersion,
+        })
+      );
+
+      // Update Release Please manifest version.
+      // ---------------------------------------
+      releasePleaseManifset[`packages/${pkg}`] = newVersion;
+      break;
+    }
+
+    // Write updated Release Please manifest.
+    // -------------------------------------
+    await writeReleasePleaseManifest(await formatJson(releasePleaseManifset));
+
+    console.log("✅ Patched all package versions.");
+  } catch (err) {
+    console.error(err);
   }
 };

@@ -17,6 +17,7 @@
     "build": "npm run build --workspaces --if-present",
     "postbuild": "node builder/run.mjs -t packages:postbuild",
     "clear": "npm run --workspaces clear && rm -rf node_modules",
+    "patch": "node builder/run.mjs -t packages:patch",
     "lint": "eslint './**' --fix && npx prettier --write . && npx stylelint '**/*.scss' --fix",
     "app": "npm run dev -w app"
   },

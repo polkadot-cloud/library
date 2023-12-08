@@ -16,9 +16,7 @@
     "Components",
     "UI"
   ],
-  "bugs": {
-    "url": "https://github.com/polkadot-cloud/library/issues"
-  },
+  "bugs": { "url": "https://github.com/polkadot-cloud/library/issues" },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p assets",

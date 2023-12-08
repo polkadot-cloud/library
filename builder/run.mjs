@@ -21,6 +21,10 @@ switch (task) {
     packages.postbuild();
     break;
 
+  case "packages:patch":
+    packages.patch();
+    break;
+
   default:
     console.log("❌ No task provided.");
 }
