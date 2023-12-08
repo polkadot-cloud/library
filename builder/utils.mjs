@@ -8,7 +8,7 @@ import { PACKAGE_OUTPUT, PACKAGE_SCOPE } from "./config.mjs";
 import { format } from "prettier";
 
 //--------------------------------------------------
-// Directory and file validation  utils
+// Directory and file validation utils
 //--------------------------------------------------
 
 // Gets the packages directory from the current directory.
