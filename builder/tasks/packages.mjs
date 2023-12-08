@@ -176,7 +176,6 @@ export const patch = async () => {
       // Update Release Please manifest version.
       // ---------------------------------------
       releasePleaseManifset[`packages/${pkg}`] = newVersion;
-      break;
     }
 
     // Write updated Release Please manifest.
