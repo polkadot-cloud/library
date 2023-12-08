@@ -16,8 +16,6 @@ This command will call `yarn build` for each package under the workspace's `pack
 
 ## Builder Commands
 
-The entire package build process is handled by the builder.
-
 ### Package Build
 
 The builder's `build` task takes the package name and an optional main file:
