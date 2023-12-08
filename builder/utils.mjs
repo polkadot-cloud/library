@@ -85,8 +85,8 @@ export const formatJson = async (json) => {
 // Bumps a semver patch version.
 export const bumpSemverPatch = (currentVersion) => {
   const pieces = currentVersion.split(/[.]+/);
-  const incremet = Number(pieces.pop()) + 1;
-  return `${pieces.join(".")}.${incremet}`;
+  const increment = Number(pieces.pop()) + 1;
+  return `${pieces.join(".")}.${increment}`;
 };
 
 //--------------------------------------------------
