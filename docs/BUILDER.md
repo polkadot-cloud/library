@@ -14,7 +14,7 @@ yarn build
 
 This command will call `yarn build` for each package under the workspace's `packages/` directory. prebuild and postbuild scripts are also run, both for the workspace and for each package.
 
-## Builder Tasks
+## Builder Commands
 
 The entire package build process is handled by the builder.
 
@@ -39,3 +39,13 @@ node builder/run.mjs -t packages:prebuild
 // postbuild
 node builder/run.mjs -t packages:postbuild
 ```
+
+### Patch All Package Versions
+
+Increment all package patch versions in the workspace to trigger a silent NPM deployment when a PR is merged:
+
+```
+yarn patch
+```
+
+This is useful for testing silent updates and deploying hotfixes.
