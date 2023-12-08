@@ -616,12 +616,12 @@
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/assets/-/assets-0.1.35.tgz#5718e6e0b80ac9c01e7fed150012bb2b7563a160"
   integrity sha512-ImyHYQ01s1kFetDE5qlk5x8s/H3WDFcbCcm+GquaJxm4b/QeznSJsBP0ZeaArihsCPcSWux9nFG6P1mfToVhtw==
 
-"@polkadot-cloud/core@^1.0.48", "@polkadot-cloud/core@^1.0.49", "@polkadot-cloud/core@^1.0.50":
+"@polkadot-cloud/core@^1.0.49", "@polkadot-cloud/core@^1.0.50":
   version "1.0.50"
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/core/-/core-1.0.50.tgz#6db1fea7473601cee315f5e8be972e9a8efc1034"
   integrity sha512-SdHsp49XxdLRwwjwe/dcqQcy8tyBL4MoQc4YYmOWRjOcnasJmPZE2VHLYtHvnhS3pkWJav0WuhScPUh9dUtGDQ==
 
-"@polkadot-cloud/react@^0.1.137", "@polkadot-cloud/react@^0.1.139":
+"@polkadot-cloud/react@^0.1.138", "@polkadot-cloud/react@^0.1.139":
   version "0.1.139"
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/react/-/react-0.1.139.tgz#bd35f7aa2d622728b1b31d2226c216ac7ad41bc1"
   integrity sha512-Swa7pZmtrp591+7PHhSPX0sbi5cv/NWlcao/GorzUovu2EuHfG7n6qMCXRgwvReV2KYWBma7QD+awF6vmSeHMw==
@@ -640,10 +640,10 @@
     "@polkadot/util-crypto" "^12.5.1"
     framer-motion "^10.16.15"
 
-"@polkadot-cloud/recipes@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@polkadot-cloud/recipes/-/recipes-0.0.7.tgz#b52f4b37eaa920bac46b957579e2f9d84807b343"
-  integrity sha512-pELLbbqSguApliRzS0WAIsH08p81eQodkKs6Mam+dVF0qswhSAkDKlD+KzTNuW72nixvLIUoOtM5vkkZ4SNcAQ==
+"@polkadot-cloud/recipes@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/recipes/-/recipes-0.0.8.tgz#c97a8d2b105cab7245490c963fad649f6d717b46"
+  integrity sha512-BAOi6fYh7QcsfwAGlmFDLx9x0E3dKdxjrrZ5Bm+RijQASaFoqP5G2rVrvC3ng1HFHkxjS950yx4pxyZ6m18wjw==
   dependencies:
     "@chainsafe/metamask-polkadot-adapter" "^0.6.0"
     "@chainsafe/metamask-polkadot-types" "^0.6.0"
@@ -654,15 +654,15 @@
     "@fortawesome/react-fontawesome" "^0.2.0"
     "@ledgerhq/hw-transport-webhid" "^6.27.20"
     "@polkadot-cloud/assets" "0.1.35"
-    "@polkadot-cloud/core" "^1.0.48"
-    "@polkadot-cloud/react" "^0.1.137"
+    "@polkadot-cloud/core" "^1.0.49"
+    "@polkadot-cloud/react" "^0.1.138"
     "@polkadot-cloud/utils" "^0.0.25"
     "@polkadot/keyring" "^12.6.1"
     "@polkadot/util" "^12.5.1"
     "@polkadot/util-crypto" "^12.5.1"
     "@zondax/ledger-substrate" "^0.41.3"
     buffer "^6.0.3"
-    framer-motion "^10.16.11"
+    framer-motion "^10.16.15"
     qrcode-generator "^1.4.4"
     react "^18.2.0"
     react-dom "^18.2.0"
@@ -4032,7 +4032,7 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^10.16.11, framer-motion@^10.16.15:
+framer-motion@^10.16.15:
   version "10.16.15"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.16.15.tgz#efddf7ffdfbe81f21849e9466da155d96b9cd89e"
   integrity sha512-BapW1EKc/Sgph1rKEwL9bFt2B79z7bu7jN4Up1jGUaTE78WBsVO+6eCmoUZsQH0hHtRUDnnTqjjBbM7dk9Kp8A==
