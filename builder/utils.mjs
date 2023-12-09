@@ -16,6 +16,11 @@ export const getPackagesDirectory = () => {
   return join(dirname(fileURLToPath(import.meta.url)), "..", "packages");
 };
 
+// Gets the top level directory from the current directory.
+export const getTopDirectory = () => {
+  return join(dirname(fileURLToPath(import.meta.url)), "..");
+};
+
 // Checks that all given files are present in all the provided packages.
 export const checkFilesExistInPackages = async (pkgs, files) => {
   let allFilesExist = true;
@@ -184,4 +189,13 @@ export const writePackageJsonToSource = async (path, data) => {
 // Writes a package.json file to output directory.
 export const writePackageJsonToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
+};
+
+// Get the source package.json file for a package.
+export const getDirectoryTemplate = async () => {
+  const file = await fs.readFile(
+    `${getTopDirectory()}/builder/templates/directory.md`,
+    "utf-8"
+  );
+  return file.toString();
 };

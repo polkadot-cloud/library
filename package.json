@@ -9,6 +9,7 @@
   "description": "Polkadot Cloud",
   "private": "true",
   "scripts": {
+    "build:directory": "node builder/run.mjs -t directory:build",
     "build:pages": "cd app && tsc && vite build --base='/library/'",
     "build:production": "cd app && tsc && vite build --base='/'",
     "build:mock": "npm run build:mock --workspaces --if-present",

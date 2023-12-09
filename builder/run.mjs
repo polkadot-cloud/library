@@ -3,6 +3,7 @@
 
 import minimist from "minimist";
 import * as packages from "./tasks/packages.mjs";
+import * as directory from "./tasks/directory.mjs";
 
 const args = minimist(process.argv.slice(2));
 
@@ -23,6 +24,10 @@ switch (task) {
 
   case "packages:patch":
     packages.patch();
+    break;
+
+  case "directory:build":
+    directory.build();
     break;
 
   default:

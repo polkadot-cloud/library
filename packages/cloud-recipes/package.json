@@ -7,7 +7,7 @@
     "Ross Bulat<ross@parity.io>",
     "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
-  "description": "React Components for Polkadot Dapps.",
+  "description": "React Components for Polkadot DApps.",
   "keywords": ["Polkadot", "React", "Recipes", "UX", "UI"],
   "bugs": { "url": "https://github.com/polkadot-cloud/library/issues" },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
