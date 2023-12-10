@@ -4,60 +4,45 @@
 import fs from "fs/promises";
 import { parse } from "yaml";
 import {
-  formatNpmPackageName,
   getPackages,
   getPackagesDirectory,
   getSourcePackageJson,
   getTopDirectory,
   getDirectoryTemplate,
+  writeDataIntro,
+  writeDataContent,
 } from "../utils.mjs";
 
-// Retrieve the content from the index.ymls in the packages
-// Place the content to the position under the title session
 export const build = async () => {
   try {
     const packages = await getPackages();
 
-    // open file to get directory header.
+    // Open file to get directory header.
+    // ---------------------------------
     let data = await getDirectoryTemplate();
 
     for (const pkg of packages) {
-      // get needed data from packages source package.json file.
+      // Get needed data from packages source package.json file.
+      // -------------------------------------------------------
       const { description: npmDescription } = await getSourcePackageJson(pkg);
 
-      // create package directory title and description.
-      data +=
-        "#### `" +
-        formatNpmPackageName(pkg) +
-        "`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
-        pkg +
-        ") &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/" +
-        formatNpmPackageName(pkg) +
-        ")]\n\n" +
-        npmDescription +
-        "\n\n";
+      // Create package directory title and description.
+      // -----------------------------------------------
+      data += writeDataIntro(pkg, npmDescription);
 
-      // get needed data from package yml file.
+      // Get needed data from package yml file.
+      // --------------------------------------
       const { directory } = parse(
         await fs.readFile(`${getPackagesDirectory()}/${pkg}/index.yml`, "utf-8")
       );
 
-      // append the directory items onto data.
-      data += directory.reduce((str, { name, description, doc }) => {
-        return (
-          str +
-          "- [" +
-          name +
-          "](" +
-          doc +
-          ")" +
-          (description ? ": " + description : "") +
-          "\n\n"
-        );
-      }, "");
+      // Append the directory items onto data.
+      // -------------------------------------
+      data += writeDataContent(directory);
     }
 
     // Write to docs directory.
+    // ------------------------
     await fs.writeFile(`${getTopDirectory()}/docs/README.md`, data);
 
     console.log("✅ Generated directory successfully.");

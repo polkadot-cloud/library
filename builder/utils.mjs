@@ -94,6 +94,37 @@ export const bumpSemverPatch = (currentVersion) => {
   return `${pieces.join(".")}.${increment}`;
 };
 
+// Format the package introduction data in the README file.
+export const writeDataIntro = (pkg, description) => {
+  return (
+    "#### `" +
+    formatNpmPackageName(pkg) +
+    "`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
+    pkg +
+    ") &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/" +
+    formatNpmPackageName(pkg) +
+    ")]\n\n" +
+    description +
+    "\n\n"
+  );
+};
+
+// Format the package content data in the README file.
+export const writeDataContent = (directory) => {
+  return directory.reduce((str, { name, description, doc }) => {
+    return (
+      str +
+      "- [" +
+      name +
+      "](" +
+      doc +
+      ")" +
+      (description ? ": " + description : "") +
+      "\n\n"
+    );
+  }, "");
+};
+
 //--------------------------------------------------
 // Package build utils
 //--------------------------------------------------

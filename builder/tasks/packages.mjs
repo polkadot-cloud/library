@@ -43,6 +43,7 @@ export const prebuild = async () => {
     }
 
     // Check required files exist for each package.
+    // --------------------------------------------
     if (!(await checkFilesExistInPackages(packages, PACKAGE_REQUIRED_FILES))) {
       throw `❌ Required files missing in packages. Must have ${PACKAGE_REQUIRED_FILES.join(
         ", "
@@ -91,7 +92,7 @@ export const build = async ({ p: packageName, m: main }) => {
       PACKAGE_REQUIRED_JSON_KEYS.includes(k[0])
     );
 
-    //Inject formatted package `name` into required properties.
+    // Inject formatted package `name` into required properties.
     // --------------------------------------------------------
     requiredProperties.unshift(["name", formatNpmPackageName(packageName)]);
 
