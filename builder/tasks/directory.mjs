@@ -18,7 +18,7 @@ export const build = async () => {
     const packages = await getPackages();
 
     // Open file to get directory header.
-    // ---------------------------------
+    // ----------------------------------
     let data = await getDirectoryTemplate();
 
     for (const pkg of packages) {
@@ -31,13 +31,13 @@ export const build = async () => {
       data += formatDirectoryHeaders(pkg, npmDescription);
 
       // Format directory data from package `index.yml`.
-      // --------------------------------------
+      // -----------------------------------------------
       const { directory } = parse(
         await fs.readFile(`${getPackagesDirectory()}/${pkg}/index.yml`, "utf-8")
       );
 
       // Append the directory entries.
-      // -------------------------------------
+      // -----------------------------
       data += formatDirectoryEntry(directory);
     }
 
