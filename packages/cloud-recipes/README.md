@@ -3,4 +3,3 @@
 # Polkadot Cloud: Recipes
 
 Example functional components derived from the Polkadot Cloud library.
-

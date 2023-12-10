@@ -190,12 +190,3 @@ export const writePackageJsonToSource = async (path, data) => {
 export const writePackageJsonToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
 };
-
-// Get the source package.json file for a package.
-export const getDirectoryTemplate = async () => {
-  const file = await fs.readFile(
-    `${getTopDirectory()}/builder/templates/directory.md`,
-    "utf-8"
-  );
-  return file.toString();
-};
