@@ -5,10 +5,7 @@ import { SimpleEditor } from "@docs/SimpleEditor";
 import { Demo } from "@docs/Demo";
 import { Button } from "@packages/cloud-react/lib/buttons/Button";
 import { useOverlay } from "@packages/cloud-react/lib/overlay/OverlayProvider/useOverlay";
-import {
-  Overlays,
-  useActiveAccounts,
-} from "@packages/cloud-recipes/lib/Connect";
+import { Overlays, useActiveAccounts } from "@polkadot-cloud/recipes/Connect";
 
 export const ModalConnectWalletSettings = () => {
   const code = `

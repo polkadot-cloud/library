@@ -14,10 +14,10 @@ export const UtilsComponent = ({
       <H3 id="title">{title}</H3>
       <p>{description}</p>
       <div className="params">
-        {params.map((prm) => {
+        {params.map((prm, i) => {
           const param = prm.split(":");
           return (
-            <p key={param[0]}>
+            <p key={`${param[0]}_${i}`}>
               <span>{param[0]}</span>
               {param[1]}
             </p>

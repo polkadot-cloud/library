@@ -5,7 +5,7 @@ import {
   AccountCard,
   ExtraComponentProps,
   IconProps,
-} from "@packages/cloud-recipes/lib/AccountCard";
+} from "@polkadot-cloud/recipes/AccountCard";
 import { Button } from "@packages/cloud-react/lib/buttons/Button";
 import { SimpleEditor } from "@docs/SimpleEditor";
 import { Demo } from "@docs/Demo";

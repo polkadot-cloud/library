@@ -11,11 +11,8 @@ import {
   Connect,
   connectInfo,
   ConnectConfigProvider,
-} from "@packages/cloud-recipes/lib/Connect";
-import type {
-  ConnectType,
-  DappInfo,
-} from "@packages/cloud-recipes/lib/Connect";
+} from "@polkadot-cloud/recipes/Connect";
+import type { ConnectType, DappInfo } from "@polkadot-cloud/recipes/Connect";
 import { ModalConnectWalletSettings } from "./ModalConnectWalletSettings";
 
 const walletSettings: ConnectType = {
