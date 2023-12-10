@@ -38,11 +38,6 @@ Functional React components for Polkadot dApps.
 
 - [Buttons](https://polkadot.cloud/buttons): A small collection of plug-and-play button components.
 
-#### `@polkadot-cloud/recipes`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/cloud-recipes) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/recipes)]
-
-React Components for Polkadot DApps.
-
-- [N/A](https://polkadot.cloud)
 
 #### `@polkadot-cloud/utils`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/utils) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/utils)]
 

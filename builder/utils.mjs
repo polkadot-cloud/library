@@ -95,7 +95,7 @@ export const bumpSemverPatch = (currentVersion) => {
 };
 
 // Format the package introduction data in the README file.
-export const writeDataIntro = (pkg, description) => {
+export const formatDirectoryHeaders = (pkg, description) => {
   return (
     "#### `" +
     formatNpmPackageName(pkg) +
@@ -110,7 +110,7 @@ export const writeDataIntro = (pkg, description) => {
 };
 
 // Format the package content data in the README file.
-export const writeDataContent = (directory) => {
+export const formatDirectoryEntry = (directory) => {
   return directory.reduce((str, { name, description, doc }) => {
     return (
       str +
@@ -222,7 +222,7 @@ export const writePackageJsonToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
 };
 
-// Get the source markdown file for a package.
+// Get the source markdown file for `docs/README.md` directory.
 export const getDirectoryTemplate = async () => {
   const file = await fs.readFile(
     `${getTopDirectory()}/builder/templates/directory.md`,

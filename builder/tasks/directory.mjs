@@ -9,8 +9,8 @@ import {
   getSourcePackageJson,
   getTopDirectory,
   getDirectoryTemplate,
-  writeDataIntro,
-  writeDataContent,
+  formatDirectoryHeaders,
+  formatDirectoryEntry,
 } from "../utils.mjs";
 
 export const build = async () => {
@@ -28,20 +28,20 @@ export const build = async () => {
 
       // Create package directory title and description.
       // -----------------------------------------------
-      data += writeDataIntro(pkg, npmDescription);
+      data += formatDirectoryHeaders(pkg, npmDescription);
 
-      // Get needed data from package yml file.
+      // Format directory data from package `index.yml`.
       // --------------------------------------
       const { directory } = parse(
         await fs.readFile(`${getPackagesDirectory()}/${pkg}/index.yml`, "utf-8")
       );
 
-      // Append the directory items onto data.
+      // Append the directory entries.
       // -------------------------------------
-      data += writeDataContent(directory);
+      data += formatDirectoryEntry(directory);
     }
 
-    // Write to docs directory.
+    // Write to docs/README.md.
     // ------------------------
     await fs.writeFile(`${getTopDirectory()}/docs/README.md`, data);
 
