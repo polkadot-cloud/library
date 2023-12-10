@@ -20,7 +20,7 @@
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p assets",
-    "build": "rm -fr dist && gulp && cp LICENSE dist && cp README.npm.md dist && mv dist/README.npm.md dist/README.md && yarn build:mock",
+    "build": "rm -fr dist && gulp  --silent && cp LICENSE dist && cp README.npm.md dist && mv dist/README.npm.md dist/README.md && yarn build:mock",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   }
 }

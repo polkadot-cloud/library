@@ -14,7 +14,7 @@
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p cloud-recipes -m index.js",
     "prebuild": "node ./scripts/prebuild.mjs",
-    "build": "rm -fr dist && gulp --gulpfile gulpfile.cjs && mv dist/README.npm.md dist/README.md",
+    "build": "rm -fr dist && gulp --gulpfile gulpfile.cjs --silent && mv dist/README.npm.md dist/README.md",
     "postbuild": "node ./scripts/postbuild.mjs",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
