@@ -2,13 +2,15 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import fs from "fs/promises";
+import { parse } from "yaml";
 import {
+  formatNpmPackageName,
   getPackages,
   getPackagesDirectory,
   getSourcePackageJson,
-  formatNpmPackageName,
+  getTopDirectory,
+  getDirectoryTemplate,
 } from "../utils.mjs";
-import { parse } from "yaml";
 
 // Retrieve the content from the index.ymls in the packages
 // Place the content to the position under the title session
@@ -16,20 +18,18 @@ export const build = async () => {
   try {
     const packages = await getPackages();
 
-    for (const pkg of packages) {
-      // Open file to get directory(README.md).
-      let data = await getDirectory(pkg);
+    // open file to get directory header.
+    let data = await getDirectoryTemplate();
 
+    for (const pkg of packages) {
       // get needed data from packages source package.json file.
       const { description: npmDescription } = await getSourcePackageJson(pkg);
 
       // create package directory title and description.
-      let intro =
-        "## Directory" +
-        "\n\n" +
+      data +=
         "#### `" +
         formatNpmPackageName(pkg) +
-        "`&nbsp;[[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
+        "`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
         pkg +
         ") &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/" +
         formatNpmPackageName(pkg) +
@@ -42,7 +42,8 @@ export const build = async () => {
         await fs.readFile(`${getPackagesDirectory()}/${pkg}/index.yml`, "utf-8")
       );
 
-      let content = directory.reduce((str, { name, description, doc }) => {
+      // append the directory items onto data.
+      data += directory.reduce((str, { name, description, doc }) => {
         return (
           str +
           "- [" +
@@ -54,34 +55,13 @@ export const build = async () => {
           "\n\n"
         );
       }, "");
-
-      const indexOfSecondTitle = data.indexOf("##");
-      if (indexOfSecondTitle != -1) {
-        const head = data.substring(0, indexOfSecondTitle);
-        const tail = data.substring(indexOfSecondTitle);
-
-        data = head + intro + content + tail;
-      } else {
-        data += intro;
-
-        // append the directory items onto data.
-        data += content;
-      }
-      // Write to docs directory.
-      await fs.writeFile(`${getPackagesDirectory()}/${pkg}/README.md`, data);
     }
+
+    // Write to docs directory.
+    await fs.writeFile(`${getTopDirectory()}/docs/README.md`, data);
 
     console.log("✅ Generated directory successfully.");
   } catch (err) {
     console.log(err);
   }
-};
-
-// Get the source README.md file for a package.
-export const getDirectory = async (path) => {
-  const file = await fs.readFile(
-    `${getPackagesDirectory()}/${path}/README.md`,
-    "utf-8"
-  );
-  return file.toString();
 };
