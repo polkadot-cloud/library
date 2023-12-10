@@ -1,5 +1,6 @@
 {
   "bootstrap-sha": "27283aff707ce928deb4440d80512fbdc1b04e83",
+  "include-component-in-tag": true,
   "packages": {
     "app": {},
     "packages/assets": {},
