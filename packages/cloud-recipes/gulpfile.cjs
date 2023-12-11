@@ -42,8 +42,8 @@ const stripComments = () => {
   return src("dist/**/*.js").pipe(strip()).pipe(gulp.dest("dist"));
 };
 
-const licenseAndReadme = () => {
-  return src(["LICENSE", "README.npm.md"]).pipe(dest("dist"));
+const license = () => {
+  return src(["LICENSE"]).pipe(dest("dist"));
 };
 
 exports.default = series(
@@ -51,5 +51,5 @@ exports.default = series(
   buildCss,
   replaceCss,
   stripComments,
-  licenseAndReadme
+  license
 );
