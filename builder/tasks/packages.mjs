@@ -120,8 +120,6 @@ export const build = async ({ p: packageName, m: main }) => {
     // -------------------------------------------
     await writePackageJsonToOutput(packagePath, packageJson);
 
-    console.log(`✅ package.json injected into package ${packageName}.`);
-
     // Open file to get npm header.
     // ----------------------------
     let readmeMd = await getTemplate("npm");
@@ -154,16 +152,17 @@ export const build = async ({ p: packageName, m: main }) => {
 
     // Append the directory entries.
     // -----------------------------
-    readmeMd += formatDirectoryEntry(directory);
-
-    readmeMd += npmLicenseContent(license);
+    readmeMd += formatDirectoryEntry(directory) + npmLicenseContent(license);
 
     // Write README.md to the output directory.
     // ----------------------------------------
     await writeReadmeToOutput(packagePath, readmeMd);
+    console.log(
+      `✅ package.json injected into package ${packageName} and dist/README.md is generated.`
+    );
   } catch (err) {
     console.error(
-      `❌ Could not generate  ${packageName} package.json and dist/README.md:`,
+      `❌ Could not generate ${packageName} package.json and dist/README.md:`,
       err
     );
   }
