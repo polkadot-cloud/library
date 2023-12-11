@@ -139,12 +139,16 @@ export const build = async ({ p: packageName, m: main }) => {
 
     // Append the npm entries.
     // -----------------------------
+
     readmeMd +=
       "# " + npm.title + "\n\n" + "**" + npmDescription + "**" + "\n\n";
 
-    for (const item of npm.contents) {
-      readmeMd += "- " + item.item + "\n\n";
+    if (npm.contents) {
+      for (const item of npm.contents) {
+        readmeMd += "- " + item.item + "\n\n";
+      }
     }
+
     readmeMd += "## Docs";
 
     // Append the directory entries.
@@ -158,12 +162,12 @@ export const build = async ({ p: packageName, m: main }) => {
         "](" +
         doc +
         ")" +
-        (description ? ": " + description : "") +
-        "\n\n"
+        (description ? ": " + description : "")
       );
     }, "");
 
     readmeMd +=
+      "\n\n" +
       "## License" +
       "\n\n" +
       "[GPL-3.0-only](https://spdx.org/licenses/GPL-3.0-only.html)" +

@@ -4,3 +4,6 @@
 directory:
   - name: N/A
     doc: https://polkadot.cloud
+
+npm:
+  title: "Polkadot Cloud: Recipes"
