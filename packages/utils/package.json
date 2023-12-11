@@ -13,7 +13,7 @@
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p utils",
     "build": "rm -fr dist && tsup && yarn run copy",
-    "copy": "cp ./README.npm.md dist/README.md && cp ./LICENSE ./dist/LICENSE && yarn build:mock",
+    "copy": "cp ./LICENSE ./dist/LICENSE && yarn build:mock",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo",
     "test": "vitest run",
     "test:watch": "vitest watch",
