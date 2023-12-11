@@ -14,7 +14,7 @@
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p cloud-react -m index.js",
     "prebuild": "node ./scripts/prebuild.mjs && yarn --cwd='../cloud-core/' build",
-    "build": "rm -fr dist && gulp && yarn build:mock",
+    "build": "rm -fr dist && gulp --silent && yarn build:mock",
     "postbuild": "node ./scripts/postbuild.mjs",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
