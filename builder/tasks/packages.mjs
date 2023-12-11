@@ -139,29 +139,19 @@ export const build = async ({ p: packageName, m: main }) => {
 
     // Append the npm entries.
     // -----------------------------
-    // readmeMd += npm.reduce((str, { title, contents }) => {
-    //   // const { items } = contents;
-    //   // for (const i in contents)
-    //   return (
-    //     str +
-    //     "# " +
-    //     title +
-    //     "\n\n" +
-    //     "**" +
-    //     npmDescription +
-    //     "**" +
-    //     "\n\n" +
-    //     "- " +
-    //     " contents"
-    //   );
-    // }, "");
+    readmeMd +=
+      "# " + npm.title + "\n\n" + "**" + npmDescription + "**" + "\n\n";
+
+    for (const item of npm.contents) {
+      readmeMd += "- " + item.item + "\n\n";
+    }
+    readmeMd += "## Docs";
 
     // Append the directory entries.
     // -----------------------------
     readmeMd += directory.reduce((str, { name, description, doc }) => {
       return (
         str +
-        "## Docs" +
         "\n\n" +
         "- [" +
         name +
@@ -183,7 +173,10 @@ export const build = async ({ p: packageName, m: main }) => {
     // -------------------------------------------
     await writeReadmeToOutput(packagePath, readmeMd);
   } catch (err) {
-    console.error(`❌ Could not generate  ${packageName} package.json:`, err);
+    console.error(
+      `❌ Could not generate  ${packageName} package.json and dist/README.md:`,
+      err
+    );
   }
 };
 
