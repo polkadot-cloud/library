@@ -137,7 +137,7 @@ export const build = async ({ p: packageName, m: main }) => {
 
     // Get needed data from packages source package.json file.
     // -------------------------------------------------------
-    const { description: npmDescription } =
+    const { description: npmDescription, license } =
       await getSourcePackageJson(packageName);
 
     // Append the npm entries.
@@ -156,7 +156,7 @@ export const build = async ({ p: packageName, m: main }) => {
     // -----------------------------
     readmeMd += formatDirectoryEntry(directory);
 
-    readmeMd += npmLicenseContent;
+    readmeMd += npmLicenseContent(license);
 
     // Write README.md to the output directory.
     // ----------------------------------------
