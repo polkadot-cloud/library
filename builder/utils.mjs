@@ -230,3 +230,17 @@ export const getDirectoryTemplate = async () => {
   );
   return file.toString();
 };
+
+// Writes a README file to output directory.
+export const writeReadmeToOutput = async (path, data) => {
+  await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/README.md`, data);
+};
+
+// Get the source markdown file for `dist/README.md` directory.
+export const getNpmReadmeTemplate = async () => {
+  const file = await fs.readFile(
+    `${getTopDirectory()}/builder/templates/npm.md`,
+    "utf-8"
+  );
+  return file.toString();
+};

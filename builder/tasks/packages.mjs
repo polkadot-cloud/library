@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { join } from "path";
+import { parse } from "yaml";
+import fs from "fs/promises";
 import {
   addTypescriptPropertiesIfMain,
   allPropertiesExist,
@@ -20,6 +22,8 @@ import {
   writePackageJsonToOutput,
   writePackageJsonToSource,
   writeReleasePleaseManifest,
+  writeReadmeToOutput,
+  getNpmReadmeTemplate,
 } from "../utils.mjs";
 import {
   PACKAGE_OUTPUT,
@@ -114,6 +118,70 @@ export const build = async ({ p: packageName, m: main }) => {
     await writePackageJsonToOutput(packagePath, packageJson);
 
     console.log(`✅ package.json injected into package ${packageName}.`);
+
+    // Open file to get npm header.
+    // ----------------------------------
+    let readmeMd = await getNpmReadmeTemplate();
+
+    // Format data from package `index.yml`.
+    // -----------------------------------------------
+    const { directory, npm } = parse(
+      await fs.readFile(
+        `${getPackagesDirectory()}/${packageName}/index.yml`,
+        "utf-8"
+      )
+    );
+
+    // Get needed data from packages source package.json file.
+    // -------------------------------------------------------
+    const { description: npmDescription } =
+      await getSourcePackageJson(packageName);
+
+    // Append the npm entries.
+    // -----------------------------
+    // readmeMd += npm.reduce((str, { title, contents }) => {
+    //   // const { items } = contents;
+    //   // for (const i in contents)
+    //   return (
+    //     str +
+    //     "# " +
+    //     title +
+    //     "\n\n" +
+    //     "**" +
+    //     npmDescription +
+    //     "**" +
+    //     "\n\n" +
+    //     "- " +
+    //     " contents"
+    //   );
+    // }, "");
+
+    // Append the directory entries.
+    // -----------------------------
+    readmeMd += directory.reduce((str, { name, description, doc }) => {
+      return (
+        str +
+        "## Docs" +
+        "\n\n" +
+        "- [" +
+        name +
+        "](" +
+        doc +
+        ")" +
+        (description ? ": " + description : "") +
+        "\n\n"
+      );
+    }, "");
+
+    readmeMd +=
+      "## License" +
+      "\n\n" +
+      "[GPL-3.0-only](https://spdx.org/licenses/GPL-3.0-only.html)" +
+      "\n\n";
+
+    // Write README.md to the output directory.
+    // -------------------------------------------
+    await writeReadmeToOutput(packagePath, readmeMd);
   } catch (err) {
     console.error(`❌ Could not generate  ${packageName} package.json:`, err);
   }
