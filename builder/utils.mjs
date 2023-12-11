@@ -125,6 +125,18 @@ export const formatDirectoryEntry = (directory) => {
   }, "");
 };
 
+// License content on dist/README.md.
+export const npmLicenseContent =
+  "## License" +
+  "\n\n" +
+  "[GPL-3.0-only](https://spdx.org/licenses/GPL-3.0-only.html)" +
+  "\n\n";
+
+// Header content on dist/README.md.
+export const npmHearderContent = (title, description) => {
+  return "# " + title + "\n\n" + "**" + description + "**" + "\n\n";
+};
+
 //--------------------------------------------------
 // Package build utils
 //--------------------------------------------------

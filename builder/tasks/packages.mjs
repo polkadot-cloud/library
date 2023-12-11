@@ -24,6 +24,9 @@ import {
   writeReleasePleaseManifest,
   writeReadmeToOutput,
   getNpmReadmeTemplate,
+  formatDirectoryEntry,
+  npmLicenseContent,
+  npmHearderContent,
 } from "../utils.mjs";
 import {
   PACKAGE_OUTPUT,
@@ -120,11 +123,11 @@ export const build = async ({ p: packageName, m: main }) => {
     console.log(`✅ package.json injected into package ${packageName}.`);
 
     // Open file to get npm header.
-    // ----------------------------------
+    // ----------------------------
     let readmeMd = await getNpmReadmeTemplate();
 
     // Format data from package `index.yml`.
-    // -----------------------------------------------
+    // -------------------------------------
     const { directory, npm } = parse(
       await fs.readFile(
         `${getPackagesDirectory()}/${packageName}/index.yml`,
@@ -138,10 +141,8 @@ export const build = async ({ p: packageName, m: main }) => {
       await getSourcePackageJson(packageName);
 
     // Append the npm entries.
-    // -----------------------------
-
-    readmeMd +=
-      "# " + npm.title + "\n\n" + "**" + npmDescription + "**" + "\n\n";
+    // -----------------------
+    readmeMd += npmHearderContent(npm.title, npmDescription);
 
     if (npm.contents) {
       for (const item of npm.contents) {
@@ -149,32 +150,16 @@ export const build = async ({ p: packageName, m: main }) => {
       }
     }
 
-    readmeMd += "## Docs";
+    readmeMd += "## Docs" + "\n\n";
 
     // Append the directory entries.
     // -----------------------------
-    readmeMd += directory.reduce((str, { name, description, doc }) => {
-      return (
-        str +
-        "\n\n" +
-        "- [" +
-        name +
-        "](" +
-        doc +
-        ")" +
-        (description ? ": " + description : "")
-      );
-    }, "");
+    readmeMd += formatDirectoryEntry(directory);
 
-    readmeMd +=
-      "\n\n" +
-      "## License" +
-      "\n\n" +
-      "[GPL-3.0-only](https://spdx.org/licenses/GPL-3.0-only.html)" +
-      "\n\n";
+    readmeMd += npmLicenseContent;
 
     // Write README.md to the output directory.
-    // -------------------------------------------
+    // ----------------------------------------
     await writeReadmeToOutput(packagePath, readmeMd);
   } catch (err) {
     console.error(
