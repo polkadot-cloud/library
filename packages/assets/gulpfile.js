@@ -31,7 +31,7 @@ const stripComments = () => {
   return src("dist/**/*.js").pipe(strip()).pipe(gulp.dest("dist"));
 };
 
-const license = () => {
+const copyLicense = () => {
   return src(["LICENSE"]).pipe(dest("dist"));
 };
 
@@ -40,5 +40,5 @@ export default series(
   buildJsons,
   buildSvg,
   stripComments,
-  license
+  copyLicense
 );

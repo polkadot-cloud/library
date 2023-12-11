@@ -23,8 +23,8 @@ const stripComments = () => {
   return src("dist/**/*.js").pipe(strip()).pipe(gulp.dest("dist"));
 };
 
-const license = () => {
+const copyLicense = () => {
   return src(["LICENSE"]).pipe(dest("dist"));
 };
 
-export default series(buildComponents, stripComments, license);
+export default series(buildComponents, stripComments, copyLicense);

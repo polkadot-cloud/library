@@ -8,7 +8,7 @@ import {
   getPackagesDirectory,
   getSourcePackageJson,
   getTopDirectory,
-  getDirectoryTemplate,
+  getTemplate,
   formatDirectoryHeaders,
   formatDirectoryEntry,
 } from "../utils.mjs";
@@ -19,7 +19,7 @@ export const build = async () => {
 
     // Open file to get directory header.
     // ----------------------------------
-    let data = await getDirectoryTemplate();
+    let data = await getTemplate("directory");
 
     for (const pkg of packages) {
       // Get needed data from packages source package.json file.

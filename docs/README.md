@@ -18,7 +18,7 @@ Data sources and static assets for Polkadot dApps.
 
 Core styles and themes for Polkadot dApps.
 
-- [Using Polkadot Cloud Themes](https://polkadot.cloud/extensions)
+- [Using Polkadot Cloud Themes](https://polkadot.cloud/using-themes)
 
 #### `@polkadot-cloud/react`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/cloud-react) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/react)]
 
@@ -37,7 +37,6 @@ Functional React components for Polkadot dApps.
 - [Charts](https://polkadot.cloud/charts): Light-weight charts for displaying simple statistics.
 
 - [Buttons](https://polkadot.cloud/buttons): A small collection of plug-and-play button components.
-
 
 #### `@polkadot-cloud/utils`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/utils) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/utils)]
 

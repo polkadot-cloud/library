@@ -10,7 +10,7 @@ const { argv } = require("yargs");
 
 const SASS_OPTIONS = { outputStyle: "compressed" };
 
-const license = () => {
+const copyLicense = () => {
   return src(["LICENSE"]).pipe(dest("dist"));
 };
 
@@ -55,6 +55,6 @@ if (argv.task && argv.task === "watch") {
     buildAccents,
     buildComponents,
     buildFonts,
-    license
+    copyLicense
   );
 }

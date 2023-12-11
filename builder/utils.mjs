@@ -234,24 +234,15 @@ export const writePackageJsonToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
 };
 
-// Get the source markdown file for `docs/README.md` directory.
-export const getDirectoryTemplate = async () => {
-  const file = await fs.readFile(
-    `${getTopDirectory()}/builder/templates/directory.md`,
-    "utf-8"
-  );
-  return file.toString();
-};
-
 // Writes a README file to output directory.
 export const writeReadmeToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/README.md`, data);
 };
 
-// Get the source markdown file for `dist/README.md` directory.
-export const getNpmReadmeTemplate = async () => {
+// Get the source markdown file for the directory.
+export const getTemplate = async (name) => {
   const file = await fs.readFile(
-    `${getTopDirectory()}/builder/templates/npm.md`,
+    `${getTopDirectory()}/builder/templates/${name}.md`,
     "utf-8"
   );
   return file.toString();

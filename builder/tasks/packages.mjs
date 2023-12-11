@@ -23,10 +23,10 @@ import {
   writePackageJsonToSource,
   writeReleasePleaseManifest,
   writeReadmeToOutput,
-  getNpmReadmeTemplate,
   formatDirectoryEntry,
   npmLicenseContent,
   npmHearderContent,
+  getTemplate,
 } from "../utils.mjs";
 import {
   PACKAGE_OUTPUT,
@@ -124,7 +124,7 @@ export const build = async ({ p: packageName, m: main }) => {
 
     // Open file to get npm header.
     // ----------------------------
-    let readmeMd = await getNpmReadmeTemplate();
+    let readmeMd = await getTemplate("npm");
 
     // Format data from package `index.yml`.
     // -------------------------------------
