@@ -158,11 +158,11 @@ export const build = async ({ p: packageName, m: main }) => {
     // ----------------------------------------
     await writeReadmeToOutput(packagePath, readmeMd);
     console.log(
-      `✅ package.json injected into package ${packageName} and dist/README.md is generated.`
+      `✅ package.json and README.md injected into package ${packageName}.`
     );
   } catch (err) {
     console.error(
-      `❌ Could not generate ${packageName} package.json and dist/README.md:`,
+      `❌ Could not generate ${packageName} package.json and README.md:`,
       err
     );
   }
