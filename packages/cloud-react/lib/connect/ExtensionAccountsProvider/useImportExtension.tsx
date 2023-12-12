@@ -3,7 +3,6 @@
 
 import Keyring from "@polkadot/keyring";
 import { isValidAddress } from "@polkadot-cloud/utils";
-import { useExtensions } from "../ExtensionsProvider/useExtensions";
 import type {
   ExtensionAccount,
   ExtensionInterface,
@@ -12,19 +11,12 @@ import { defaultHandleImportExtension } from "./defaults";
 import { ImportedAccount } from "../types";
 import { HandleImportExtension } from "./types";
 import { AnyFunction } from "../../utils/types";
-import {
-  addToLocalExtensions,
-  getActiveAccountLocal,
-  getInExternalAccounts,
-} from "./utils";
+import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
 
 export const useImportExtension = () => {
-  const { setExtensionStatus } = useExtensions();
-
   // Handles importing of an extension.
   //
-  // Adds extension metadata to state and updates local storage with
-  // connected extensions. Calls separate method to handle account importing.
+  // Calls separate method to handle account importing.
   const handleImportExtension = (
     id: string,
     currentAccounts: ExtensionAccount[],
@@ -39,11 +31,6 @@ export const useImportExtension = () => {
       ss58: number;
     }
   ): HandleImportExtension => {
-    // update extensions status to connected.
-    setExtensionStatus(id, "connected");
-    // update local active extensions
-    addToLocalExtensions(id);
-
     if (newAccounts.length) {
       return handleInjectedAccounts(
         id,
