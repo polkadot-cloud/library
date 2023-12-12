@@ -136,13 +136,13 @@ export const npmLicenseContent = (license) => {
     "](https://spdx.org/licenses/" +
     license +
     ".html)" +
-    "\n\n"
+    "\n"
   );
 };
 
 // Header content on dist/README.md.
 export const npmHeaderContent = (title, description) => {
-  return "\n# " + title + "\n\n" + "**" + description + "**" + "\n\n";
+  return "# " + title + "\n\n" + "**" + description + "**" + "\n\n";
 };
 
 //--------------------------------------------------
@@ -266,7 +266,7 @@ export const getTemplate = async (name) => {
 // Get the template markdown and write a README file to output directory.
 export const generatePackageReadme = async (packageName, path) => {
   // Open file to get npm header.
-  let readmeMd = await getTemplate("npm");
+  let readmeMd = (await getTemplate("npm")) + "\n";
 
   // Format data from package `index.yml`.
   const { directory, npm } = await getSourceIndexYml(packageName);
