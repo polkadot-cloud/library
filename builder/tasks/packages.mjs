@@ -22,11 +22,7 @@ import {
   writePackageJsonToOutput,
   writePackageJsonToSource,
   writeReleasePleaseManifest,
-  writeReadmeToOutput,
-  formatDirectoryEntry,
-  npmLicenseContent,
-  npmHearderContent,
-  getTemplate,
+  GeneratePackageReadme,
 } from "../utils.mjs";
 import {
   PACKAGE_OUTPUT,
@@ -134,29 +130,17 @@ export const build = async ({ p: packageName, m: main }) => {
     const { description: npmDescription, license } =
       await getSourcePackageJson(packageName);
 
-    // Open file to get npm header.
-    // ----------------------------
-    let readmeMd = await getTemplate("npm");
+    // Generate a README.md and place it into dist.
+    // --------------------------------------------
+    await GeneratePackageReadme(
+      npm.title,
+      npmDescription,
+      npm.contents,
+      directory,
+      license,
+      packagePath
+    );
 
-    // Append the npm entries.
-    // -----------------------
-    readmeMd += npmHearderContent(npm.title, npmDescription);
-
-    if (npm.contents) {
-      for (const item of npm.contents) {
-        readmeMd += "- " + item.item + "\n\n";
-      }
-    }
-
-    readmeMd += "## Docs" + "\n\n";
-
-    // Append the directory entries.
-    // -----------------------------
-    readmeMd += formatDirectoryEntry(directory) + npmLicenseContent(license);
-
-    // Write README.md to the output directory.
-    // ----------------------------------------
-    await writeReadmeToOutput(packagePath, readmeMd);
     console.log(
       `✅ package.json and README.md injected into package ${packageName}.`
     );

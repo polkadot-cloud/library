@@ -254,3 +254,32 @@ export const getTemplate = async (name) => {
   );
   return file.toString();
 };
+
+export const GeneratePackageReadme = async (
+  title,
+  description,
+  contents,
+  directory,
+  license,
+  path
+) => {
+  // Open file to get npm header.
+  let readmeMd = await getTemplate("npm");
+
+  // Append the npm entries.
+  readmeMd += npmHearderContent(title, description);
+
+  if (contents) {
+    for (const item of contents) {
+      readmeMd += "- " + item.item + "\n\n";
+    }
+  }
+
+  readmeMd += "## Docs" + "\n\n";
+
+  // Append the directory entries.
+  readmeMd += formatDirectoryEntry(directory) + npmLicenseContent(license);
+
+  // Write README.md to the output directory.
+  await writeReadmeToOutput(path, readmeMd);
+};
