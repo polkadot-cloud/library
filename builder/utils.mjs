@@ -106,7 +106,7 @@ export const formatDirectoryHeaders = (pkg, description) => {
     formatNpmPackageName(pkg) +
     ")]\n\n" +
     description +
-    "\n\n"
+    "\n"
   );
 };
 
@@ -115,13 +115,13 @@ export const formatDirectoryEntry = (directory) => {
   return directory.reduce((str, { name, description, doc }) => {
     return (
       str +
-      "- [" +
+      "\n- [" +
       name +
       "](" +
       doc +
       ")" +
       (description ? ": " + description : "") +
-      "\n\n"
+      "\n"
     );
   }, "");
 };

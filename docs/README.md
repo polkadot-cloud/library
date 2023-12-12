@@ -14,13 +14,11 @@ Data sources and static assets for Polkadot dApps.
 
 - [Validator Operators](https://polkadot.cloud/validators): A list of Polkadot validator operators with metadata and thumbnails.
 
-
 #### `@polkadot-cloud/core`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/cloud-core) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/core)]
 
 Core styles and themes for Polkadot dApps.
 
 - [Using Polkadot Cloud Themes](https://polkadot.cloud/using-themes)
-
 
 #### `@polkadot-cloud/react`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/cloud-react) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/react)]
 
@@ -40,7 +38,6 @@ Functional React components for Polkadot dApps.
 
 - [Buttons](https://polkadot.cloud/buttons): A small collection of plug-and-play button components.
 
-
 #### `@polkadot-cloud/utils`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/utils) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/utils)]
 
 Common utility functions to aid in Polkadot dApp development.
@@ -48,4 +45,3 @@ Common utility functions to aid in Polkadot dApp development.
 - [Base](https://polkadot.cloud/base-utilities): A collection of reusable utilities for manipulating string / number / arrays etc.
 
 - [Unit](https://polkadot.cloud/unit_utilities): A collection of reusable utilities for manipulating chain units.
-
