@@ -255,6 +255,7 @@ export const getTemplate = async (name) => {
   return file.toString();
 };
 
+// Get the template markdown and write a README file to output directory.
 export const GeneratePackageReadme = async (
   title,
   description,
