@@ -264,7 +264,7 @@ export const getTemplate = async (name) => {
 };
 
 // Get the template markdown and write a README file to output directory.
-export const GeneratePackageReadme = async (packageName, path) => {
+export const generatePackageReadme = async (packageName, path) => {
   // Open file to get npm header.
   let readmeMd = await getTemplate("npm");
 
