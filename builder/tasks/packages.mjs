@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { join } from "path";
-import { parse } from "yaml";
-import fs from "fs/promises";
 import {
   addTypescriptPropertiesIfMain,
   allPropertiesExist,
@@ -116,30 +114,9 @@ export const build = async ({ p: packageName, m: main }) => {
     // -------------------------------------------
     await writePackageJsonToOutput(packagePath, packageJson);
 
-    // Format data from package `index.yml`.
-    // -------------------------------------
-    const { directory, npm } = parse(
-      await fs.readFile(
-        `${getPackagesDirectory()}/${packageName}/index.yml`,
-        "utf-8"
-      )
-    );
-
-    // Get needed data from packages source package.json file.
-    // -------------------------------------------------------
-    const { description: npmDescription, license } =
-      await getSourcePackageJson(packageName);
-
     // Generate a README.md and place it into dist.
     // --------------------------------------------
-    await GeneratePackageReadme(
-      npm.title,
-      npmDescription,
-      npm.contents,
-      directory,
-      license,
-      packagePath
-    );
+    await GeneratePackageReadme(packageName, packagePath);
 
     console.log(
       `✅ package.json and README.md injected into package ${packageName}.`

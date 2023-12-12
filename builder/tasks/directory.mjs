@@ -2,15 +2,14 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import fs from "fs/promises";
-import { parse } from "yaml";
 import {
   getPackages,
-  getPackagesDirectory,
   getSourcePackageJson,
   getTopDirectory,
   getTemplate,
   formatDirectoryHeaders,
   formatDirectoryEntry,
+  getSourceIndexYml,
 } from "../utils.mjs";
 
 export const build = async () => {
@@ -32,9 +31,7 @@ export const build = async () => {
 
       // Format directory data from package `index.yml`.
       // -----------------------------------------------
-      const { directory } = parse(
-        await fs.readFile(`${getPackagesDirectory()}/${pkg}/index.yml`, "utf-8")
-      );
+      const { directory } = await getSourceIndexYml(pkg);
 
       // Append the directory entries.
       // -----------------------------
