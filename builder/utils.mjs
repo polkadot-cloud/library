@@ -141,7 +141,7 @@ export const npmLicenseContent = (license) => {
 };
 
 // Header content on dist/README.md.
-export const npmHearderContent = (title, description) => {
+export const npmHeaderContent = (title, description) => {
   return "\n# " + title + "\n\n" + "**" + description + "**" + "\n\n";
 };
 
@@ -276,7 +276,7 @@ export const generatePackageReadme = async (packageName, path) => {
     await getSourcePackageJson(packageName);
 
   // Append the npm entries.
-  readmeMd += npmHearderContent(npm.title, npmDescription);
+  readmeMd += npmHeaderContent(npm.title, npmDescription);
 
   if (npm.contents) {
     for (const item of npm.contents) {

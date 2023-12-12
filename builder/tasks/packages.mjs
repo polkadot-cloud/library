@@ -20,7 +20,7 @@ import {
   writePackageJsonToOutput,
   writePackageJsonToSource,
   writeReleasePleaseManifest,
-  GeneratePackageReadme,
+  generatePackageReadme,
 } from "../utils.mjs";
 import {
   PACKAGE_OUTPUT,
@@ -116,7 +116,7 @@ export const build = async ({ p: packageName, m: main }) => {
 
     // Generate a README.md and place it into dist.
     // --------------------------------------------
-    await GeneratePackageReadme(packageName, packagePath);
+    await generatePackageReadme(packageName, packagePath);
 
     console.log(
       `✅ package.json and README.md injected into package ${packageName}.`
