@@ -12,6 +12,7 @@
 *.txt
 *.html
 *.webmanifest
+*.tgz
 dist
 build
 postcss.config.js
