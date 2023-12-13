@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "ignoreDeprecations": "5.0"
   },
-  "include": ["src"],
+  "include": ["src", "tests", "tests"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
