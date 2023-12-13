@@ -9,6 +9,7 @@
   "description": "A library and automated platform for developing and publishing assets for Polkadot apps.",
   "type": "module",
   "scripts": {
+    "build:pages": "tsc && vite build --base='/library/'",
     "clear": "rm -rf node_modules",
     "predev": "yarn --cwd='../packages/cloud-core/' build",
     "dev": "vite --force --base='/' & yarn --cwd='../packages/cloud-core/' watch",

@@ -10,17 +10,15 @@
   "private": "true",
   "scripts": {
     "build:directory": "node builder/run.mjs -t directory:build",
-    "build:pages": "cd app && tsc && vite build --base='/library/'",
-    "build:production": "cd app && tsc && vite build --base='/'",
     "build:mock": "npm run build:mock --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
+    "clear": "npm run --workspaces clear && rm -rf node_modules",
     "prebuild": "node builder/run.mjs -t packages:prebuild",
     "build": "npm run build --workspaces --if-present",
     "postbuild": "node builder/run.mjs -t packages:postbuild",
-    "clear": "npm run --workspaces clear && rm -rf node_modules",
-    "patch": "node builder/run.mjs -t packages:patch",
     "lint": "eslint './**' --fix && npx prettier --write . && npx stylelint '**/*.scss' --fix",
-    "app": "npm run dev -w app"
+    "patch": "node builder/run.mjs -t packages:patch",
+    "sandbox": "npm run dev -w sandbox",
+    "test": "npm run test --workspaces --if-present"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -86,7 +84,8 @@
     "packages/cloud-recipes",
     "packages/assets",
     "app",
-    "builder"
+    "builder",
+    "sandbox"
   ],
   "repository": {
     "type": "git",

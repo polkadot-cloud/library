@@ -30,6 +30,7 @@ jobs:
       - run: yarn build
       - name: Build
         run: yarn build:pages
+        working-directory: "app"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
