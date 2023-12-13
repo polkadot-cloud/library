@@ -1,7 +1,6 @@
 {
   "extends": ["../.eslintrc.json", "plugin:react/recommended"],
   "ignorePatterns": ["dist"],
-
   "settings": {
     "react": {
       "version": "detect"
