@@ -1,12 +1,22 @@
 {
-  "extends": ["../.eslintrc.json", "plugin:react/recommended"],
+  "plugins": [
+    "react",
+    "react-refresh",
+    "@typescript-eslint",
+    "prefer-arrow-functions",
+    "wdio"
+  ],
+  "extends": [
+    "../.eslintrc.json",
+    "plugin:react/recommended",
+    "plugin:wdio/recommended"
+  ],
   "ignorePatterns": ["dist"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "plugins": ["react", "react-refresh", "@typescript-eslint", "prefer-arrow-functions"],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",

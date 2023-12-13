@@ -1,3 +1,6 @@
+/* @license Copyright 2023 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 import { useState } from "react";
 import reactLogo from "./svg/icon-filled.svg";
 import "./App.css";

@@ -1,7 +1,10 @@
+/* @license Copyright 2023 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+/* eslint-disable no-undef */
+
 import { $, expect } from "@wdio/globals";
 import { render } from "@testing-library/react";
 import App from "../App";
-import { describe, it } from "mocha";
 
 describe("React Component Testing", () => {
   it("increments value on click", async () => {

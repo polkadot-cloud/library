@@ -2694,6 +2694,11 @@ eslint-plugin-react-refresh@^0.4.5:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-refresh/-/eslint-plugin-react-refresh-0.4.5.tgz#6b9b307bad3feba2244ef64a1a15485ac70a2d0f"
   integrity sha512-D53FYKJa+fDmZMtriODxvhwrO+IOqrxoEo21gMA0sjHdU6dPVH4OhyFip9ypl8HOF5RV5KdTo+rBQLvnY2cO8w==
 
+eslint-plugin-wdio@^8.24.12:
+  version "8.24.12"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-wdio/-/eslint-plugin-wdio-8.24.12.tgz#ef35dad0230dd4bf13686abecc54a7f909440139"
+  integrity sha512-OmzGteXFOQnJDdkTNnTfksaVa18WlFCyeLjZXHvDpkbomLWAg9wc296Pr0wnTCagqNj8qfEHpy+N2XVew5VCMA==
+
 eslint-scope@^7.2.2:
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-7.2.2.tgz#deb4f92563390f32006894af62a22dba1c46423f"
