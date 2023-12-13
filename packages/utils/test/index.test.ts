@@ -2,8 +2,8 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { describe, expect, test } from "vitest";
-import { AnyObject, EvalMessages } from "./types";
-import * as fn from "./index";
+import { AnyObject, EvalMessages } from "../lib/types";
+import * as fn from "../lib/index";
 import BigNumber from "bignumber.js";
 
 const defaultChainDecimals = 9;
