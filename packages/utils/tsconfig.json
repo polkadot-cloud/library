@@ -13,5 +13,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
   },
-  "include": ["./lib/**/*", "./test/**/*.ts"],
+  "include": ["./lib/**/*", "tests/**/*.ts"],
 }
