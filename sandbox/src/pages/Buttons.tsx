@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { faArrowAltCircleUp, faUser } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@packages/cloud-react/lib/buttons/Button";
+import { Button } from "../../../packages/cloud-react/lib/buttons/Button";
 import { Page } from "../components/Page";
 
 export const Buttons = () => {

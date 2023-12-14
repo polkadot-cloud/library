@@ -16,12 +16,7 @@ const withProviders =
   (props: AnyJson) =>
     providers.reduceRight(
       (acc: ReactNode, prov) => {
-        let Provider = prov;
-        if (Array.isArray(prov)) {
-          Provider = prov[0];
-          return <Provider {...prov[1]}>{acc}</Provider>;
-        }
-
+        const Provider = prov;
         return <Provider>{acc}</Provider>;
       },
       <WrappedComponent {...props} />

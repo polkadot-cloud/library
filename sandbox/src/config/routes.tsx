@@ -2,7 +2,6 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { ReactNode } from "react";
-import { Assets } from "../pages/Assets";
 import { Components } from "../pages/Components";
 import { Buttons } from "../pages/Buttons";
 
@@ -30,12 +29,6 @@ export interface RouteCategoryMulti {
 
 const pages = [
   {
-    path: "assets",
-    name: "Assets",
-    element: <Assets />,
-    default: true,
-  },
-  {
     path: "components",
     name: "Components",
     element: <Components />,
@@ -50,8 +43,8 @@ const pages = [
 export const routes: Routes = [
   {
     path: "/",
-    name: "Assets",
-    element: <Assets />,
+    name: "Components",
+    element: <Components />,
   },
   ...pages,
 ];
@@ -61,7 +54,7 @@ export const routeCategories: RouteCategories = [
     name: "Navigation",
     paths: [
       {
-        paths: ["assets", "components", "buttons"],
+        paths: ["components", "buttons"],
       },
     ],
   },

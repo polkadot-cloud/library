@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import IconSVG from "../../svg/icon.svg?react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useTheme } from "../../contexts/Theme";
 
@@ -18,9 +17,6 @@ export const Header = () => {
   return (
     <div className="app-header">
       <section>
-        <div className="icon">
-          <IconSVG />
-        </div>
         <div className="title">
           <h3>Sandbox</h3>
         </div>
@@ -37,7 +33,7 @@ export const Header = () => {
         ))}
         <span
           style={{
-            margin: "0 1rem 0 0.75rem;",
+            margin: "0 1rem 0 0.75rem",
           }}
         ></span>
         <button

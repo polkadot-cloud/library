@@ -1,40 +1,19 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { Route, Routes, useLocation } from "react-router-dom";
-import { Side } from "@packages/cloud-react/lib/base/structure/Side";
-import { Body } from "@packages/cloud-react/lib/base/structure/Body";
-import { Main } from "@packages/cloud-react/lib/base/structure/Main";
+import { Route, Routes } from "react-router-dom";
+import { Side } from "../../packages/cloud-react/lib/base/structure/Side";
+import { Body } from "../../packages/cloud-react/lib/base/structure/Body";
+import { Main } from "../../packages/cloud-react/lib/base/structure/Main";
 import { routes } from "./config/routes";
-import { Error } from "./components/Error";
 import { Menu } from "./components/Menu";
 import { Header } from "./components/Header";
-import { useEffect } from "react";
 import { useUi } from "./contexts/UI";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 export const Router = () => {
   const { sideMenuOpen } = useUi();
-  const { pathname, hash } = useLocation();
-
-  useEffect(() => {
-    let scrollHash = false;
-    try {
-      if (hash) {
-        const element = document?.querySelector(hash);
-        if (element) {
-          scrollHash = true;
-          element?.scrollIntoView({
-            behavior: "smooth",
-          });
-        }
-      }
-    } catch {
-      scrollHash = false;
-    }
-    if (!scrollHash) window.scrollTo(0, 0);
-  }, [pathname, hash]);
 
   return (
     <>
@@ -68,7 +47,6 @@ export const Router = () => {
                 {routes.map((route) => (
                   <Route key={`nav_page_${route.path}`} {...route} />
                 ))}
-                <Route key="nav_page_other" path="*" element={<Error />} />
               </Routes>
             </div>
           </div>

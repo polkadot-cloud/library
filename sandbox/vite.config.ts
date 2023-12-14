@@ -34,7 +34,6 @@ export default defineConfig({
         "cloud-core",
         "dist"
       ),
-      "@packages": path.resolve(__dirname, "../packages"),
     },
   },
 });
