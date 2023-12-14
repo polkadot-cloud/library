@@ -11,7 +11,7 @@
   "scripts": {
     "build:directory": "node builder/run.mjs -t directory:build",
     "build:mock": "npm run build:mock --workspaces --if-present",
-    "clear": "npm run --workspaces clear && rm -rf node_modules coverage",
+    "clear": "npm run --workspaces clear && rm -rf node_modules yarn.lock",
     "prebuild": "node builder/run.mjs -t packages:prebuild",
     "build": "npm run build --workspaces --if-present",
     "postbuild": "node builder/run.mjs -t packages:postbuild",

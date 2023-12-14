@@ -1,8 +1,14 @@
-/* @license Copyright 2023 @polkadot-cloud/library authors & contributors
-SPDX-License-Identifier: GPL-3.0-only */
+import * as ReactDOM from "react-dom/client";
+import { App } from "./App";
 
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import "./index.css";
+import "@packages/cloud-core/dist/accent/cloud.css";
+import "@packages/cloud-core/dist/theme/cloud/fonts/index.css";
+import "@packages/cloud-core/dist/theme/cloud/index.css";
+import "@packages/cloud-core/dist/theme/default/index.css";
 
-createRoot(document.getElementById("root")!).render(<App />);
+import "@packages/cloud-core/dist/css/styles/index.css";
+import "./styles/index.scss";
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <App />
+);

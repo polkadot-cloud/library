@@ -4,7 +4,7 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { $, expect } from "@wdio/globals";
 import { render } from "@testing-library/react";
-import App from "../src/App";
+import { App } from "../src/App";
 
 describe("React Component Testing", () => {
   it("increments value on click", async () => {

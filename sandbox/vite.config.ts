@@ -27,24 +27,14 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [
-      {
-        find: "@polkadot-cloud/core",
-        replacement: path.resolve(
-          __dirname,
-          "../packages",
-          "cloud-core",
-          "dist"
-        ),
-      },
-      {
-        find: "@packages",
-        replacement: path.resolve(__dirname, "../packages"),
-      },
-      {
-        find: "@docs",
-        replacement: path.resolve(__dirname, "src", "docs", "lib"),
-      },
-    ],
+    alias: {
+      "@polkadot-cloud/core": path.resolve(
+        __dirname,
+        "../packages",
+        "cloud-core",
+        "dist"
+      ),
+      "@packages": path.resolve(__dirname, "../packages"),
+    },
   },
 });
