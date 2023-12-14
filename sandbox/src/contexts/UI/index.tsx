@@ -6,7 +6,6 @@ import * as defaults from "./defaults";
 import type { UIContextInterface } from "./types";
 
 export const UIProvider = ({ children }: { children: ReactNode }) => {
-  // side menu control
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   const setSideMenu = (v: boolean) => {
