@@ -3,46 +3,37 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 .page {
   --doc-para-line-height: 2.1rem;
-  --para-font-size: 1.25rem;
+  --para-font-size: 1.15rem;
 
   margin: 4rem 0 2.5rem;
-
-  .edit-on-github {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 1.1rem;
-    width: 100%;
-  }
 
   > h1 {
     color: var(--text-color-primary);
     font-family: InterBold, sans-serif;
     font-size: 2.4rem;
     line-height: 2.7rem;
-
-    &.header {
-      margin-top: 1.75rem;
-      display: flex;
-      align-items: center;
-    }
   }
 
   > h2 {
+    border-bottom: 2px solid var(--border-primary-color);
     font-family: InterBold, sans-serif;
     font-size: 1.8rem;
     line-height: 1.95rem;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 0rem;
+    padding-bottom: 0.6rem;
   }
 
   > h3 {
     color: var(--text-color-primary);
+    border-bottom: 1.5px solid var(--border-primary-color);
     font-family: InterBold, sans-serif;
     font-size: 1.4rem;
     line-height: 1.85rem;
     display: flex;
     align-items: center;
     margin: 2rem 0 0;
+    padding-bottom: 0.6rem;
 
     > svg {
       color: var(--text-color-secondary);
@@ -54,10 +45,12 @@ SPDX-License-Identifier: GPL-3.0-only */
   }
 
   > h4 {
+    border-bottom: 1.35px solid var(--border-primary-color);
     font-family: InterSemiBold, sans-serif;
     color: var(--text-color-primary);
     font-size: 1.3rem;
     margin-bottom: 2.4rem;
+    padding-bottom: 0.6rem;
   }
 
   ul {
@@ -77,7 +70,8 @@ SPDX-License-Identifier: GPL-3.0-only */
   > p {
     font-size: var(--para-font-size);
     line-height: var(--doc-para-line-height);
-    margin: 1rem 0;
+    opacity: 0.7;
+    margin: 0.5rem 0 1rem 0;
   }
 
   > ul,
@@ -86,74 +80,6 @@ SPDX-License-Identifier: GPL-3.0-only */
     color: var(--text-color-primary);
     font-size: 1.2rem;
     line-height: 1.95;
-  }
-
-  code {
-    border: 1px solid var(--border-secondary-color);
-    color: var(--text-color-secondary);
-    border-radius: 0.4rem;
-    padding: 0.05rem 0.4rem;
-
-    &.text {
-      border: none;
-      border-radius: none;
-      padding: 0;
-    }
-  }
-
-  /* Spaces are not being between code blocks in headers. Manually add space here. */
-  > h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    display: flex;
-    align-items: center;
-
-    > a {
-      color: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      font-family: inherit;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    code {
-      margin: 0 0.6rem;
-    }
-
-    .anc {
-      align-items: center;
-      display: none;
-
-      > svg {
-        color: var(--text-color-tertiary);
-        font-size: 0.9em;
-        width: 1em;
-        max-height: 1.1em;
-      }
-    }
-
-    &:hover {
-      .anc {
-        margin-left: 0.5rem;
-        display: flex;
-      }
-    }
-  }
-
-  /* Ensure accent color is also applied for links in code blocks. */
-  a {
-    font-family: Inter, sans-serif;
-    font-size: inherit;
-  }
-
-  a code {
-    color: var(--accent-color-secondary);
-    font-size: inherit;
   }
 
   hr {
@@ -172,62 +98,15 @@ SPDX-License-Identifier: GPL-3.0-only */
     }
   }
 
-  .params {
-    border-top: 1px solid var(--border-primary-color);
-    border-radius: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    width: 100%;
-
-    &.inline {
-      border-bottom: 1px solid var(--border-primary-color);
-      border-top: 0;
-      margin: 0.15rem 0 0;
-      padding-left: 0;
-      padding-right: 0;
-
-      > p:first-child {
-        margin-top: 0;
-      }
-    }
-
-    p {
-      color: var(--text-color-tertiary);
-      font-size: 1.15rem;
-      line-height: 1.75rem;
-      padding-bottom: 0.25rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0;
-
-      span {
-        font-family: InterSemiBold, sans-serif;
-      }
-    }
-  }
-
-  .anchor {
-    position: relative;
-    top: -7.75rem;
-  }
-
-  .ext {
-    width: 0.85rem;
-    height: 0.85rem;
-    margin-left: 0.1rem;
-    position: relative;
-    top: -0.15rem;
-  }
-
-  .bar {
-    color: var(--border-secondary-color);
-    margin: 0 0.3rem;
-  }
-
   .row {
     display: flex;
     flex-flow: row wrap;
     margin: 1.5rem 0 3rem 0;
+
+    &.sm {
+    margin: 0.5rem 0 1.5rem 0;
+
+    }
 
     > * { 
       margin: 0 0.5rem 0.5rem 0;

@@ -32,6 +32,7 @@ const pages = [
     path: "components",
     name: "Components",
     element: <Components />,
+    default: true,
   },
   {
     path: "buttons",

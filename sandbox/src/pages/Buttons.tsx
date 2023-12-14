@@ -10,6 +10,7 @@ export const Buttons = () => {
     <div className="page">
       <Page>
         <h1>Buttons</h1>
+        <p>A small collection of plug-and-play button components.</p>
 
         <h4>Button Primary</h4>
         <div className="row">
