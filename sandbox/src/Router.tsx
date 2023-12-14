@@ -8,7 +8,6 @@ import { Main } from "@packages/cloud-react/lib/base/structure/Main";
 import { routes } from "./config/routes";
 import { Error } from "./components/Error";
 import { Menu } from "./components/Menu";
-import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { useEffect } from "react";
 import { useUi } from "./contexts/UI";
@@ -75,9 +74,6 @@ export const Router = () => {
           </div>
         </Main>
       </Body>
-
-      {/* App footer */}
-      <Footer />
     </>
   );
 };
