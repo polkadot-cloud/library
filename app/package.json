@@ -45,7 +45,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-powerglitch": "^1.0.3",
-    "react-router-dom": "^6.20.1",
+    "react-router-dom": "^6.21.0",
     "react-simple-code-editor": "^0.13.1",
     "stylelint": "^15.11.0",
     "svgo": "^3.1.0"
