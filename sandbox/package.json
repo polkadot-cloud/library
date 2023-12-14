@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
     "preview": "vite preview",
     "wdio": "wdio run ./wdio.conf.ts",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo coverage"
