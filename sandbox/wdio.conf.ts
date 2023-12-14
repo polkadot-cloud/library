@@ -130,11 +130,12 @@ export const config: Options.Testrunner = {
     {
       preset: "react",
       coverage: {
-        enabled: true,
-        statements: 100,
-        branches: 90,
-        functions: 100,
-        lines: 100,
+        // We are not too interested testing the sandbox environment. Only the components.
+        enabled: false,
+        // statements: 100,
+        // branches: 90,
+        // functions: 100,
+        // lines: 100,
       },
     },
   ],
