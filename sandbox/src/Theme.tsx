@@ -4,7 +4,7 @@
 import { Router } from "./Router";
 import { useTheme } from "./contexts/Theme";
 
-// App-wide theme classes are inserXted here.
+// App-wide theme classes are inserted here.
 //
 // App-specific theming is added to `ThemeProvider`.
 // `@polkadot-cloud/react` themes are added to `Entry`.
