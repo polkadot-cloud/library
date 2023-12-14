@@ -6,7 +6,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { PACKAGE_OUTPUT, PACKAGE_SCOPE } from "./config.mjs";
 import { format } from "prettier";
-import yml from "yaml";
+import { parse } from "yaml";
 
 //--------------------------------------------------
 // Directory and file validation utils
@@ -234,7 +234,6 @@ export const getDistPackageJson = async (path) => {
 
 // Get the source index.yml file for a package.
 export const getSourceIndexYml = async (path) => {
-  const { parse } = yml;
   return parse(
     await fs.readFile(`${getPackagesDirectory()}/${path}/index.yml`, "utf-8")
   );
