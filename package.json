@@ -83,7 +83,6 @@
     "packages/cloud-react",
     "packages/cloud-recipes",
     "packages/assets",
-    "app",
     "builder",
     "sandbox"
   ],

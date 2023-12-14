@@ -13,7 +13,7 @@
     }
   },
   "include": [
-    "./packages/**/*", "app", "builder", "sandbox"
+    "./packages/**/*", "builder", "sandbox"
   ],
   "exclude": [
     "**/*/node_modules",
