@@ -46,7 +46,7 @@ export const routes: Routes = [
 
 export const routeCategories: RouteCategories = [
   {
-    name: "Sandbox",
+    name: "Navigation",
     paths: [
       {
         paths: ["overview"],
