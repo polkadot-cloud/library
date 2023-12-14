@@ -6,6 +6,9 @@ SPDX-License-Identifier: GPL-3.0-only */
   --para-font-size: 1.15rem;
 
   margin: 4rem 0 2.5rem;
+  @media(max-width: 1200px) {
+    margin-top: 7.5rem;
+  }
 
   > h1 {
     color: var(--text-color-primary);
