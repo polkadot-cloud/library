@@ -10,7 +10,6 @@ import {
 } from "../../config/routes";
 import { Category } from "./Category";
 import { useUi } from "../../contexts/UI";
-import throttle from "lodash.throttle";
 import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
 import "../../styles/menu.scss";
 
@@ -19,19 +18,15 @@ export const Menu = () => {
   const { sideMenuOpen, setSideMenu } = useUi();
 
   useEffect(() => {
-    window.addEventListener("resize", windowThrottle);
+    window.addEventListener("resize", throttleCallback);
     return () => {
-      window.removeEventListener("resize", windowThrottle);
+      window.removeEventListener("resize", throttleCallback);
     };
   }, []);
 
   const throttleCallback = () => {
     if (window.innerWidth >= 1150) setSideMenu(false);
   };
-  const windowThrottle = throttle(throttleCallback, 200, {
-    trailing: true,
-    leading: false,
-  });
 
   const ref = useRef(null);
   useOutsideAlerter(ref, () => setSideMenu(false));

@@ -11,7 +11,6 @@
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo coverage"
   },
   "dependencies": {
-    "lodash.throttle": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.0",
