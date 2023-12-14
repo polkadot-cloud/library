@@ -7,7 +7,13 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { useTheme } from "../../contexts/Theme";
 
 export const Header = () => {
-  const { mode, toggleMode } = useTheme();
+  const { mode, toggleMode, theme, setTheme } = useTheme();
+  const allThemes = [
+    ["Polkadot", "polkadot-relay"],
+    ["Kusama", "kusama-relay"],
+    ["Westend", "westend-relay"],
+    ["XCM", "xcm"],
+  ];
 
   return (
     <div className="app-header">
@@ -20,6 +26,20 @@ export const Header = () => {
         </div>
       </section>
       <section>
+        {allThemes.map(([name, key]) => (
+          <button
+            key={`theme_${key}`}
+            className={`${theme === key ? " selected" : ``}`}
+            onClick={() => setTheme(key)}
+          >
+            {name}
+          </button>
+        ))}
+        <span
+          style={{
+            margin: "0 1rem 0 0.75rem;",
+          }}
+        ></span>
         <button
           className={`link${mode === "light" ? " selected" : ``}`}
           onClick={() => toggleMode("light")}

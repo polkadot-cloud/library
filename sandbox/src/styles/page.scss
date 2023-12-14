@@ -57,7 +57,7 @@ SPDX-License-Identifier: GPL-3.0-only */
     font-family: InterSemiBold, sans-serif;
     color: var(--text-color-primary);
     font-size: 1.3rem;
-    margin-bottom: 1.4rem;
+    margin-bottom: 2.4rem;
   }
 
   ul {
@@ -223,4 +223,15 @@ SPDX-License-Identifier: GPL-3.0-only */
     color: var(--border-secondary-color);
     margin: 0 0.3rem;
   }
+
+  .row {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 1.5rem 0 3rem 0;
+
+    > * { 
+      margin: 0 0.5rem 0.5rem 0;
+    }
+  }
 }
+
