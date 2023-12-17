@@ -1,9 +1,9 @@
 {
-  "packages/assets": "0.1.38",
-  "packages/cloud-core": "1.0.51",
-  "packages/cloud-react": "0.1.144",
-  "packages/utils": "0.0.29",
-  "packages/cloud-recipes": "0.0.9",
+  "packages/assets": "0.1.39",
+  "packages/cloud-core": "1.0.52",
+  "packages/cloud-react": "0.1.145",
+  "packages/utils": "0.0.30",
+  "packages/cloud-recipes": "0.0.10",
   "builder": "0.1.0",
   "sandbox": "0.1.0"
 }
