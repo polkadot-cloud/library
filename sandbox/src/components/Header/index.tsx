@@ -11,7 +11,6 @@ export const Header = () => {
     ["Polkadot", "polkadot-relay"],
     ["Kusama", "kusama-relay"],
     ["Westend", "westend-relay"],
-    ["XCM", "xcm"],
   ];
 
   return (

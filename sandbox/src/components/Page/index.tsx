@@ -8,7 +8,6 @@ import "../../../../packages/cloud-core/dist/css/styles/index.css";
 import "../../../../packages/cloud-core/dist/accent/polkadot-relay.css";
 import "../../../../packages/cloud-core/dist/accent/kusama-relay.css";
 import "../../../../packages/cloud-core/dist/accent/westend-relay.css";
-import "../../../../packages/cloud-core/dist/accent/xcm.css";
 import "../../../../packages/cloud-core/dist/theme/default/index.css";
 
 import { PageProps } from "./types";
