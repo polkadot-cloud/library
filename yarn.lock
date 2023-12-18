@@ -856,10 +856,10 @@
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/core/-/core-1.0.52.tgz#628a4e63482a9ccd4a8ba568c50950a4592e9658"
   integrity sha512-Wcuhxic9Nq3OdJN9Yz0/Z503FIGFjG2uFKFg6RT1lBqnSlPal5vtsTRad6Qm+0aZmISCH6c7rPKEL0tZN9OdzQ==
 
-"@polkadot-cloud/utils@^0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@polkadot-cloud/utils/-/utils-0.0.34.tgz#92e7d3bda00d198a733e98f05bce978b8ad4f374"
-  integrity sha512-C2F1gtg3sGA8awyCR1/IzZ0J1Fy27uvUgjtIOb1VvZsygrsTBo7EWmNhHuUGDJaH3TgrsO3yQK2KM3AuOGNXDw==
+"@polkadot-cloud/utils@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/utils/-/utils-0.1.0.tgz#f96eb31a7ad8fabfb23b4ca34659cb3f8d5621d6"
+  integrity sha512-sornlr2n3oE0JKhgy5mhSksbd6i3efeFGXl9nxs+EBUs3RHoNH+s0DiiZhZv9bdZC54wSh1rTPnkJHlre3fbQQ==
   dependencies:
     "@polkadot/keyring" "^12.6.1"
     "@polkadot/util" "^12.5.1"
