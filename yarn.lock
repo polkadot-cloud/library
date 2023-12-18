@@ -2195,7 +2195,7 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^7.1.0"
 
-"@wdio/mocha-framework@8.24.12", "@wdio/mocha-framework@^8.24.12":
+"@wdio/mocha-framework@8.24.12":
   version "8.24.12"
   resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-8.24.12.tgz#7910c39d15ba2e9b017e5ac5bdaa38178814ad21"
   integrity sha512-SHN7CYZnDkVUNYxLp8iMV92xcmU/4gq5dqA0pRrK4m5nIU7BoL0flm0kA+ydYUQyNedQh2ru1V63uNyTOyCKAg==
@@ -2205,6 +2205,18 @@
     "@wdio/logger" "8.24.12"
     "@wdio/types" "8.24.12"
     "@wdio/utils" "8.24.12"
+    mocha "^10.0.0"
+
+"@wdio/mocha-framework@^8.26.2":
+  version "8.26.2"
+  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-8.26.2.tgz#e4d0a9d5111d19c9284c6487642ce8cacc53a8d9"
+  integrity sha512-VEbkj/R9dOs9WWeO/xCSiGLZSCYEQ6We6MFiedSiTUFyPFbbBqtDE6ENJzstJhyoywwHsr9XuTxIGqakaDmfBw==
+  dependencies:
+    "@types/mocha" "^10.0.0"
+    "@types/node" "^20.1.0"
+    "@wdio/logger" "8.24.12"
+    "@wdio/types" "8.26.2"
+    "@wdio/utils" "8.26.2"
     mocha "^10.0.0"
 
 "@wdio/protocols@8.24.12":
@@ -2265,6 +2277,13 @@
   dependencies:
     "@types/node" "^20.1.0"
 
+"@wdio/types@8.26.2":
+  version "8.26.2"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-8.26.2.tgz#412bd2f7d0a783bf8c411f5adbaa8a234cd126fd"
+  integrity sha512-LBaoTr4jrPu9knQBN1/7BD3SLkaGoQPcbE3GKIxeaOu0fRMOtEr22HxoONahOlQDvyPoOBmSoZw8wUvIfwhrRw==
+  dependencies:
+    "@types/node" "^20.1.0"
+
 "@wdio/utils@8.24.12":
   version "8.24.12"
   resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-8.24.12.tgz#4d4e03d62728b181f44c05584f3988659c6c7a38"
@@ -2273,6 +2292,25 @@
     "@puppeteer/browsers" "^1.6.0"
     "@wdio/logger" "8.24.12"
     "@wdio/types" "8.24.12"
+    decamelize "^6.0.0"
+    deepmerge-ts "^5.1.0"
+    edgedriver "^5.3.5"
+    geckodriver "^4.2.0"
+    get-port "^7.0.0"
+    import-meta-resolve "^4.0.0"
+    locate-app "^2.1.0"
+    safaridriver "^0.1.0"
+    split2 "^4.2.0"
+    wait-port "^1.0.4"
+
+"@wdio/utils@8.26.2":
+  version "8.26.2"
+  resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-8.26.2.tgz#dc6f7e067ae6cca06661be645a17f179c4aef5fe"
+  integrity sha512-QohaDMxsNunn6sWFBBtw2vSsoSfpbbjLAszW+iBLccpNGfRfHnaJ8HZ5gfsphMYnLfQe5lZRliIX5+8sSnjU1Q==
+  dependencies:
+    "@puppeteer/browsers" "^1.6.0"
+    "@wdio/logger" "8.24.12"
+    "@wdio/types" "8.26.2"
     decamelize "^6.0.0"
     deepmerge-ts "^5.1.0"
     edgedriver "^5.3.5"
