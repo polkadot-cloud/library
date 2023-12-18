@@ -130,12 +130,12 @@ export const ExtensionAccountsProvider = ({
           // Continue if `enable` succeeded, and if the current network is supported.
           if (extension !== undefined) {
             // Handler for new accounts.
-            const handleAccounts = (a: ExtensionAccount[]) => {
+            const handleAccounts = (accounts: ExtensionAccount[]) => {
               const { newAccounts, meta } = handleImportExtension(
                 id,
                 extensionAccountsRef.current,
                 extension,
-                a,
+                accounts,
                 forgetAccounts,
                 {
                   network,
@@ -219,12 +219,12 @@ export const ExtensionAccountsProvider = ({
           setExtensionStatus(id, "connected");
 
           // Handler for new accounts.
-          const handleAccounts = (a: ExtensionAccount[]) => {
+          const handleAccounts = (accounts: ExtensionAccount[]) => {
             const { newAccounts, meta } = handleImportExtension(
               id,
               extensionAccountsRef.current,
               extension,
-              a,
+              accounts,
               forgetAccounts,
               { network, ss58 }
             );
@@ -270,11 +270,11 @@ export const ExtensionAccountsProvider = ({
 
   // Handle errors when communiating with extensions.
   const handleExtensionError = (id: string, err: string) => {
-    // if not general error (maybe enabled but no accounts trust app)
+    // if not general error (maybe enabled but no accounts trust app).
     if (err.startsWith("Error")) {
       // remove extension from local `active_extensions`.
       removeFromLocalExtensions(id);
-      // extension not found (does not exist)
+      // extension not found (does not exist).
       if (err.substring(0, 17) === "NotInstalledError") {
         removeExtensionStatus(id);
       } else {
@@ -282,7 +282,7 @@ export const ExtensionAccountsProvider = ({
         setExtensionStatus(id, "not_authenticated");
       }
     }
-    // mark extension as initialised
+    // mark extension as initialised.
     updateInitialisedExtensions(id);
   };
 
@@ -340,9 +340,9 @@ export const ExtensionAccountsProvider = ({
   };
 
   // Add an extension account to context state.
-  const addExtensionAccount = (a: ImportedAccount[]) => {
+  const addExtensionAccount = (accounts: ImportedAccount[]) => {
     setStateWithRef(
-      [...extensionAccountsRef.current].concat(a),
+      [...extensionAccountsRef.current].concat(accounts),
       setExtensionAccounts,
       extensionAccountsRef
     );

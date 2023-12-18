@@ -8,7 +8,7 @@ import { MaybeAddress } from "../../utils/types";
 
 export interface ExtensionAccountsContextInterface {
   connectExtensionAccounts: (id?: string) => Promise<boolean>;
-  forgetAccounts: (a: ExtensionAccount[]) => void;
+  forgetAccounts: (accounts: ExtensionAccount[]) => void;
   extensionAccountsSynced: Sync;
   extensionAccounts: ImportedAccount[];
 }
@@ -19,7 +19,7 @@ export interface ExtensionAccountsProviderProps {
   ss58: number;
   dappName: string;
   activeAccount?: MaybeAddress;
-  setActiveAccount?: (a: MaybeAddress) => void;
+  setActiveAccount?: (address: MaybeAddress) => void;
   onExtensionEnabled?: (id: string) => void;
 }
 
@@ -30,3 +30,8 @@ export interface HandleImportExtension {
   };
 }
 export type Sync = "synced" | "unsynced" | "syncing";
+
+export type NetworkSS58 = {
+  network: string;
+  ss58: number;
+};

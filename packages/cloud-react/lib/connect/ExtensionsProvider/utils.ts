@@ -16,14 +16,12 @@ declare global {
     injectedWeb3?: AnyJson;
     ethereum: {
       isMetaMask: boolean;
-
       send: (
         request: SnapRpcMethodRequest | { method: string; params?: never[] }
       ) => Promise<unknown>;
       on: (eventName: unknown, callback: unknown) => unknown;
       request: <T>(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        request: SnapRpcMethodRequest | { method: string; params?: any }
+        request: SnapRpcMethodRequest | { method: string; params?: AnyJson }
       ) => Promise<T>;
     };
   }
