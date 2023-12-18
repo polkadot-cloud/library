@@ -25,12 +25,12 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@polkadot/keyring": "^12.6.1",
+    "@polkadot/keyring": "^12.6.2",
     "@polkadot/util": "^12.5.1",
     "bignumber.js": "^9.1.1"
   },
   "peerDependencies": {
-    "@polkadot/keyring": "^12.6.1",
+    "@polkadot/keyring": "^12.6.2",
     "@polkadot/util": "^12.5.1"
   }
 }
