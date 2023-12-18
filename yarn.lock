@@ -846,10 +846,10 @@
     picocolors "^1.0.0"
     tslib "^2.6.0"
 
-"@polkadot-cloud/assets@0.1.35":
-  version "0.1.35"
-  resolved "https://registry.yarnpkg.com/@polkadot-cloud/assets/-/assets-0.1.35.tgz#5718e6e0b80ac9c01e7fed150012bb2b7563a160"
-  integrity sha512-ImyHYQ01s1kFetDE5qlk5x8s/H3WDFcbCcm+GquaJxm4b/QeznSJsBP0ZeaArihsCPcSWux9nFG6P1mfToVhtw==
+"@polkadot-cloud/assets@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/assets/-/assets-0.2.0.tgz#3907b2e93269b0c16e8ac60f243297a7a1ff271c"
+  integrity sha512-4dXb4zFRJAZS4icxz1cPZN6mdlhZIfW81jGgAkv6zKuRhJ9lMZO248gnxf8hZnNUEOotXph9tTLynAdMf31Tag==
 
 "@polkadot-cloud/core@^1.0.52":
   version "1.0.52"
