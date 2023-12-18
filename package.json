@@ -81,7 +81,6 @@
     "packages/cloud-core",
     "packages/utils",
     "packages/cloud-react",
-    "packages/cloud-recipes",
     "packages/assets",
     "builder",
     "sandbox"

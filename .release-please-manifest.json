@@ -3,7 +3,6 @@
   "packages/cloud-core": "1.1.0",
   "packages/cloud-react": "0.2.0",
   "packages/utils": "0.1.0",
-  "packages/cloud-recipes": "0.0.10",
   "builder": "0.2.0",
   "sandbox": "0.2.0"
 }

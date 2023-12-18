@@ -1,9 +1,0 @@
-# Information about the contents of this package.
-# NOTE: Recipes moving to a new repo. This file just satisfies build requirements.
-
-directory:
-  - name: N/A
-    doc: https://polkadot.cloud
-
-npm:
-  title: "Polkadot Cloud: Recipes"

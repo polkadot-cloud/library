@@ -1,4 +1,4 @@
-[![Polkadot - Assets](https://img.shields.io/badge/Polkadot-Assets-E6007A?logo=polkadot&logoColor=E6007A)]([https://github.com/polkadot-cloud/library]) ![ci](https://github.com/polkadot-cloud/library/actions/workflows/main.yml/badge.svg) [![License](https://img.shields.io/badge/License-GPL_3.0_only-blue.svg)](https://opensource.org/license/gpl-3-0/)
+[![Polkadot - Library](https://img.shields.io/badge/Polkadot-Library-E6007A?logo=polkadot&logoColor=E6007A)]([https://github.com/polkadot-cloud/library]) ![ci](https://github.com/polkadot-cloud/library/actions/workflows/main.yml/badge.svg) [![License](https://img.shields.io/badge/License-GPL_3.0_only-blue.svg)](https://opensource.org/license/gpl-3-0/)
 
 # Polkadot Cloud Library
 
