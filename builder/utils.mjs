@@ -6,6 +6,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { PACKAGE_OUTPUT, PACKAGE_SCOPE } from "./config.mjs";
 import { format } from "prettier";
+import { parse } from "yaml";
 
 //--------------------------------------------------
 // Directory and file validation utils
@@ -14,6 +15,11 @@ import { format } from "prettier";
 // Gets the packages directory from the current directory.
 export const getPackagesDirectory = () => {
   return join(dirname(fileURLToPath(import.meta.url)), "..", "packages");
+};
+
+// Gets the top level directory from the current directory.
+export const getTopDirectory = () => {
+  return join(dirname(fileURLToPath(import.meta.url)), "..");
 };
 
 // Checks that all given files are present in all the provided packages.
@@ -87,6 +93,56 @@ export const bumpSemverPatch = (currentVersion) => {
   const pieces = currentVersion.split(/[.]+/);
   const increment = Number(pieces.pop()) + 1;
   return `${pieces.join(".")}.${increment}`;
+};
+
+// Format the package introduction data in the README file.
+export const formatDirectoryHeaders = (pkg, description) => {
+  return (
+    "\n#### `" +
+    formatNpmPackageName(pkg) +
+    "`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
+    pkg +
+    ") &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/" +
+    formatNpmPackageName(pkg) +
+    ")]\n\n" +
+    description +
+    "\n"
+  );
+};
+
+// Format the package content data in the README file.
+export const formatDirectoryEntry = (directory) => {
+  return directory.reduce((str, { name, description, doc }) => {
+    return (
+      str +
+      "\n- [" +
+      name +
+      "](" +
+      doc +
+      ")" +
+      (description ? ": " + description : "") +
+      "\n"
+    );
+  }, "");
+};
+
+// License content on dist/README.md.
+export const npmLicenseContent = (license) => {
+  return (
+    "## License" +
+    "\n\n" +
+    "[" +
+    license +
+    "](https://spdx.org/licenses/" +
+    license +
+    ".html)" +
+    "\n"
+  );
+};
+
+// Header content on dist/README.md.
+export const npmHeaderContent = (title, description) => {
+  return "# " + title + "\n\n" + "**" + description + "**" + "\n\n";
 };
 
 //--------------------------------------------------
@@ -176,6 +232,13 @@ export const getDistPackageJson = async (path) => {
   );
 };
 
+// Get the source index.yml file for a package.
+export const getSourceIndexYml = async (path) => {
+  return parse(
+    await fs.readFile(`${getPackagesDirectory()}/${path}/index.yml`, "utf-8")
+  );
+};
+
 // Writes a package.json file to source directory.
 export const writePackageJsonToSource = async (path, data) => {
   await fs.writeFile(`${getPackagesDirectory()}/${path}/package.json`, data);
@@ -184,4 +247,48 @@ export const writePackageJsonToSource = async (path, data) => {
 // Writes a package.json file to output directory.
 export const writePackageJsonToOutput = async (path, data) => {
   await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/package.json`, data);
+};
+
+// Writes a README file to output directory.
+export const writeReadmeToOutput = async (path, data) => {
+  await fs.writeFile(`${path}/${PACKAGE_OUTPUT}/README.md`, data);
+};
+
+// Get the source markdown file for the directory.
+export const getTemplate = async (name) => {
+  const file = await fs.readFile(
+    `${getTopDirectory()}/builder/templates/${name}.md`,
+    "utf-8"
+  );
+  return file.toString();
+};
+
+// Get the template markdown and write a README file to output directory.
+export const generatePackageReadme = async (packageName, path) => {
+  // Open file to get npm header.
+  let readmeMd = (await getTemplate("npm")) + "\n";
+
+  // Format data from package `index.yml`.
+  const { directory, npm } = await getSourceIndexYml(packageName);
+
+  // Get needed data from packages source package.json file.
+  const { description: npmDescription, license } =
+    await getSourcePackageJson(packageName);
+
+  // Append the npm entries.
+  readmeMd += npmHeaderContent(npm.title, npmDescription);
+
+  if (npm.contents) {
+    for (const item of npm.contents) {
+      readmeMd += "- " + item.item + "\n\n";
+    }
+  }
+
+  readmeMd += "## Docs" + "\n\n";
+
+  // Append the directory entries.
+  readmeMd += formatDirectoryEntry(directory) + npmLicenseContent(license);
+
+  // Write README.md to the output directory.
+  await writeReadmeToOutput(path, readmeMd);
 };

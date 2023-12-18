@@ -2,7 +2,7 @@
 
 directory:
   - name: Using Polkadot Cloud Themes
-    doc: https://polkadot.cloud/extensions
+    doc: https://polkadot.cloud/using-themes
 
 npm:
   title: "Polkadot Cloud: Core"

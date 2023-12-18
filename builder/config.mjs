@@ -19,7 +19,6 @@ export const PACKAGE_REQUIRED_FILES = [
   "lib",
   "package.json",
   "README.md",
-  "README.npm.md",
 ];
 
 // --------------------------------------------------------------------

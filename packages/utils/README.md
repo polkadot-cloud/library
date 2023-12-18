@@ -2,4 +2,5 @@
 
 # Polkadot Cloud: Utils
 
-Utilities for Polkadot apps.
+Utilities for Polkadot dApps.
+

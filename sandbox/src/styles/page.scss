@@ -1,0 +1,118 @@
+/* @license Copyright 2023 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
+.page {
+  --doc-para-line-height: 2.1rem;
+  --para-font-size: 1.15rem;
+
+  margin: 4rem 0 2.5rem;
+
+  @media (width <= 1200px) {
+    margin-top: 7.5rem;
+  }
+
+  > h1 {
+    color: var(--text-color-primary);
+    font-family: InterBold, sans-serif;
+    font-size: 2.4rem;
+    line-height: 2.7rem;
+  }
+
+  > h2 {
+    border-bottom: 2px solid var(--border-primary-color);
+    font-family: InterBold, sans-serif;
+    font-size: 1.8rem;
+    line-height: 1.95rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    padding-bottom: 0.6rem;
+  }
+
+  > h3 {
+    color: var(--text-color-primary);
+    border-bottom: 1.5px solid var(--border-primary-color);
+    font-family: InterBold, sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.85rem;
+    display: flex;
+    align-items: center;
+    margin: 2rem 0 0;
+    padding-bottom: 0.6rem;
+
+    > svg {
+      color: var(--text-color-secondary);
+      margin-right: 0.6rem;
+      height: 2.25rem;
+      position: relative;
+      top: 0.1rem;
+    }
+  }
+
+  > h4 {
+    border-bottom: 1.35px solid var(--border-primary-color);
+    font-family: InterSemiBold, sans-serif;
+    color: var(--text-color-primary);
+    font-size: 1.3rem;
+    margin-bottom: 2.4rem;
+    padding-bottom: 0.6rem;
+  }
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  > p,
+  ul,
+  li,
+  ol {
+    color: var(--text-color-primary);
+    font-size: 1.2rem;
+    line-height: var(--doc-para-line-height);
+  }
+
+  > p {
+    font-size: var(--para-font-size);
+    line-height: var(--doc-para-line-height);
+    opacity: 0.7;
+    margin: 0.5rem 0 1rem;
+  }
+
+  > ul,
+  li,
+  ol {
+    color: var(--text-color-primary);
+    font-size: 1.2rem;
+    line-height: 1.95;
+  }
+
+  hr {
+    border-top: 1px solid var(--border-primary-color);
+    display: block;
+    height: 1px;
+    margin-bottom: 2rem;
+    padding: 0;
+
+    &.md {
+      margin: 2.5rem 0 2rem;
+    }
+
+    &.lg {
+      margin: 3.5rem 0 2.75rem;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 1.5rem 0 3rem;
+
+    &.sm {
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    > * {
+      margin: 0 0.5rem 0.5rem 0;
+    }
+  }
+}

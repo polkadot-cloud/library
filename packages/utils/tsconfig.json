@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "declarationDir": "dist",
-    "rootDir": "./lib",
+    "rootDir": ".",
     "outDir": "dist",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -13,5 +13,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
   },
-  "include": ["./lib/**/*"],
+  "include": ["./lib/**/*", "tests/**/*.ts"],
 }

@@ -13,12 +13,11 @@
     }
   },
   "include": [
-    "./packages/**/*", "app", "builder"
+    "./packages/**/*", "builder", "sandbox"
   ],
   "exclude": [
     "**/*/node_modules",
     "**/*/dist",
-    "**/*.test.tsx",
     "vite.config.js",
   ],
 }

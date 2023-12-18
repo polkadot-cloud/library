@@ -1,0 +1,46 @@
+{
+  "name": "polkadot-cloud-sandbox",
+  "version": "0.1.0",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "wdio": "wdio run ./wdio.conf.ts",
+    "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo coverage"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.0",
+    "svgo": "^3.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.1.2",
+    "@types/mocha": "^10.0.6",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@wdio/browser-runner": "^8.26.1",
+    "@wdio/cli": "^8.26.1",
+    "@wdio/globals": "^8.26.1",
+    "@wdio/mocha-framework": "^8.24.12",
+    "@wdio/spec-reporter": "^8.24.12",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-wdio": "^8.24.12",
+    "sass": "^1.69.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.9",
+    "vite-plugin-checker": "^0.6.2",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^4.2.2"
+  }
+}
