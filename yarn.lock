@@ -896,6 +896,11 @@
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/core/-/core-1.0.51.tgz#ab41a661552f5708c8a1dea2ff4c860c16a2b8a6"
   integrity sha512-Gwm0pTz4Wl9+Q0n3TFBZ+0AQx8cSmo5lo7ALQpT33pZv0QluKrW489Hskt37//2uphELO4t/VkuP9Pu+Pw7jnQ==
 
+"@polkadot-cloud/core@^1.0.52":
+  version "1.0.52"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/core/-/core-1.0.52.tgz#628a4e63482a9ccd4a8ba568c50950a4592e9658"
+  integrity sha512-Wcuhxic9Nq3OdJN9Yz0/Z503FIGFjG2uFKFg6RT1lBqnSlPal5vtsTRad6Qm+0aZmISCH6c7rPKEL0tZN9OdzQ==
+
 "@polkadot-cloud/react@^0.1.144":
   version "0.1.144"
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/react/-/react-0.1.144.tgz#e2e2650a76e7348d19d0c11bac824d4b9ad05a06"
@@ -921,6 +926,15 @@
   integrity sha512-UlNEH8SYseJT6ZBNljE4dNYrRecCgbc7MMn2+Des6AXXUJb88HPQ39hSE1aJwDiq43wrnff2BQadnxqV9orf7g==
   dependencies:
     "@polkadot/keyring" "^12.5.1"
+    "@polkadot/util" "^12.5.1"
+    bignumber.js "^9.1.1"
+
+"@polkadot-cloud/utils@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/utils/-/utils-0.0.34.tgz#92e7d3bda00d198a733e98f05bce978b8ad4f374"
+  integrity sha512-C2F1gtg3sGA8awyCR1/IzZ0J1Fy27uvUgjtIOb1VvZsygrsTBo7EWmNhHuUGDJaH3TgrsO3yQK2KM3AuOGNXDw==
+  dependencies:
+    "@polkadot/keyring" "^12.6.1"
     "@polkadot/util" "^12.5.1"
     bignumber.js "^9.1.1"
 
@@ -9178,7 +9192,7 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-error-boundary@^4.0.11, react-error-boundary@^4.0.12:
+react-error-boundary@^4.0.12:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-4.0.12.tgz#59f8f1dbc53bbbb34fc384c8db7cf4082cb63e2c"
   integrity sha512-kJdxdEYlb7CPC1A0SeUY38cHpjuu6UkvzKiAmqmOFL21VRfMhOcWxTCBgLVCO0VEMh9JhFNcVaXlV4/BTpiwOA==

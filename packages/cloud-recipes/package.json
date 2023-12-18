@@ -8,8 +8,16 @@
     "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
   "description": "React Components for Polkadot DApps.",
-  "keywords": ["Polkadot", "React", "Recipes", "UX", "UI"],
-  "bugs": { "url": "https://github.com/polkadot-cloud/library/issues" },
+  "keywords": [
+    "Polkadot",
+    "React",
+    "Recipes",
+    "UX",
+    "UI"
+  ],
+  "bugs": {
+    "url": "https://github.com/polkadot-cloud/library/issues"
+  },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p cloud-recipes -m index.js",
@@ -55,7 +63,7 @@
     "@polkadot-cloud/assets": "0.1.35",
     "@polkadot-cloud/core": "^1.0.51",
     "@polkadot-cloud/react": "^0.1.144",
-    "@polkadot-cloud/utils": "^0.0.25",
+    "@polkadot-cloud/utils": "^0.0.34",
     "@polkadot/keyring": "^12.6.1",
     "@polkadot/util": "^12.5.1",
     "@polkadot/util-crypto": "^12.5.1",
@@ -68,5 +76,7 @@
     "react-error-boundary": "^4.0.12",
     "react-qr-reader": "^2.2.1"
   },
-  "devDependencies": { "@polkadot-cloud/react": "^0.1.144" }
+  "devDependencies": {
+    "@polkadot-cloud/react": "^0.1.144"
+  }
 }

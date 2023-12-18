@@ -5,8 +5,9 @@ import {
   GetSnapsResponse,
   hasMetaMask,
 } from "@chainsafe/metamask-polkadot-adapter/src/utils";
-import { AnyFunction, AnyJson } from "../../utils/types";
+import { AnyJson } from "../../utils/types";
 import { SnapRpcMethodRequest } from "@chainsafe/metamask-polkadot-types";
+import { withTimeout } from "@polkadot-cloud/utils";
 
 // Workaround for current `ethereum` snap types. See
 // https://github.com/ChainSafe/metamask-snap-polkadot/blob/e0f3d4fc0be7366c62211e29d3a276e4fab5669e/packages/adapter/src/types.ts#L40
@@ -27,15 +28,6 @@ declare global {
   }
 }
 
-const withTimeout = (fn: AnyFunction, args: AnyJson, timeout: number) => {
-  return new Promise((resolve, reject) => {
-    fn(...args).then(resolve, reject);
-    setTimeout(() => {
-      reject();
-    }, timeout);
-  });
-};
-
 // Checks if snaps are supported. Note that other extensions may inject `window.ethereum`, which may
 // break the request. We wrap the request in a timeout to ensure it doesn't hang the extension
 // discovery process.
@@ -43,13 +35,8 @@ const getWalletSnaps = async (): Promise<GetSnapsResponse> => {
   const ethRequest = window?.ethereum?.request ? true : false;
   if (ethRequest) {
     const response = await withTimeout(
-      window.ethereum.request,
-      [
-        {
-          method: "wallet_getSnaps",
-        },
-      ],
-      200
+      200,
+      window.ethereum.request({ method: "wallet_getSnaps" })
     );
     return response as Promise<GetSnapsResponse>;
   }

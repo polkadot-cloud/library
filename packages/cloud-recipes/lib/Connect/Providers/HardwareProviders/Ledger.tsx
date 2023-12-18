@@ -12,13 +12,13 @@ import {
 import TransportWebHID from "@ledgerhq/hw-transport-webhid";
 import { newSubstrateApp } from "@zondax/ledger-substrate";
 import { u8aToBuffer } from "@polkadot/util";
-import { localStorageOrDefault, setStateWithRef } from "@polkadot-cloud/utils";
+import {
+  localStorageOrDefault,
+  setStateWithRef,
+  withTimeout,
+} from "@polkadot-cloud/utils";
 import type { LedgerAccount } from "@polkadot-cloud/react/connect/types";
-import type {
-  AnyFunction,
-  AnyJson,
-  MaybeString,
-} from "@polkadot-cloud/react/utils/types";
+import type { AnyJson, MaybeString } from "@polkadot-cloud/react/utils/types";
 import {
   getLocalLedgerAccounts,
   getLocalLedgerAddresses,
@@ -187,18 +187,6 @@ export const LedgerHardwareProvider = ({
     }
   };
 
-  // Timeout function for hanging tasks. Used for tasks that require no input from the device, such
-  // as getting an address that does not require confirmation.
-  const withTimeout = (millis: AnyFunction, promise: AnyFunction) => {
-    const timeout = new Promise((_, reject) =>
-      setTimeout(async () => {
-        ledgerTransport.current?.device?.close();
-        reject(Error("Timeout"));
-      }, millis)
-    );
-    return Promise.race([promise, timeout]);
-  };
-
   // Attempt to pair a device.
   //
   // Trigger a one-time connection to the device to determine if it is available. If the device
@@ -293,14 +281,17 @@ export const LedgerHardwareProvider = ({
     if (!ledgerTransport.current?.device?.opened) {
       await ledgerTransport.current?.device?.open();
     }
-    const result: AnyJson = await withTimeout(
+    const result = await withTimeout(
       3000,
       substrateApp.getAddress(
         LEDGER_DEFAULT_ACCOUNT + index,
         LEDGER_DEFAULT_CHANGE,
         LEDGER_DEFAULT_INDEX + 0,
         false
-      )
+      ),
+      {
+        onTimeout: () => ledgerTransport.current?.device?.close(),
+      }
     );
 
     await ledgerTransport.current?.device?.close();
