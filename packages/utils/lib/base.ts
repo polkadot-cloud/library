@@ -2,7 +2,7 @@
 SPDX-License-Identifier: GPL-3.0-only */
 
 import { BigNumber } from "bignumber.js";
-import { AnyJson } from "./types";
+import { AnyFunction, AnyJson } from "./types";
 
 /**
  * @name camelize
@@ -137,4 +137,21 @@ export const shuffle = <T>(array: Array<T>) => {
     ];
   }
   return array;
+};
+
+/**
+ * @name withTimeout
+ * @summary Wraps a promise with a timeout and rejects after the timeout.
+ */
+export const withTimeout = (
+  fn: AnyFunction,
+  timeout: number,
+  args?: AnyJson[] | undefined
+) => {
+  return new Promise((resolve, reject) => {
+    (args ? fn(...args) : fn()).then(resolve, reject);
+    setTimeout(() => {
+      reject();
+    }, timeout);
+  });
 };
