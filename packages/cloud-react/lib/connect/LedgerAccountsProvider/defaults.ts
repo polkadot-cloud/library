@@ -6,8 +6,8 @@ import { LedgerAccountsContextInterface } from "./types";
 
 export const defaultLedgerAccountsContext: LedgerAccountsContextInterface = {
   ledgerAccountExists: (address) => false,
-  addLedgerAccount: (address, index) => null,
-  removeLedgerAccount: (address, notify) => {},
+  addLedgerAccount: (address, index, callback) => null,
+  removeLedgerAccount: (address, callback) => {},
   renameLedgerAccount: (address, newName) => {},
   getLedgerAccount: (address) => null,
   ledgerAccounts: [],

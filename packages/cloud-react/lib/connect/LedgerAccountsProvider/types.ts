@@ -7,13 +7,13 @@ import { LedgerAccount } from "../types";
 export interface LedgerAccountsContextInterface {
   ledgerAccountExists: (a: string) => boolean;
   addLedgerAccount: (
-    a: string,
-    i: number,
+    address: string,
+    index: number,
     callback?: () => void
   ) => LedgerAccount | null;
-  removeLedgerAccount: (a: string, callback?: () => void) => void;
-  renameLedgerAccount: (a: string, name: string) => void;
-  getLedgerAccount: (a: string) => LedgerAccount | null;
+  removeLedgerAccount: (address: string, callback?: () => void) => void;
+  renameLedgerAccount: (address: string, name: string) => void;
+  getLedgerAccount: (address: string) => LedgerAccount | null;
   ledgerAccounts: LedgerAccount[];
 }
 
