@@ -32,7 +32,7 @@
     "@types/react": "^18.2.45",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "@vitest/coverage-v8": "^1.0.4",
+    "@vitest/coverage-v8": "^1.1.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
