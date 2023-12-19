@@ -1,10 +1,12 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { ReactNode, createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { defaultLedgerAccountsContext } from "./defaults";
-import { LedgerAccountsContextInterface } from "./types";
-import { AnyFunction, AnyJson } from "lib/utils/types";
+import {
+  LedgerAccountsContextInterface,
+  LedgerAccountsProviderProps,
+} from "./types";
 import { LedgerAccount } from "../types";
 import {
   getLocalLedgerAccounts,
@@ -23,11 +25,7 @@ export const useLedgerAccounts = () => useContext(LedgerAccountsContext);
 export const LedgerAccountsProvider = ({
   children,
   network,
-}: {
-  t: AnyJson;
-  children: ReactNode;
-  network: string;
-}) => {
+}: LedgerAccountsProviderProps) => {
   // Store the fetched ledger accounts.
   const [ledgerAccounts, setLedgerAccountsState] = useState<LedgerAccount[]>(
     getLocalLedgerAccounts(network)
@@ -45,7 +43,7 @@ export const LedgerAccountsProvider = ({
   const addLedgerAccount = (
     address: string,
     index: number,
-    callback?: AnyFunction
+    callback?: () => void
   ) => {
     let newLedgerAccounts = getLocalLedgerAccounts();
 
@@ -91,7 +89,7 @@ export const LedgerAccountsProvider = ({
   };
 
   // Removes a Ledger account from state and local storage.
-  const removeLedgerAccount = (address: string, callback?: AnyFunction) => {
+  const removeLedgerAccount = (address: string, callback?: () => void) => {
     // Remove th account from local storage records
     const newLedgerAccounts = getLocalLedgerAccounts().filter((account) => {
       if (account.address !== address) return true;

@@ -1,9 +1,10 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
+import { ReactNode } from "react";
 import { LedgerAccount } from "../types";
 
-export type LedgerAccountsContextInterface = {
+export interface LedgerAccountsContextInterface {
   ledgerAccountExists: (a: string) => boolean;
   addLedgerAccount: (
     a: string,
@@ -14,7 +15,12 @@ export type LedgerAccountsContextInterface = {
   renameLedgerAccount: (a: string, name: string) => void;
   getLedgerAccount: (a: string) => LedgerAccount | null;
   ledgerAccounts: LedgerAccount[];
-};
+}
+
+export interface LedgerAccountsProviderProps {
+  children: ReactNode;
+  network: string;
+}
 
 export interface LedgerAddress {
   address: string;
