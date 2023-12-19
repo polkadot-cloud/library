@@ -1,7 +1,7 @@
 {
   "name": "polkadot-cloud-utils",
   "license": "GPL-3.0-only",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "contributors": [
     "Ross Bulat<ross@parity.io>",
     "Nikolaos Kontakis<wirednkod@gmail.com>"
@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "@polkadot/keyring": "^12.6.2",
-    "@polkadot/util": "^12.5.1",
+    "@polkadot/util": "^12.6.2",
     "bignumber.js": "^9.1.1"
   },
   "peerDependencies": {
     "@polkadot/keyring": "^12.6.2",
-    "@polkadot/util": "^12.5.1"
+    "@polkadot/util": "^12.6.2"
   }
 }

@@ -15,7 +15,7 @@ import {
   renameLocalLedgerAddress,
 } from "./utils";
 import { setStateWithRef } from "@polkadot-cloud/utils";
-import { useEffectIgnoreInitial } from "lib/base/hooks/useEffectIgnoreInitial";
+import { useEffectIgnoreInitial } from "../../base/hooks/useEffectIgnoreInitial";
 
 export const LedgerAccountsContext =
   createContext<LedgerAccountsContextInterface>(defaultLedgerAccountsContext);
