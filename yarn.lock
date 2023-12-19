@@ -2269,7 +2269,7 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^7.1.0"
 
-"@wdio/mocha-framework@8.26.2", "@wdio/mocha-framework@^8.24.12":
+"@wdio/mocha-framework@8.26.2":
   version "8.26.2"
   resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-8.26.2.tgz#e4d0a9d5111d19c9284c6487642ce8cacc53a8d9"
   integrity sha512-VEbkj/R9dOs9WWeO/xCSiGLZSCYEQ6We6MFiedSiTUFyPFbbBqtDE6ENJzstJhyoywwHsr9XuTxIGqakaDmfBw==
@@ -2279,6 +2279,18 @@
     "@wdio/logger" "8.24.12"
     "@wdio/types" "8.26.2"
     "@wdio/utils" "8.26.2"
+    mocha "^10.0.0"
+
+"@wdio/mocha-framework@^8.26.3":
+  version "8.26.3"
+  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-8.26.3.tgz#4e4fb46143ddb88e8e879f8037b3393dd8aa47d5"
+  integrity sha512-r9uHUcXhh6TKFqTBCacnbtQx0nZjFsnV9Pony8CY9qcNCn2q666ucQbrtMfZdjuevhn5N0E710+El4eAvK3jyw==
+  dependencies:
+    "@types/mocha" "^10.0.0"
+    "@types/node" "^20.1.0"
+    "@wdio/logger" "8.24.12"
+    "@wdio/types" "8.26.3"
+    "@wdio/utils" "8.26.3"
     mocha "^10.0.0"
 
 "@wdio/protocols@8.24.12":
