@@ -1,7 +1,9 @@
 /* @license Copyright 2023 @polkadot-cloud/library authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-export const ValidatorCommunity = [
+import { ValidatorEntry } from "lib/types";
+
+export const ValidatorCommunity: ValidatorEntry[] = [
   {
     name: "🍁 HIGH/STAKE 🥩",
     thumbnail: "Highstake",

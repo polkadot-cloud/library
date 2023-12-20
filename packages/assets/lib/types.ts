@@ -22,8 +22,16 @@ export interface HardwareConfig {
 // The supported chains for validators.
 export type ValidatorSupportedChains = "polkadot" | "kusama" | "westend";
 
+// Icon record structure.
+export type ExtensionIconRecords = Record<string, ExtensionIcon>;
+
+export type ExtensionIcon = FC<{
+  style?: CSSProperties;
+  className?: string;
+}>;
+
 // Structure for a validator entity.
-export interface ValidatorConfig {
+export interface ValidatorEntry {
   name: string;
   thumbnail: string;
   bio: string;
@@ -35,14 +43,6 @@ export interface ValidatorConfig {
     [K in ValidatorSupportedChains]: string[];
   }>;
 }
-
-// Icon record structure.
-export type ExtensionIconRecords = Record<string, ExtensionIcon>;
-
-export type ExtensionIcon = FC<{
-  style?: CSSProperties;
-  className?: string;
-}>;
 
 // Global types.
 declare global {
