@@ -856,13 +856,13 @@
   resolved "https://registry.yarnpkg.com/@polkadot-cloud/core/-/core-1.1.0.tgz#ac830cc5b6998aad29e6809dd766e00c0dd5a594"
   integrity sha512-be4UNM5K4UDDfB46LW97vAGwtz8WYffM3hHy2FSWlcm3ZK/NP5TrudqCSXGtruQsxm6b7N7Bb79wa6gdruXyAQ==
 
-"@polkadot-cloud/utils@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@polkadot-cloud/utils/-/utils-0.1.0.tgz#f96eb31a7ad8fabfb23b4ca34659cb3f8d5621d6"
-  integrity sha512-sornlr2n3oE0JKhgy5mhSksbd6i3efeFGXl9nxs+EBUs3RHoNH+s0DiiZhZv9bdZC54wSh1rTPnkJHlre3fbQQ==
+"@polkadot-cloud/utils@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/utils/-/utils-0.1.1.tgz#dd1b055657c09d89f95d845e2534d2a394692b40"
+  integrity sha512-4vqX7c+N3ZUCgbXgVs5zgU3pKh/m9njXrDAQgaWGWm7LX4M/sBdp6KOrz2qLmb3WiElM+C+IuZ7OMBhpZSbQAw==
   dependencies:
-    "@polkadot/keyring" "^12.6.1"
-    "@polkadot/util" "^12.5.1"
+    "@polkadot/keyring" "^12.6.2"
+    "@polkadot/util" "^12.6.2"
     bignumber.js "^9.1.1"
 
 "@polkadot/api-augment@10.11.1":
@@ -1102,7 +1102,7 @@
     bn.js "^5.2.1"
     tslib "^2.6.2"
 
-"@polkadot/util@12.6.2", "@polkadot/util@^12.5.1", "@polkadot/util@^12.6.1", "@polkadot/util@^12.6.2":
+"@polkadot/util@12.6.2", "@polkadot/util@^12.6.1", "@polkadot/util@^12.6.2":
   version "12.6.2"
   resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-12.6.2.tgz#9396eff491221e1f0fd28feac55fc16ecd61a8dc"
   integrity sha512-l8TubR7CLEY47240uki0TQzFvtnxFIO7uI/0GoWzpYD/O62EIAMRsuY01N4DuwgKq2ZWD59WhzsLYmA5K6ksdw==
