@@ -120,6 +120,7 @@ export const ExtensionAccountsProvider = ({
       Object.entries(enableResults).filter(([, state]) => state.connected)
     );
 
+    // Retrieve  extensions that failed to connect.
     const extensionsWithError = Object.fromEntries(
       Object.entries(enableResults).filter(([, state]) => !state.connected)
     );
