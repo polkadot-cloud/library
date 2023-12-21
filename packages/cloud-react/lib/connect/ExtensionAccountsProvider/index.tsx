@@ -160,7 +160,6 @@ export const ExtensionAccountsProvider = ({
     // --------------------------------------------------------
 
     for (const [id, { extension }] of Object.entries(connectedExtensions)) {
-      // Handler for new accounts.
       const handleAccounts = (accounts: ExtensionAccount[]) => {
         const {
           newAccounts,
@@ -168,7 +167,7 @@ export const ExtensionAccountsProvider = ({
         } = handleImportExtension(
           id,
           extensionAccountsRef.current,
-          extension,
+          extension.signer,
           accounts,
           {
             network,
@@ -234,7 +233,7 @@ export const ExtensionAccountsProvider = ({
             } = handleImportExtension(
               id,
               extensionAccountsRef.current,
-              extension,
+              extension.signer,
               accounts,
               { network, ss58 }
             );

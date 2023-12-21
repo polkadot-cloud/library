@@ -3,10 +3,7 @@
 
 import Keyring from "@polkadot/keyring";
 import { isValidAddress } from "@polkadot-cloud/utils";
-import type {
-  ExtensionAccount,
-  ExtensionInterface,
-} from "../ExtensionsProvider/types";
+import type { ExtensionAccount } from "../ExtensionsProvider/types";
 import { ImportedAccount } from "../types";
 import { HandleImportExtension, NetworkSS58 } from "./types";
 import { AnyFunction } from "../../utils/types";
@@ -20,7 +17,7 @@ export const useImportExtension = () => {
   const handleImportExtension = (
     id: string,
     currentAccounts: ExtensionAccount[],
-    extension: ExtensionInterface,
+    signer: AnyFunction,
     newAccounts: ExtensionAccount[],
     { network, ss58 }: NetworkSS58
   ): HandleImportExtension => {
@@ -68,7 +65,7 @@ export const useImportExtension = () => {
       address,
       name,
       source: id,
-      signer: extension.signer,
+      signer,
     }));
     return {
       newAccounts,
