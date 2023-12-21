@@ -42,10 +42,7 @@ export type ExternalAccountAddedBy = "system" | "user";
 
 export type ExtensionStatusWithEnable = Record<
   string,
-  {
-    enable?: (n?: string) => Promise<ExtensionInterface>;
-    status: ExtensionEnableStatus;
-  }
+  (name?: string) => Promise<ExtensionInterface>
 >;
 
 export type ExtensionEnableStatus =
@@ -56,7 +53,7 @@ export type ExtensionEnableStatus =
 export interface ExtensionEnableResult {
   extension?: ExtensionInterface;
   connected: boolean;
-  error?: Error;
+  error?: string;
 }
 
 export type ExtensionEnableResults = Record<

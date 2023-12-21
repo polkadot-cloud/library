@@ -89,7 +89,7 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   // Loops through the supported extensios and checks if they are present in `injectedWeb3`. Adds
   // `installed` status to the extension if it is present.
   const getExtensionsStatus = (snapAvailable: boolean) => {
-    const { injectedWeb3 }: AnyJson = window;
+    const { injectedWeb3 } = window;
 
     const newExtensionsStatus = { ...extensionsStatus };
     if (snapAvailable)

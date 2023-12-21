@@ -6,7 +6,6 @@ import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import {
   ExtensionEnableResult,
-  ExtensionEnableStatus,
   ExtensionStatusWithEnable,
   ExternalAccount,
 } from "../types";
@@ -24,40 +23,18 @@ export const getExtensionsEnable = (
 
   extensionIds.forEach(async (id) => {
     // Whether extension is locally stored (previously connected).
-    if (!extensionIsLocal(id)) {
-      rawExtensions[id] = {
-        enable: undefined,
-        status: "extension_not_found",
-      };
-    } else {
+    if (extensionIsLocal(id)) {
       // Attempt to get extension `enable` property.
       const { enable } = window.injectedWeb3[id];
-
       if (enable !== undefined && typeof enable === "function") {
-        rawExtensions[id] = {
-          enable,
-          status: "valid",
-        };
+        rawExtensions[id] = enable;
       } else {
-        rawExtensions[id] = {
-          enable: undefined,
-          status: "enable_invalid",
-        };
+        removeFromLocalExtensions(id);
       }
     }
   });
 
   return rawExtensions;
-};
-
-// From the raw extensions, collect those with a particular status.
-export const getExtensionsByStatus = (
-  extensions: ExtensionStatusWithEnable,
-  status: ExtensionEnableStatus
-) => {
-  return Object.fromEntries(
-    Object.entries(extensions).filter(([, entry]) => entry.status === status)
-  );
 };
 
 // Calls `enable` and formats the results of an extension's `enable` function.
@@ -67,7 +44,7 @@ export const enableExtensionsAndFormat = async (
 ): Promise<Record<string, ExtensionEnableResult>> => {
   // Call `enable` and accumulate extension statuses (summons extension popup).
   const results = await Promise.allSettled(
-    Object.values(extensions).map((item) => item.enable(dappName))
+    Object.values(extensions).map((enable) => enable(dappName))
   );
 
   // Accumulate resulting extensions state after attempting to enable.
@@ -85,7 +62,7 @@ export const enableExtensionsAndFormat = async (
     } else if (result.status === "rejected") {
       extensionsState[id] = {
         connected: false,
-        error: Error(result.reason),
+        error: result.reason,
       };
     }
   }

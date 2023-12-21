@@ -4,7 +4,7 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import { localStorageOrDefault, setStateWithRef } from "@polkadot-cloud/utils";
 import { defaultExtensionAccountsContext } from "./defaults";
-import { ExtensionStatusWithEnable, ImportedAccount } from "../types";
+import { ImportedAccount } from "../types";
 import {
   ExtensionAccount,
   ExtensionInterface,
@@ -18,7 +18,6 @@ import {
   addToLocalExtensions,
   enableExtensionsAndFormat,
   getExtensionsAccounts,
-  getExtensionsByStatus,
   getExtensionsEnable,
   removeFromLocalExtensions,
 } from "./utils";
@@ -106,30 +105,23 @@ export const ExtensionAccountsProvider = ({
 
     const activeWalletAccount: ImportedAccount | null = null;
 
-    // Iterate previously connected extensions and format their status.
-    // ----------------------------------------------------------------
-
-    // Acccumulate avaialble extensions or return errors if they do not exist.
+    // Iterate previously connected extensions and retreive valid `enable` functions.
+    // ------------------------------------------------------------------------------
     const rawExtensions = getExtensionsEnable(extensionIds);
 
-    // Get available extensions to connect to.
-    const extensionsToConnect: ExtensionStatusWithEnable =
-      getExtensionsByStatus(rawExtensions, "valid");
-
     // Attempt to connect to extensions via `enable`, and format the results.
-    // ----------------------------------------------------------------------
-
-    // Accumulate resulting extensions state after attempting to enable.
     const enableResults = await enableExtensionsAndFormat(
-      extensionsToConnect,
+      rawExtensions,
       dappName
     );
 
     // Retrieve the resulting connected extensions only.
     const connectedExtensions = Object.fromEntries(
-      Object.entries(enableResults).filter(
-        ([, state]) => state.connected === true
-      )
+      Object.entries(enableResults).filter(([, state]) => state.connected)
+    );
+
+    const extensionsWithError = Object.fromEntries(
+      Object.entries(enableResults).filter(([, state]) => !state.connected)
     );
 
     // Add connected extensions to local storage.
@@ -142,23 +134,23 @@ export const ExtensionAccountsProvider = ({
       Object.values(connectedExtensions)
     );
 
-    // TODO: refactor to handle multiple ids and take enable = undefined / enable failed / connected = false.
-    // handleExtensionError(id, String(err));
+    Object.entries(extensionsWithError).map(([id, state]) => {
+      handleExtensionError(id, state.error);
+    });
 
-    // TODO: refactor to handle multiple ids. Successfully connected.
-    // setExtensionStatus(id, "connected");
+    Object.keys(connectedExtensions).map((id) => {
+      setExtensionStatus(id, "connected");
+      updateInitialisedExtensions(id);
+    });
 
-    // TODO: refactor to handle multiple ids.
-    // updateInitialisedExtensions(id);
+    addExtensionAccount(initialAccounts);
 
-    // Set active account if it has been imported..
     if (initialAccounts.find(({ address }) => address === activeAccount)) {
       connectActiveExtensionAccount(activeWalletAccount, connectToAccount);
     }
 
     // Initiate account subscriptions for connected extensions.
     // --------------------------------------------------------
-
     for (const [id, { extension }] of Object.entries(connectedExtensions)) {
       const handleAccounts = (accounts: ExtensionAccount[]) => {
         const {
@@ -183,13 +175,13 @@ export const ExtensionAccountsProvider = ({
         addExtensionAccount(newAccounts);
       };
 
-      // If account subscriptions are supported, subscribe to accounts for real-time updates.
+      // If enabled, subscribe to accounts.
       if (extensionHasFeature(id, "subscribeAccounts")) {
         const unsub = extension.accounts.subscribe((accounts) => {
           handleAccounts(accounts || []);
         });
 
-        // Add unsub to context ref; safe to call in loop as this does not cause re-render.
+        // Add unsub to context ref.
         addToUnsubscribe(id, unsub);
       }
     }
