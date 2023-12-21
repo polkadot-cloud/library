@@ -6,8 +6,7 @@
   },
   "extends": [
     "../../.eslintrc.json", 
-    "plugin:react/recommended", 
-    "plugin:@typescript-eslint/recommended"
+    "plugin:react/recommended"
   ],
   "plugins": ["react", "@typescript-eslint", "prefer-arrow-functions"],
   "rules": {
