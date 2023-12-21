@@ -4,7 +4,119 @@
 import { localStorageOrDefault } from "@polkadot-cloud/utils";
 import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
-import { ExternalAccount } from "../types";
+import {
+  ExtensionEnableResult,
+  ExtensionEnableStatus,
+  ExtensionStatusWithEnable,
+  ExternalAccount,
+} from "../types";
+
+/*------------------------------------------------------------
+   Extension validation utils.
+ ------------------------------------------------------------*/
+
+// Gets all the available extensions and their `enable` property if it exists. If enable does not
+// exist, or the extension is not found, enable will return undefined.
+export const getExtensionsEnable = (
+  extensionIds: string[]
+): ExtensionStatusWithEnable => {
+  const rawExtensions: ExtensionStatusWithEnable = {};
+
+  extensionIds.forEach(async (id) => {
+    // Whether extension is locally stored (previously connected).
+    if (!extensionIsLocal(id)) {
+      rawExtensions[id] = {
+        enable: undefined,
+        status: "extension_not_found",
+      };
+    } else {
+      // Attempt to get extension `enable` property.
+      const { enable } = window.injectedWeb3[id];
+
+      if (enable !== undefined && typeof enable === "function") {
+        rawExtensions[id] = {
+          enable,
+          status: "valid",
+        };
+      } else {
+        rawExtensions[id] = {
+          enable: undefined,
+          status: "enable_invalid",
+        };
+      }
+    }
+  });
+
+  return rawExtensions;
+};
+
+// From the raw extensions, collect those with a particular status.
+export const getExtensionsByStatus = (
+  extensions: ExtensionStatusWithEnable,
+  status: ExtensionEnableStatus
+) => {
+  return Object.fromEntries(
+    Object.entries(extensions).filter(([, entry]) => entry.status === status)
+  );
+};
+
+// Calls `enable` and formats the results of an extension's `enable` function.
+export const enableExtensionsAndFormat = async (
+  extensions: ExtensionStatusWithEnable,
+  dappName: string
+): Promise<Record<string, ExtensionEnableResult>> => {
+  // Call `enable` and accumulate extension statuses (summons extension popup).
+  const results = await Promise.allSettled(
+    Object.values(extensions).map((item) => item.enable(dappName))
+  );
+
+  // Accumulate resulting extensions state after attempting to enable.
+  const extensionsState: Record<string, ExtensionEnableResult> = {};
+
+  for (let i = 0; i < results.length; i++) {
+    const result = results[i];
+    const id = Object.keys(extensions)[i];
+
+    if (result.status === "fulfilled") {
+      extensionsState[id] = {
+        extension: result.value,
+        connected: true,
+      };
+    } else if (result.status === "rejected") {
+      extensionsState[id] = {
+        connected: false,
+        error: Error(result.reason),
+      };
+    }
+  }
+
+  return extensionsState;
+};
+
+// Calls `enable` and formats the results of an extension's `enable` function.
+export const getExtensionsAccounts = async (
+  extensions: ExtensionEnableResult[]
+): Promise<ExtensionAccount[]> => {
+  // Call `accounts.get()` and collect results.
+  const results = await Promise.allSettled(
+    extensions.map(({ extension }) => extension.accounts.get())
+  );
+
+  // Accumulate resulting extensions state after attempting to enable.
+  const accounts: ExtensionAccount[] = [];
+
+  for (let i = 0; i < results.length; i++) {
+    const result = results[i];
+    if (result.status === "fulfilled") {
+      accounts.push(...result.value);
+    }
+  }
+  return accounts;
+};
+
+/*------------------------------------------------------------
+   localStorage utils.
+ ------------------------------------------------------------*/
 
 // Gets local `active_acount` for a network.
 export const getActiveAccountLocal = (network: string, ss58: number) => {

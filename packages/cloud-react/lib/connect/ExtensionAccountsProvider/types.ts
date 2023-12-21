@@ -26,6 +26,7 @@ export interface ExtensionAccountsProviderProps {
 export interface HandleImportExtension {
   newAccounts: ExtensionAccount[];
   meta: {
+    accountsToForget: ExtensionAccount[];
     removedActiveAccount: MaybeAddress;
   };
 }

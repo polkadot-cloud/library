@@ -1,7 +1,10 @@
 // Copyright 2023 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import { ExtensionAccount } from "./ExtensionsProvider/types";
+import {
+  ExtensionAccount,
+  ExtensionInterface,
+} from "./ExtensionsProvider/types";
 
 export type AccountSource = "extension" | "external" | "ledger" | "vault";
 
@@ -36,3 +39,30 @@ export interface VaultAccount {
 }
 
 export type ExternalAccountAddedBy = "system" | "user";
+
+export type ExtensionStatusWithEnable = Record<
+  string,
+  {
+    enable?: (n?: string) => Promise<ExtensionInterface>;
+    status: ExtensionEnableStatus;
+  }
+>;
+
+export type ExtensionEnableStatus =
+  | "valid"
+  | "extension_not_found"
+  | "enable_invalid";
+
+export interface ExtensionEnableResult {
+  extension?: ExtensionInterface;
+  connected: boolean;
+  error?: Error;
+}
+
+export type ExtensionEnableResults = Record<
+  string,
+  {
+    enable?: (n?: string) => Promise<ExtensionInterface>;
+    status: ExtensionEnableStatus;
+  }
+>;

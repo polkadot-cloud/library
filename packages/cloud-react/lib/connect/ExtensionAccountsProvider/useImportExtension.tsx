@@ -22,7 +22,6 @@ export const useImportExtension = () => {
     currentAccounts: ExtensionAccount[],
     extension: ExtensionInterface,
     newAccounts: ExtensionAccount[],
-    forget: (accounts: ImportedAccount[]) => void,
     { network, ss58 }: NetworkSS58
   ): HandleImportExtension => {
     if (!newAccounts.length) {
@@ -44,7 +43,6 @@ export const useImportExtension = () => {
 
     // Remove `newAccounts` from local external accounts if present.
     const inExternal = getInExternalAccounts(newAccounts, network);
-    forget(inExternal);
 
     // Find any accounts that have been removed from this extension.
     const removedAccounts = currentAccounts
@@ -56,9 +54,6 @@ export const useImportExtension = () => {
       removedAccounts.find(
         ({ address }) => address === getActiveAccountLocal(network, ss58)
       )?.address || null;
-
-    // Commit remove forgotten accounts.
-    forget(removedAccounts);
 
     // Remove accounts that have already been added to `currentAccounts` via another extension.
     newAccounts = newAccounts.filter(
@@ -78,6 +73,7 @@ export const useImportExtension = () => {
     return {
       newAccounts,
       meta: {
+        accountsToForget: [...inExternal, ...removedAccounts],
         removedActiveAccount,
       },
     };

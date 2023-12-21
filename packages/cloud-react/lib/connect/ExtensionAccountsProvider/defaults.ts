@@ -15,6 +15,7 @@ export const defaultExtensionAccountsContext: ExtensionAccountsContextInterface 
 export const defaultHandleImportExtension = {
   newAccounts: [],
   meta: {
+    accountsToForget: [],
     removedActiveAccount: null,
   },
 };

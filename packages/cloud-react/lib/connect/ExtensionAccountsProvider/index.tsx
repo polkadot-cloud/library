@@ -4,7 +4,7 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import { localStorageOrDefault, setStateWithRef } from "@polkadot-cloud/utils";
 import { defaultExtensionAccountsContext } from "./defaults";
-import { ImportedAccount } from "../types";
+import { ExtensionStatusWithEnable, ImportedAccount } from "../types";
 import {
   ExtensionAccount,
   ExtensionInterface,
@@ -16,7 +16,10 @@ import {
 } from "./types";
 import {
   addToLocalExtensions,
-  extensionIsLocal,
+  enableExtensionsAndFormat,
+  getExtensionsAccounts,
+  getExtensionsByStatus,
+  getExtensionsEnable,
   removeFromLocalExtensions,
 } from "./utils";
 import { AnyFunction, AnyJson } from "../../utils/types";
@@ -95,97 +98,102 @@ export const ExtensionAccountsProvider = ({
   // all extensions are looped before connecting to it; there is no guarantee it still exists - must
   // explicitly find it.
   const connectActiveExtensions = async () => {
-    const extensionKeys = Object.keys(extensionsStatus);
-    // Exit if no installed extensions.
-    if (!extensionKeys.length) return;
+    const extensionIds = Object.keys(extensionsStatus);
+    if (!extensionIds.length) return;
 
     // Pre-connect: Inject extensions into `injectedWeb3` if not already injected.
-    await handleExtensionAdapters(extensionKeys);
+    await handleExtensionAdapters(extensionIds);
 
-    // Iterate extensions, `enable` and add accounts to state.
-    const total = extensionKeys?.length ?? 0;
-    let activeWalletAccount: ImportedAccount | null = null;
-    let i = 0;
-    extensionKeys.forEach(async (id: string) => {
-      i++;
+    const activeWalletAccount: ImportedAccount | null = null;
 
-      // Whether extension is locally stored (previously connected).
-      const isLocal = extensionIsLocal(id ?? "0");
-      if (!id || !isLocal) {
-        updateInitialisedExtensions(
-          id ||
-            `unknown_extension_${extensionsInitialisedRef.current.length + 1}`
-        );
-      } else {
-        try {
-          // Attempt to get extension `enable` property.
-          const { enable } = window.injectedWeb3[id];
+    // Iterate previously connected extensions and format their status.
+    // ----------------------------------------------------------------
 
-          // Summons extension popup.
-          const extension: ExtensionInterface = await enable(dappName);
-          maybeOnExtensionEnabled(id);
-          addToLocalExtensions(id);
-          setExtensionStatus(id, "connected");
+    // Acccumulate avaialble extensions or return errors if they do not exist.
+    const rawExtensions = getExtensionsEnable(extensionIds);
 
-          // Continue if `enable` succeeded, and if the current network is supported.
-          if (extension !== undefined) {
-            // Handler for new accounts.
-            const handleAccounts = (accounts: ExtensionAccount[]) => {
-              const { newAccounts, meta } = handleImportExtension(
-                id,
-                extensionAccountsRef.current,
-                extension,
-                accounts,
-                forgetAccounts,
-                {
-                  network,
-                  ss58,
-                }
-              );
+    // Get available extensions to connect to.
+    const extensionsToConnect: ExtensionStatusWithEnable =
+      getExtensionsByStatus(rawExtensions, "valid");
 
-              // Store active wallet account if found in this extension.
-              if (newAccounts.length)
-                if (!activeWalletAccount)
-                  activeWalletAccount = getActiveExtensionAccount(
-                    { network, ss58 },
-                    newAccounts
-                  );
+    // Attempt to connect to extensions via `enable`, and format the results.
+    // ----------------------------------------------------------------------
 
-              // Set active account for network on final extension.
-              if (i === total && !activeAccount) {
-                const activeAccountRemoved =
-                  activeWalletAccount?.address !== meta.removedActiveAccount &&
-                  meta.removedActiveAccount !== null;
-                if (!activeAccountRemoved) {
-                  connectActiveExtensionAccount(
-                    activeWalletAccount,
-                    connectToAccount
-                  );
-                }
-              }
-              // Concat accounts and store.
-              addExtensionAccount(newAccounts);
-              // Update initialised extensions.
-              updateInitialisedExtensions(id);
-            };
+    // Accumulate resulting extensions state after attempting to enable.
+    const enableResults = await enableExtensionsAndFormat(
+      extensionsToConnect,
+      dappName
+    );
 
-            // If account subscriptions are not supported, simply get the account(s) from the
-            // extnsion. Otherwise, subscribe to accounts.
-            if (!extensionHasFeature(id, "subscribeAccounts")) {
-              const accounts = await extension.accounts.get();
-              handleAccounts(accounts);
-            } else {
-              const unsub = extension.accounts.subscribe((accounts) => {
-                handleAccounts(accounts || []);
-              });
-              addToUnsubscribe(id, unsub);
-            }
+    // Retrieve the resulting connected extensions only.
+    const connectedExtensions = Object.fromEntries(
+      Object.entries(enableResults).filter(
+        ([, state]) => state.connected === true
+      )
+    );
+
+    // Add connected extensions to local storage.
+    Object.keys(connectedExtensions).forEach((id) => addToLocalExtensions(id));
+
+    // Initial fetch of extension accounts to populate accounts & extensions state.
+    // ----------------------------------------------------------------------------
+
+    const initialAccounts = await getExtensionsAccounts(
+      Object.values(connectedExtensions)
+    );
+
+    // TODO: refactor to handle multiple ids and take enable = undefined / enable failed / connected = false.
+    // handleExtensionError(id, String(err));
+
+    // TODO: refactor to handle multiple ids. Successfully connected.
+    // setExtensionStatus(id, "connected");
+
+    // TODO: refactor to handle multiple ids.
+    // updateInitialisedExtensions(id);
+
+    // Set active account if it has been imported..
+    if (initialAccounts.find(({ address }) => address === activeAccount)) {
+      connectActiveExtensionAccount(activeWalletAccount, connectToAccount);
+    }
+
+    // Initiate account subscriptions for connected extensions.
+    // --------------------------------------------------------
+
+    for (const [id, { extension }] of Object.entries(connectedExtensions)) {
+      // Handler for new accounts.
+      const handleAccounts = (accounts: ExtensionAccount[]) => {
+        const {
+          newAccounts,
+          meta: { accountsToForget },
+        } = handleImportExtension(
+          id,
+          extensionAccountsRef.current,
+          extension,
+          accounts,
+          {
+            network,
+            ss58,
           }
-        } catch (err) {
-          handleExtensionError(id, String(err));
+        );
+
+        // Forget any removed accounts.
+        if (accountsToForget.length) {
+          forgetAccounts(accountsToForget);
         }
+        // Concat new accounts and store.
+        addExtensionAccount(newAccounts);
+      };
+
+      // If account subscriptions are supported, subscribe to accounts for real-time updates.
+      if (extensionHasFeature(id, "subscribeAccounts")) {
+        const unsub = extension.accounts.subscribe((accounts) => {
+          handleAccounts(accounts || []);
+        });
+
+        // Add unsub to context ref; safe to call in loop as this does not cause re-render.
+        addToUnsubscribe(id, unsub);
       }
-    });
+    }
   };
 
   // connectExtensionAccounts
@@ -193,8 +201,8 @@ export const ExtensionAccountsProvider = ({
   // Similar to the above but only connects to a single extension. This is invoked by the user by
   // clicking on an extension. If activeAccount is not found here, it is simply ignored.
   const connectExtensionAccounts = async (id: string): Promise<boolean> => {
-    const extensionKeys = Object.keys(extensionsStatus);
-    const exists = extensionKeys.find((key) => key === id) || undefined;
+    const extensionIds = Object.keys(extensionsStatus);
+    const exists = extensionIds.find((key) => key === id) || undefined;
 
     if (!exists) {
       updateInitialisedExtensions(
@@ -220,12 +228,14 @@ export const ExtensionAccountsProvider = ({
 
           // Handler for new accounts.
           const handleAccounts = (accounts: ExtensionAccount[]) => {
-            const { newAccounts, meta } = handleImportExtension(
+            const {
+              newAccounts,
+              meta: { removedActiveAccount, accountsToForget },
+            } = handleImportExtension(
               id,
               extensionAccountsRef.current,
               extension,
               accounts,
-              forgetAccounts,
               { network, ss58 }
             );
             // Set active account for network if not yet set.
@@ -235,13 +245,17 @@ export const ExtensionAccountsProvider = ({
                 newAccounts
               );
               if (
-                activeExtensionAccount?.address !== meta.removedActiveAccount &&
-                meta.removedActiveAccount !== null
+                activeExtensionAccount?.address !== removedActiveAccount &&
+                removedActiveAccount !== null
               )
                 connectActiveExtensionAccount(
                   activeExtensionAccount,
                   connectToAccount
                 );
+            }
+            // Forget any removed accounts.
+            if (accountsToForget.length) {
+              forgetAccounts(accountsToForget);
             }
             // Concat accounts and store.
             addExtensionAccount(newAccounts);
@@ -287,9 +301,9 @@ export const ExtensionAccountsProvider = ({
   };
 
   // Handle adaptors for extensions that are not supported by `injectedWeb3`.
-  const handleExtensionAdapters = async (extensionKeys: string[]) => {
+  const handleExtensionAdapters = async (extensionIds: string[]) => {
     // Connect to Metamask Polkadot Snap and inject into `injectedWeb3` if avaialble.
-    if (extensionKeys.find((id) => id === "metamask-polkadot-snap")) {
+    if (extensionIds.find((id) => id === "metamask-polkadot-snap")) {
       await initPolkadotSnap({
         networkName: network as SnapNetworks,
         addressPrefix: ss58,
