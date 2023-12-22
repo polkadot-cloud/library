@@ -14,19 +14,13 @@ import {
   ExtensionAccountsProviderProps,
   Sync,
 } from "./types";
-import {
-  addToLocalExtensions,
-  enableExtensionsAndFormat,
-  getExtensionsAccounts,
-  getExtensionsEnable,
-  removeFromLocalExtensions,
-} from "./utils";
 import { AnyFunction, AnyJson } from "../../utils/types";
 import { useImportExtension } from "./useImportExtension";
 import { useExtensions } from "../ExtensionsProvider/useExtensions";
 import { useEffectIgnoreInitial } from "../../base/hooks/useEffectIgnoreInitial";
 import { initPolkadotSnap } from "./snap";
 import { SnapNetworks } from "@chainsafe/metamask-polkadot-types";
+import { Extensions } from "./Extensions";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(
@@ -107,35 +101,28 @@ export const ExtensionAccountsProvider = ({
 
     // Iterate previously connected extensions and retreive valid `enable` functions.
     // ------------------------------------------------------------------------------
-    const rawExtensions = getExtensionsEnable(extensionIds);
+    const rawExtensions = Extensions.getFromIds(extensionIds);
 
-    // Attempt to connect to extensions via `enable`, and format the results.
-    const enableResults = await enableExtensionsAndFormat(
+    // Attempt to connect to extensions via `enable` and format the results.
+    const enableResults = Extensions.formatEnabled(
       rawExtensions,
-      dappName
+      await Extensions.enable(rawExtensions, dappName)
     );
 
     // Retrieve the resulting connected extensions only.
-    const connectedExtensions = Object.fromEntries(
-      Array.from(enableResults.entries()).filter(([, state]) => state.connected)
-    );
+    const connectedExtensions = Extensions.connected(enableResults);
 
     // Retrieve  extensions that failed to connect.
-    const extensionsWithError = Object.fromEntries(
-      Array.from(enableResults.entries()).filter(
-        ([, state]) => !state.connected
-      )
-    );
+    const extensionsWithError = Extensions.withError(enableResults);
 
     // Add connected extensions to local storage.
-    Object.keys(connectedExtensions).forEach((id) => addToLocalExtensions(id));
+    Object.keys(connectedExtensions).forEach((id) => Extensions.addToLocal(id));
 
     // Initial fetch of extension accounts to populate accounts & extensions state.
     // ----------------------------------------------------------------------------
 
-    const initialAccounts = await getExtensionsAccounts(
-      Object.values(connectedExtensions)
-    );
+    const initialAccounts =
+      await Extensions.getAllAccounts(connectedExtensions);
 
     Object.entries(extensionsWithError).map(([id, state]) => {
       handleExtensionError(id, state.error);
@@ -217,7 +204,9 @@ export const ExtensionAccountsProvider = ({
         if (extension !== undefined) {
           // Call optional `onExtensionEnabled` callback.
           maybeOnExtensionEnabled(id);
-          addToLocalExtensions(id);
+
+          Extensions.addToLocal(id);
+
           setExtensionStatus(id, "connected");
 
           // Handler for new accounts.
@@ -281,7 +270,8 @@ export const ExtensionAccountsProvider = ({
     // if not general error (maybe enabled but no accounts trust app).
     if (err.startsWith("Error")) {
       // remove extension from local `active_extensions`.
-      removeFromLocalExtensions(id);
+      Extensions.removeFromLocal(id);
+
       // extension not found (does not exist).
       if (err.substring(0, 17) === "NotInstalledError") {
         removeExtensionStatus(id);
