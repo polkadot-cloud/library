@@ -146,6 +146,7 @@ export class Extensions {
       return all;
     } catch (err) {
       // Return an empty array if an error occurs.
+       console.error("Error during 'enable' and format call for Extensions: ", err);
       return [];
     }
   };
