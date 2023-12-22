@@ -45,6 +45,7 @@ export class Extensions {
       );
       return results;
     } catch (err) {
+       console.error("Error during 'enable' call for Extensions: ", err);
       // Return an empty array if an error occurs.
       return [];
     }
