@@ -8,7 +8,6 @@ import { MaybeAddress, Sync } from "../../utils/types";
 
 export interface ExtensionAccountsContextInterface {
   connectExtensionAccounts: (id?: string) => Promise<boolean>;
-  forgetAccounts: (accounts: ExtensionAccount[]) => void;
   extensionAccountsSynced: Sync;
   extensionAccounts: ImportedAccount[];
 }

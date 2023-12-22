@@ -7,7 +7,6 @@ import { ExtensionAccountsContextInterface } from "./types";
 export const defaultExtensionAccountsContext: ExtensionAccountsContextInterface =
   {
     connectExtensionAccounts: () => Promise.resolve(false),
-    forgetAccounts: (accounts) => {},
     extensionAccountsSynced: "unsynced",
     extensionAccounts: [],
   };

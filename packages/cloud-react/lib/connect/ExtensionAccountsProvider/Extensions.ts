@@ -39,10 +39,15 @@ export class Extensions {
     extensions: RawExtensions,
     dappName: string
   ): Promise<PromiseSettledResult<ExtensionInterface>[]> => {
-    const results = await Promise.allSettled(
-      Array.from(extensions.values()).map((enable) => enable(dappName))
-    );
-    return results;
+    try {
+      const results = await Promise.allSettled(
+        Array.from(extensions.values()).map((enable) => enable(dappName))
+      );
+      return results;
+    } catch (err) {
+      // Return an empty array if an error occurs.
+      return [];
+    }
   };
 
   // Formats the results of an extension's `enable` function.
@@ -97,43 +102,52 @@ export class Extensions {
     const keyring = new Keyring();
     keyring.setSS58Format(ss58);
 
-    const results = await Promise.allSettled(
-      Array.from(extensions.values()).map(({ extension }) =>
-        extension.accounts.get()
-      )
-    );
+    try {
+      const results = await Promise.allSettled(
+        Array.from(extensions.values()).map(({ extension }) =>
+          extension.accounts.get()
+        )
+      );
 
-    const extensionEntries = Array.from(extensions.entries());
-    const all: ExtensionAccount[] = [];
+      const extensionEntries = Array.from(extensions.entries());
+      const all: ExtensionAccount[] = [];
 
-    for (let i = 0; i < results.length; i++) {
-      const result = results[i];
-      const id = extensionEntries[i][0];
-      const signer = extensionEntries[i][1].extension.signer;
+      for (let i = 0; i < results.length; i++) {
+        const result = results[i];
+        const id = extensionEntries[i][0];
+        const signer = extensionEntries[i][1].extension.signer;
 
-      if (result.status === "fulfilled") {
-        const filtered = result.value
-          // Reformat addresses with correct ss58 prefix.
-          .map((newAccount) => ({
-            ...newAccount,
-            address: keyring.addFromAddress(newAccount.address).address,
-          }))
-          // Remove accounts that have already been imported.
-          .filter(
-            ({ address }) =>
-              !all.find((currentAccount) => address === currentAccount.address)
-          )
-          // Reformat entries to include extension source.
-          .map(({ address, name }) => ({
-            address,
-            name,
-            source: id,
-            signer,
-          }));
-        all.push(...filtered);
+        if (result.status === "fulfilled") {
+          const filtered = result.value
+            // Reformat addresses with correct ss58 prefix.
+            .map((newAccount) => ({
+              ...newAccount,
+              address: keyring.addFromAddress(newAccount.address).address,
+            }))
+            // Remove accounts that have already been imported.
+            .filter(
+              ({ address }) =>
+                !all.find(
+                  (currentAccount) => address === currentAccount.address
+                )
+            )
+            // Reformat entries to include extension source.
+            .map(({ address, name }) => ({
+              address,
+              name,
+              source: id,
+              signer,
+            }));
+
+          all.push(...filtered);
+        }
       }
+
+      return all;
+    } catch (err) {
+      // Return an empty array if an error occurs.
+      return [];
     }
-    return all;
   };
 
   // Check if an extension exists in local `active_extensions`.

@@ -127,24 +127,25 @@ export const ExtensionAccountsProvider = ({
       ss58
     );
 
-    // Perform all initial state updates.
-    // ----------------------------------
-
-    Array.from(extensionsWithError.entries()).map(([id, state]) => {
-      handleExtensionError(id, state.error);
-    });
-
-    Array.from(connectedExtensions.keys()).map((id) => {
-      setExtensionStatus(id, "connected");
-      updateInitialisedExtensions(id);
-    });
-
-    addExtensionAccount(initialAccounts);
-
     // Connect to the active account if found in initial accounts.
     const activeAccountInInitial = initialAccounts.find(
       ({ address }) => address === getActiveAccountLocal(network, ss58)
     );
+
+    // Perform all initial state updates.
+    // ----------------------------------
+
+    Array.from(extensionsWithError.entries()).forEach(([id, state]) => {
+      handleExtensionError(id, state.error);
+    });
+
+    Array.from(connectedExtensions.keys()).forEach((id) => {
+      setExtensionStatus(id, "connected");
+      updateInitialisedExtensions(id);
+    });
+
+    addExtensionAccounts({ add: initialAccounts, remove: [] });
+
     if (activeAccountInInitial) {
       connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
     }
@@ -172,12 +173,8 @@ export const ExtensionAccountsProvider = ({
         }
       );
 
-      // Forget any removed accounts.
-      if (accountsToForget.length) {
-        forgetAccounts(accountsToForget);
-      }
-      // Concat new accounts and store.
-      addExtensionAccount(newAccounts);
+      // Update added and removed accounts.
+      addExtensionAccounts({ add: newAccounts, remove: accountsToForget });
     };
 
     // Try to subscribe to accounts for each connected extension.
@@ -221,13 +218,6 @@ export const ExtensionAccountsProvider = ({
 
         // Continue if `enable` succeeded, and if the current network is supported.
         if (extension !== undefined) {
-          // Call optional `onExtensionEnabled` callback.
-          maybeOnExtensionEnabled(id);
-
-          Extensions.addToLocal(id);
-
-          setExtensionStatus(id, "connected");
-
           // Handler for new accounts.
           const handleAccounts = (accounts: ExtensionAccount[]) => {
             const {
@@ -255,15 +245,22 @@ export const ExtensionAccountsProvider = ({
                   connectToAccount
                 );
             }
-            // Forget any removed accounts.
-            if (accountsToForget.length) {
-              forgetAccounts(accountsToForget);
-            }
-            // Concat accounts and store.
-            addExtensionAccount(newAccounts);
+
+            // Update extension accounts state.
+            addExtensionAccounts({
+              add: newAccounts,
+              remove: accountsToForget,
+            });
+
             // Update initialised extensions.
             updateInitialisedExtensions(id);
           };
+
+          // Call optional `onExtensionEnabled` callback.
+          Extensions.addToLocal(id);
+
+          maybeOnExtensionEnabled(id);
+          setExtensionStatus(id, "connected");
 
           // If account subscriptions are not supported, simply get the account(s) from the extnsion. Otherwise, subscribe to accounts.
           if (!extensionHasFeature(id, "subscribeAccounts")) {
@@ -314,37 +311,6 @@ export const ExtensionAccountsProvider = ({
     }
   };
 
-  // Handle forgetting of an imported extension account.
-  const forgetAccounts = (forget: ImportedAccount[]) => {
-    // Unsubscribe and remove unsub from context ref.
-    if (forget.length) {
-      for (const { address } of forget) {
-        if (extensionAccountsRef.current.find((a) => a.address === address)) {
-          const unsub = unsubs.current[address];
-          if (unsub) {
-            unsub();
-            delete unsubs.current[address];
-          }
-        }
-      }
-      // Remove forgotten accounts from context state.
-      setStateWithRef(
-        [...extensionAccountsRef.current].filter(
-          (a) => forget.find((s) => s.address === a.address) === undefined
-        ),
-        setExtensionAccounts,
-        extensionAccountsRef
-      );
-      // If the currently active account is being forgotten, disconnect.
-      if (activeAccount) {
-        if (
-          forget.find(({ address }) => address === activeAccount) !== undefined
-        )
-          maybeSetActiveAccount(null);
-      }
-    }
-  };
-
   // Update initialised extensions.
   const updateInitialisedExtensions = (id: string) => {
     if (!extensionsInitialisedRef.current.includes(id)) {
@@ -357,17 +323,52 @@ export const ExtensionAccountsProvider = ({
   };
 
   // Add an extension account to context state.
-  const addExtensionAccount = (accounts: ImportedAccount[]) => {
-    setStateWithRef(
-      [...extensionAccountsRef.current].concat(accounts),
-      setExtensionAccounts,
-      extensionAccountsRef
-    );
+  const addExtensionAccounts = ({
+    add,
+    remove,
+  }: {
+    add: ExtensionAccount[];
+    remove: ExtensionAccount[];
+  }) => {
+    // Add new accounts and remove any removed accounts.
+    const newAccounts = [...extensionAccountsRef.current]
+      .concat(add)
+      .filter((a) => remove.find((s) => s.address === a.address) === undefined);
+
+    if (remove.length) {
+      // Unsubscribe from removed accounts.
+      unsubAccounts(remove);
+
+      // Remove active account if it is being forgotten.
+      if (
+        activeAccount &&
+        remove.find(({ address }) => address === activeAccount) !== undefined
+      )
+        maybeSetActiveAccount(null);
+    }
+
+    setStateWithRef(newAccounts, setExtensionAccounts, extensionAccountsRef);
   };
 
-  // add an extension id to unsubscribe state.
+  // Add an extension id to unsubscribe state.
   const addToUnsubscribe = (id: string, unsub: VoidFn) => {
     unsubs.current[id] = unsub;
+  };
+
+  // Handle unsubscribing of an removed extension accounts.
+  const unsubAccounts = (accounts: ImportedAccount[]) => {
+    // Unsubscribe and remove unsub from context ref.
+    if (accounts.length) {
+      for (const { address } of accounts) {
+        if (extensionAccountsRef.current.find((a) => a.address === address)) {
+          const unsub = unsubs.current[address];
+          if (unsub) {
+            unsub();
+            delete unsubs.current[address];
+          }
+        }
+      }
+    }
   };
 
   // Unsubscrbe all account subscriptions.
@@ -424,7 +425,6 @@ export const ExtensionAccountsProvider = ({
       value={{
         connectExtensionAccounts,
         extensionAccountsSynced,
-        forgetAccounts,
         extensionAccounts: extensionAccountsRef.current,
       }}
     >
