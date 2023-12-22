@@ -13,7 +13,7 @@ import {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
 } from "./types";
-import { Sync, VoidFn } from "../../utils/types";
+import { AnyFunction, Sync, VoidFn } from "../../utils/types";
 import { useImportExtension } from "./useImportExtension";
 import { useExtensions } from "../ExtensionsProvider/useExtensions";
 import { useEffectIgnoreInitial } from "../../base/hooks/useEffectIgnoreInitial";
@@ -152,36 +152,42 @@ export const ExtensionAccountsProvider = ({
     // Initiate account subscriptions for connected extensions.
     // --------------------------------------------------------
 
+    // Handler function for each extension accounts subscription.
+    const handleAccounts = (
+      extensionId: string,
+      accounts: ExtensionAccount[],
+      signer: AnyFunction
+    ) => {
+      const {
+        newAccounts,
+        meta: { accountsToForget },
+      } = handleImportExtension(
+        extensionId,
+        extensionAccountsRef.current,
+        signer,
+        accounts,
+        {
+          network,
+          ss58,
+        }
+      );
+
+      // Forget any removed accounts.
+      if (accountsToForget.length) {
+        forgetAccounts(accountsToForget);
+      }
+      // Concat new accounts and store.
+      addExtensionAccount(newAccounts);
+    };
+
+    // Try to subscribe to accounts for each connected extension.
     for (const [id, { extension }] of Array.from(
       connectedExtensions.entries()
     )) {
-      const handleAccounts = (accounts: ExtensionAccount[]) => {
-        const {
-          newAccounts,
-          meta: { accountsToForget },
-        } = handleImportExtension(
-          id,
-          extensionAccountsRef.current,
-          extension.signer,
-          accounts,
-          {
-            network,
-            ss58,
-          }
-        );
-
-        // Forget any removed accounts.
-        if (accountsToForget.length) {
-          forgetAccounts(accountsToForget);
-        }
-        // Concat new accounts and store.
-        addExtensionAccount(newAccounts);
-      };
-
       // If enabled, subscribe to accounts.
       if (extensionHasFeature(id, "subscribeAccounts")) {
         const unsub = extension.accounts.subscribe((accounts) => {
-          handleAccounts(accounts || []);
+          handleAccounts(id, accounts || [], extension.signer);
         });
 
         // Add unsub to context ref.
