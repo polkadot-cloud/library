@@ -13,6 +13,7 @@ import {
   ExtensionInterface,
 } from "../ExtensionsProvider/types";
 
+// A static class to manage the discovery and importing of extensions.
 export class Extensions {
   // Gets a map of extensions with their enable functions from `injectedWeb3`.
   static getFromIds = (extensionIds: string[]): RawExtensions => {
