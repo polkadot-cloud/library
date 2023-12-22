@@ -20,6 +20,7 @@ import { useEffectIgnoreInitial } from "../../base/hooks/useEffectIgnoreInitial"
 import { initPolkadotSnap } from "./snap";
 import { SnapNetworks } from "@chainsafe/metamask-polkadot-types";
 import { Extensions } from "./Extensions";
+import { getActiveAccountLocal } from "./utils";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(
@@ -117,6 +118,18 @@ export const ExtensionAccountsProvider = ({
       Extensions.addToLocal(id)
     );
 
+    // Initial fetch of extension accounts to populate accounts & extensions state.
+    // ----------------------------------------------------------------------------
+
+    // Get full list of imported accounts.
+    const initialAccounts = await Extensions.getAllAccounts(
+      connectedExtensions,
+      ss58
+    );
+
+    // Perform all initial state updates.
+    // ----------------------------------
+
     Array.from(extensionsWithError.entries()).map(([id, state]) => {
       handleExtensionError(id, state.error);
     });
@@ -126,18 +139,11 @@ export const ExtensionAccountsProvider = ({
       updateInitialisedExtensions(id);
     });
 
-    // Initial fetch of extension accounts to populate accounts & extensions state.
-    // ----------------------------------------------------------------------------
-
-    // Get full list of imported accounts.
-    const initialAccounts =
-      await Extensions.getAllAccounts(connectedExtensions);
-
     addExtensionAccount(initialAccounts);
 
     // Connect to the active account if found in initial accounts.
     const activeAccountInInitial = initialAccounts.find(
-      ({ address }) => address === activeAccount
+      ({ address }) => address === getActiveAccountLocal(network, ss58)
     );
     if (activeAccountInInitial) {
       connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
@@ -145,6 +151,7 @@ export const ExtensionAccountsProvider = ({
 
     // Initiate account subscriptions for connected extensions.
     // --------------------------------------------------------
+
     for (const [id, { extension }] of Array.from(
       connectedExtensions.entries()
     )) {
