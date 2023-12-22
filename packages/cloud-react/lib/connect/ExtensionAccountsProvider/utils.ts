@@ -5,6 +5,8 @@ import { localStorageOrDefault } from "@polkadot-cloud/utils";
 import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import { ExternalAccount } from "../types";
+import { NetworkSS58 } from "./types";
+import { AnyFunction } from "../../utils/types";
 
 /*------------------------------------------------------------
    Active account utils.
@@ -19,6 +21,28 @@ export const getActiveAccountLocal = (network: string, ss58: number) => {
     account = keyring.addFromAddress(account).address;
   }
   return account;
+};
+
+// Checks if the local active account is the provided accounts.
+export const getActiveExtensionAccount = (
+  { network, ss58 }: NetworkSS58,
+  accounts: ExtensionAccount[]
+) => {
+  return (
+    accounts.find(
+      ({ address }) => address === getActiveAccountLocal(network, ss58)
+    ) ?? null
+  );
+};
+
+// Connects to active account, and calls an optional callback, if provided.
+export const connectActiveExtensionAccount = (
+  account: ExtensionAccount | null,
+  callback: AnyFunction
+) => {
+  if (account !== null) {
+    callback(account);
+  }
 };
 
 /*------------------------------------------------------------

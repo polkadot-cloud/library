@@ -20,7 +20,11 @@ import { useEffectIgnoreInitial } from "../../base/hooks/useEffectIgnoreInitial"
 import { initPolkadotSnap } from "./snap";
 import { SnapNetworks } from "@chainsafe/metamask-polkadot-types";
 import { Extensions } from "./Extensions";
-import { getActiveAccountLocal } from "./utils";
+import {
+  connectActiveExtensionAccount,
+  getActiveAccountLocal,
+  getActiveExtensionAccount,
+} from "./utils";
 
 export const ExtensionAccountsContext =
   createContext<ExtensionAccountsContextInterface>(
@@ -36,11 +40,7 @@ export const ExtensionAccountsProvider = ({
   setActiveAccount,
   onExtensionEnabled,
 }: ExtensionAccountsProviderProps) => {
-  const {
-    handleImportExtension,
-    getActiveExtensionAccount,
-    connectActiveExtensionAccount,
-  } = useImportExtension();
+  const { handleImportExtension } = useImportExtension();
 
   const {
     extensionsStatus,

@@ -4,7 +4,6 @@
 import Keyring from "@polkadot/keyring";
 import { isValidAddress } from "@polkadot-cloud/utils";
 import type { ExtensionAccount } from "../ExtensionsProvider/types";
-import { ImportedAccount } from "../types";
 import { HandleImportExtension, NetworkSS58 } from "./types";
 import { AnyFunction } from "../../utils/types";
 import { getActiveAccountLocal, getInExternalAccounts } from "./utils";
@@ -77,35 +76,7 @@ export const useImportExtension = () => {
     };
   };
 
-  // Get active extension account.
-  //
-  // Checks if the local active account is in the extension.
-  const getActiveExtensionAccount = (
-    { network, ss58 }: NetworkSS58,
-    accounts: ImportedAccount[]
-  ) => {
-    return (
-      accounts.find(
-        ({ address }) => address === getActiveAccountLocal(network, ss58)
-      ) ?? null
-    );
-  };
-
-  // Connect active extension account.
-  //
-  // Connects to active account if it is provided.
-  const connectActiveExtensionAccount = (
-    account: ImportedAccount | null,
-    callback: AnyFunction
-  ) => {
-    if (account !== null) {
-      callback(account);
-    }
-  };
-
   return {
     handleImportExtension,
-    getActiveExtensionAccount,
-    connectActiveExtensionAccount,
   };
 };
