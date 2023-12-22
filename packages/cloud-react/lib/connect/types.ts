@@ -40,10 +40,9 @@ export interface VaultAccount {
 
 export type ExternalAccountAddedBy = "system" | "user";
 
-export type ExtensionStatusWithEnable = Record<
-  string,
-  (name?: string) => Promise<ExtensionInterface>
->;
+export type RawExtensions = Map<string, RawExtensionEnable>;
+
+export type RawExtensionEnable = (name?: string) => Promise<ExtensionInterface>;
 
 export type ExtensionEnableStatus =
   | "valid"

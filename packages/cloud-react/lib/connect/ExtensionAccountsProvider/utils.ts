@@ -6,8 +6,9 @@ import Keyring from "@polkadot/keyring";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
 import {
   ExtensionEnableResult,
-  ExtensionStatusWithEnable,
   ExternalAccount,
+  RawExtensionEnable,
+  RawExtensions,
 } from "../types";
 
 /*------------------------------------------------------------
@@ -16,18 +17,16 @@ import {
 
 // Gets all the available extensions and their `enable` property if it exists. If enable does not
 // exist, or the extension is not found, enable will return undefined.
-export const getExtensionsEnable = (
-  extensionIds: string[]
-): ExtensionStatusWithEnable => {
-  const rawExtensions: ExtensionStatusWithEnable = {};
+export const getExtensionsEnable = (extensionIds: string[]): RawExtensions => {
+  const rawExtensions = new Map<string, RawExtensionEnable>();
 
   extensionIds.forEach(async (id) => {
     // Whether extension is locally stored (previously connected).
     if (extensionIsLocal(id)) {
-      // Attempt to get extension `enable` property.
+      // Attempt to get extension `enable` property, or remove from local storage otherwise.
       const { enable } = window.injectedWeb3[id];
       if (enable !== undefined && typeof enable === "function") {
-        rawExtensions[id] = enable;
+        rawExtensions.set(id, enable);
       } else {
         removeFromLocalExtensions(id);
       }
@@ -39,7 +38,7 @@ export const getExtensionsEnable = (
 
 // Calls `enable` and formats the results of an extension's `enable` function.
 export const enableExtensionsAndFormat = async (
-  extensions: ExtensionStatusWithEnable,
+  extensions: RawExtensions,
   dappName: string
 ): Promise<Record<string, ExtensionEnableResult>> => {
   // Call `enable` and accumulate extension statuses (summons extension popup).
@@ -52,7 +51,7 @@ export const enableExtensionsAndFormat = async (
 
   for (let i = 0; i < results.length; i++) {
     const result = results[i];
-    const id = Object.keys(extensions)[i];
+    const id = extensions.keys()[i];
 
     if (result.status === "fulfilled") {
       extensionsState[id] = {
