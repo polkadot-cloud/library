@@ -12,9 +12,8 @@ import {
 import {
   ExtensionAccountsContextInterface,
   ExtensionAccountsProviderProps,
-  Sync,
 } from "./types";
-import { AnyFunction, AnyJson } from "../../utils/types";
+import { Sync, VoidFn } from "../../utils/types";
 import { useImportExtension } from "./useImportExtension";
 import { useExtensions } from "../ExtensionsProvider/useExtensions";
 import { useEffectIgnoreInitial } from "../../base/hooks/useEffectIgnoreInitial";
@@ -61,13 +60,13 @@ export const ExtensionAccountsProvider = ({
     useState<Sync>("unsynced");
 
   // Store extensions whose account subscriptions have been initialised.
-  const [extensionsInitialised, setExtensionsInitialised] = useState<AnyJson[]>(
+  const [extensionsInitialised, setExtensionsInitialised] = useState<string[]>(
     []
   );
   const extensionsInitialisedRef = useRef(extensionsInitialised);
 
   // Store unsubscribe handlers for connected extensions.
-  const unsubs = useRef<Record<string, AnyFunction>>({});
+  const unsubs = useRef<Record<string, VoidFn>>({});
 
   // Helper for setting active account. Ignores if not a valid function.
   const maybeSetActiveAccount = (address: string) => {
@@ -347,7 +346,7 @@ export const ExtensionAccountsProvider = ({
   };
 
   // add an extension id to unsubscribe state.
-  const addToUnsubscribe = (id: string, unsub: AnyFunction) => {
+  const addToUnsubscribe = (id: string, unsub: VoidFn) => {
     unsubs.current[id] = unsub;
   };
 

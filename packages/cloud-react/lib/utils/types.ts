@@ -19,6 +19,8 @@ export type ComponentBaseWithClassName = ComponentBase & {
   className?: string;
 };
 
+export type Sync = "synced" | "unsynced" | "syncing";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyApi = any;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
