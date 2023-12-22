@@ -144,7 +144,7 @@ export const ExtensionAccountsProvider = ({
       updateInitialisedExtensions(id);
     });
 
-    addExtensionAccounts({ add: initialAccounts, remove: [] });
+    updateExtensionAccounts({ add: initialAccounts, remove: [] });
 
     if (activeAccountInInitial) {
       connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
@@ -174,7 +174,7 @@ export const ExtensionAccountsProvider = ({
       );
 
       // Update added and removed accounts.
-      addExtensionAccounts({ add: newAccounts, remove: accountsToForget });
+      updateExtensionAccounts({ add: newAccounts, remove: accountsToForget });
     };
 
     // Try to subscribe to accounts for each connected extension.
@@ -247,7 +247,7 @@ export const ExtensionAccountsProvider = ({
             }
 
             // Update extension accounts state.
-            addExtensionAccounts({
+            updateExtensionAccounts({
               add: newAccounts,
               remove: accountsToForget,
             });
@@ -323,7 +323,7 @@ export const ExtensionAccountsProvider = ({
   };
 
   // Add an extension account to context state.
-  const addExtensionAccounts = ({
+  const updateExtensionAccounts = ({
     add,
     remove,
   }: {
