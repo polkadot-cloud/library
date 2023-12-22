@@ -96,8 +96,6 @@ export const ExtensionAccountsProvider = ({
     // Pre-connect: Inject extensions into `injectedWeb3` if not already injected.
     await handleExtensionAdapters(extensionIds);
 
-    const activeWalletAccount: ImportedAccount | null = null;
-
     // Iterate previously connected extensions and retreive valid `enable` functions.
     // ------------------------------------------------------------------------------
     const rawExtensions = Extensions.getFromIds(extensionIds);
@@ -134,8 +132,12 @@ export const ExtensionAccountsProvider = ({
 
     addExtensionAccount(initialAccounts);
 
-    if (initialAccounts.find(({ address }) => address === activeAccount)) {
-      connectActiveExtensionAccount(activeWalletAccount, connectToAccount);
+    // Connect to the active account if found in initial accounts.
+    const activeAccountInInitial = initialAccounts.find(
+      ({ address }) => address === activeAccount
+    );
+    if (activeAccountInInitial) {
+      connectActiveExtensionAccount(activeAccountInInitial, connectToAccount);
     }
 
     // Initiate account subscriptions for connected extensions.
