@@ -4,10 +4,7 @@
       "version": "detect"
     }
   },
-  "extends": [
-    "../../.eslintrc.json", 
-    "plugin:react/recommended"
-  ],
+  "extends": ["../../.eslintrc.json", "plugin:react/recommended"],
   "plugins": ["react", "@typescript-eslint", "prefer-arrow-functions"],
   "rules": {
     "react/jsx-filename-extension": [
