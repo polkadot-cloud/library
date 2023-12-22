@@ -70,7 +70,7 @@ export const useImportExtension = () => {
     return {
       newAccounts,
       meta: {
-        accountsToForget: [...inExternal, ...removedAccounts],
+        accountsToRemove: [...inExternal, ...removedAccounts],
         removedActiveAccount,
       },
     };

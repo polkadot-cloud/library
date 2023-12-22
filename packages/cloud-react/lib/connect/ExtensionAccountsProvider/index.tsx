@@ -161,7 +161,7 @@ export const ExtensionAccountsProvider = ({
     ) => {
       const {
         newAccounts,
-        meta: { accountsToForget },
+        meta: { accountsToRemove },
       } = handleImportExtension(
         extensionId,
         extensionAccountsRef.current,
@@ -174,7 +174,7 @@ export const ExtensionAccountsProvider = ({
       );
 
       // Update added and removed accounts.
-      updateExtensionAccounts({ add: newAccounts, remove: accountsToForget });
+      updateExtensionAccounts({ add: newAccounts, remove: accountsToRemove });
     };
 
     // Try to subscribe to accounts for each connected extension.
@@ -222,7 +222,7 @@ export const ExtensionAccountsProvider = ({
           const handleAccounts = (accounts: ExtensionAccount[]) => {
             const {
               newAccounts,
-              meta: { removedActiveAccount, accountsToForget },
+              meta: { removedActiveAccount, accountsToRemove },
             } = handleImportExtension(
               id,
               extensionAccountsRef.current,
@@ -249,7 +249,7 @@ export const ExtensionAccountsProvider = ({
             // Update extension accounts state.
             updateExtensionAccounts({
               add: newAccounts,
-              remove: accountsToForget,
+              remove: accountsToRemove,
             });
 
             // Update initialised extensions.
