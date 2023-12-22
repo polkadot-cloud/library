@@ -117,12 +117,14 @@ export const ExtensionAccountsProvider = ({
 
     // Retrieve the resulting connected extensions only.
     const connectedExtensions = Object.fromEntries(
-      Object.entries(enableResults).filter(([, state]) => state.connected)
+      Array.from(enableResults.entries()).filter(([, state]) => state.connected)
     );
 
     // Retrieve  extensions that failed to connect.
     const extensionsWithError = Object.fromEntries(
-      Object.entries(enableResults).filter(([, state]) => !state.connected)
+      Array.from(enableResults.entries()).filter(
+        ([, state]) => !state.connected
+      )
     );
 
     // Add connected extensions to local storage.

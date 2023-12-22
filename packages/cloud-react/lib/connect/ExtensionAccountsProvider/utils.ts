@@ -40,29 +40,29 @@ export const getExtensionsEnable = (extensionIds: string[]): RawExtensions => {
 export const enableExtensionsAndFormat = async (
   extensions: RawExtensions,
   dappName: string
-): Promise<Record<string, ExtensionEnableResult>> => {
+): Promise<Map<string, ExtensionEnableResult>> => {
   // Call `enable` and accumulate extension statuses (summons extension popup).
   const results = await Promise.allSettled(
     Object.values(extensions).map((enable) => enable(dappName))
   );
 
   // Accumulate resulting extensions state after attempting to enable.
-  const extensionsState: Record<string, ExtensionEnableResult> = {};
+  const extensionsState = new Map<string, ExtensionEnableResult>();
 
   for (let i = 0; i < results.length; i++) {
     const result = results[i];
     const id = extensions.keys()[i];
 
     if (result.status === "fulfilled") {
-      extensionsState[id] = {
+      extensionsState.set(id, {
         extension: result.value,
         connected: true,
-      };
+      });
     } else if (result.status === "rejected") {
-      extensionsState[id] = {
+      extensionsState.set(id, {
         connected: false,
         error: result.reason,
-      };
+      });
     }
   }
 

@@ -54,11 +54,3 @@ export interface ExtensionEnableResult {
   connected: boolean;
   error?: string;
 }
-
-export type ExtensionEnableResults = Record<
-  string,
-  {
-    enable?: (n?: string) => Promise<ExtensionInterface>;
-    status: ExtensionEnableStatus;
-  }
->;
