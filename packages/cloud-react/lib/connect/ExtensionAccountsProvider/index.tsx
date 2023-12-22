@@ -113,22 +113,25 @@ export const ExtensionAccountsProvider = ({
     const extensionsWithError = Extensions.withError(enableResults);
 
     // Add connected extensions to local storage.
-    Object.keys(connectedExtensions).forEach((id) => Extensions.addToLocal(id));
+    Array.from(connectedExtensions.keys()).forEach((id) =>
+      Extensions.addToLocal(id)
+    );
+
+    Array.from(extensionsWithError.entries()).map(([id, state]) => {
+      handleExtensionError(id, state.error);
+    });
+
+    Array.from(connectedExtensions.keys()).map((id) => {
+      setExtensionStatus(id, "connected");
+      updateInitialisedExtensions(id);
+    });
 
     // Initial fetch of extension accounts to populate accounts & extensions state.
     // ----------------------------------------------------------------------------
 
+    // Get full list of imported accounts.
     const initialAccounts =
       await Extensions.getAllAccounts(connectedExtensions);
-
-    Object.entries(extensionsWithError).map(([id, state]) => {
-      handleExtensionError(id, state.error);
-    });
-
-    Object.keys(connectedExtensions).map((id) => {
-      setExtensionStatus(id, "connected");
-      updateInitialisedExtensions(id);
-    });
 
     addExtensionAccount(initialAccounts);
 
@@ -142,7 +145,9 @@ export const ExtensionAccountsProvider = ({
 
     // Initiate account subscriptions for connected extensions.
     // --------------------------------------------------------
-    for (const [id, { extension }] of Object.entries(connectedExtensions)) {
+    for (const [id, { extension }] of Array.from(
+      connectedExtensions.entries()
+    )) {
       const handleAccounts = (accounts: ExtensionAccount[]) => {
         const {
           newAccounts,

@@ -67,6 +67,7 @@ export const useImportExtension = () => {
       source: id,
       signer,
     }));
+
     return {
       newAccounts,
       meta: {

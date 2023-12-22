@@ -39,7 +39,7 @@ export class Extensions {
     dappName: string
   ): Promise<PromiseSettledResult<ExtensionInterface>[]> => {
     const results = await Promise.allSettled(
-      Object.values(extensions).map((enable) => enable(dappName))
+      Array.from(extensions.values()).map((enable) => enable(dappName))
     );
     return results;
   };
@@ -54,7 +54,7 @@ export class Extensions {
 
     for (let i = 0; i < results.length; i++) {
       const result = results[i];
-      const id = extensions.keys()[i];
+      const id = Array.from(extensions.keys())[i];
 
       if (result.status === "fulfilled") {
         extensionsState.set(id, {
@@ -98,11 +98,30 @@ export class Extensions {
       )
     );
 
+    const extensionEntries = Array.from(extensions.entries());
     const all: ExtensionAccount[] = [];
+
     for (let i = 0; i < results.length; i++) {
       const result = results[i];
+      const id = extensionEntries[i][0];
+      const signer = extensionEntries[i][1].extension.signer;
+
       if (result.status === "fulfilled") {
-        all.push(...result.value);
+        const filtered = result.value
+          // Remove accounts that have already been imported.
+          .filter(
+            ({ address }) =>
+              !all.find((currentAccount) => address !== currentAccount.address)
+          )
+          // Reformat entries to include extension source.
+          .map(({ address, name }) => ({
+            address,
+            name,
+            source: id,
+            signer,
+          }));
+
+        all.push(...filtered);
       }
     }
     return all;
