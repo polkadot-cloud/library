@@ -10,36 +10,28 @@ const { argv } = require("yargs");
 
 const SASS_OPTIONS = { outputStyle: "compressed" };
 
-const copyLicense = () => {
-  return src(["LICENSE"]).pipe(dest("dist"));
-};
+const copyLicense = () => src(["LICENSE"]).pipe(dest("dist"));
 
-const buildFonts = () => {
-  return src("lib/theme/**/*.woff2")
-    .pipe(dest("dist/theme"))
-    .pipe(refresh(lrserver));
-};
+const buildFonts = () =>
+  src("lib/theme/**/*.woff2").pipe(dest("dist/theme")).pipe(refresh(lrserver));
 
-const buildThemes = () => {
-  return src("lib/theme/**/*.css")
+const buildThemes = () =>
+  src("lib/theme/**/*.css")
     .pipe(sass(SASS_OPTIONS))
     .pipe(dest("dist/theme"))
     .pipe(refresh(lrserver));
-};
 
-const buildAccents = () => {
-  return src("lib/accent/*.css")
+const buildAccents = () =>
+  src("lib/accent/*.css")
     .pipe(sass(SASS_OPTIONS))
     .pipe(dest("dist/accent"))
     .pipe(refresh(lrserver));
-};
 
-const buildComponents = () => {
-  return src("lib/scss/**/*.scss")
+const buildComponents = () =>
+  src("lib/scss/**/*.scss")
     .pipe(sass(SASS_OPTIONS))
     .pipe(dest("dist/css"))
     .pipe(refresh(lrserver));
-};
 
 const watchTask = () => {
   watch(["lib/scss/**/*.scss"], buildComponents);

@@ -71,13 +71,16 @@ export const ExtensionAccountsProvider = ({
 
   // Helper for setting active account. Ignores if not a valid function.
   const maybeSetActiveAccount = (address: string) => {
-    if (typeof setActiveAccount === "function")
+    if (typeof setActiveAccount === "function") {
       setActiveAccount(address ?? null);
+    }
   };
 
   // Helper for calling extension enabled callback. Ignores if not a valid function.
   const maybeOnExtensionEnabled = (id: string) => {
-    if (typeof onExtensionEnabled === "function") onExtensionEnabled(id);
+    if (typeof onExtensionEnabled === "function") {
+      onExtensionEnabled(id);
+    }
   };
 
   const connectToAccount = (account: ImportedAccount | null) => {
@@ -92,7 +95,9 @@ export const ExtensionAccountsProvider = ({
   // explicitly find it.
   const connectActiveExtensions = async () => {
     const extensionIds = Object.keys(extensionsStatus);
-    if (!extensionIds.length) return;
+    if (!extensionIds.length) {
+      return;
+    }
 
     // Pre-connect: Inject extensions into `injectedWeb3` if not already injected.
     await handleExtensionAdapters(extensionIds);
@@ -239,11 +244,12 @@ export const ExtensionAccountsProvider = ({
               if (
                 activeExtensionAccount?.address !== removedActiveAccount &&
                 removedActiveAccount !== null
-              )
+              ) {
                 connectActiveExtensionAccount(
                   activeExtensionAccount,
                   connectToAccount
                 );
+              }
             }
 
             // Update extension accounts state.
@@ -343,8 +349,9 @@ export const ExtensionAccountsProvider = ({
       if (
         activeAccount &&
         remove.find(({ address }) => address === activeAccount) !== undefined
-      )
+      ) {
         maybeSetActiveAccount(null);
+      }
     }
 
     setStateWithRef(newAccounts, setExtensionAccounts, extensionAccountsRef);
@@ -398,7 +405,9 @@ export const ExtensionAccountsProvider = ({
         if (Object.keys(extensionsStatus).length && localExtensions.length) {
           setExtensionAccountsSynced("syncing");
           connectActiveExtensions();
-        } else setExtensionAccountsSynced("synced");
+        } else {
+          setExtensionAccountsSynced("synced");
+        }
       }
     }
     return () => unsubscribe();

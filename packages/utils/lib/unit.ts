@@ -137,7 +137,9 @@ export const determinePoolDisplay = (address: string, batchItem: AnyJson) => {
  * @summary Extracts a URL value from a URL string.
  */
 export const extractUrlValue = (key: string, url?: string) => {
-  if (typeof url === "undefined") url = window.location.href;
+  if (typeof url === "undefined") {
+    url = window.location.href;
+  }
   const match = url.match(`[?&]${key}=([^&]+)`);
   return match ? match[1] : null;
 };
@@ -263,8 +265,8 @@ export const addedTo = (
   fresh: AnyObject[],
   stale: AnyObject[],
   keys: string[]
-): AnyObject[] => {
-  return typeof fresh !== "object" || typeof stale !== "object" || !keys.length
+): AnyObject[] =>
+  typeof fresh !== "object" || typeof stale !== "object" || !keys.length
     ? []
     : fresh.filter(
         (freshItem) =>
@@ -276,7 +278,6 @@ export const addedTo = (
             )
           )
       );
-};
 
 /**
  * @name removedFrom
@@ -287,8 +288,8 @@ export const removedFrom = (
   fresh: AnyObject[],
   stale: AnyObject[],
   keys: string[]
-): AnyObject[] => {
-  return typeof fresh !== "object" || typeof stale !== "object" || !keys.length
+): AnyObject[] =>
+  typeof fresh !== "object" || typeof stale !== "object" || !keys.length
     ? []
     : stale.filter(
         (staleItem) =>
@@ -300,7 +301,6 @@ export const removedFrom = (
             )
           )
       );
-};
 
 /**
  * @name matchedProperties
@@ -311,8 +311,8 @@ export const matchedProperties = (
   objX: AnyObject[],
   objY: AnyObject[],
   keys: string[]
-): AnyObject[] => {
-  return typeof objX !== "object" || typeof objY !== "object" || !keys.length
+): AnyObject[] =>
+  typeof objX !== "object" || typeof objY !== "object" || !keys.length
     ? []
     : objY.filter((x) =>
         objX.find((y) =>
@@ -321,7 +321,6 @@ export const matchedProperties = (
           )
         )
       );
-};
 
 /**
  * @name isValidHttpUrl
@@ -483,7 +482,9 @@ export const transformToBaseUnit = (
     s = s + estFee;
     // remove trailing 0s
     for (let i = 0; i < s.length; i++) {
-      if (s.slice(s.length - 1) !== "0") break;
+      if (s.slice(s.length - 1) !== "0") {
+        break;
+      }
       s = s.substring(0, s.length - 1);
     }
     s = "0." + s;
@@ -513,7 +514,9 @@ export const mergeDeep = (
   target: AnyObject,
   ...sources: AnyObject[]
 ): AnyObject => {
-  if (!sources.length) return target;
+  if (!sources.length) {
+    return target;
+  }
 
   const isObject = (item: AnyObject) =>
     item && typeof item === "object" && !Array.isArray(item);
@@ -522,7 +525,9 @@ export const mergeDeep = (
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
       if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} });
+        if (!target[key]) {
+          Object.assign(target, { [key]: {} });
+        }
         mergeDeep(target[key], source[key]);
       } else {
         Object.assign(target, { [key]: source[key] });

@@ -120,8 +120,9 @@ export const HardwareIcons: ExtensionIconRecords = {
 // Helper to get the correct icon from `ExtensionIcons`.
 export const getExtensionIcon = (id: string): ExtensionIcon | null => {
   // Workaround to return Nova Wallet icon when `isNovaWallet` is true.
-  if (id === "polkadot-js" && window?.walletExtension?.isNovaWallet)
+  if (id === "polkadot-js" && window?.walletExtension?.isNovaWallet) {
     id = "novawallet";
+  }
 
   return ExtensionIcons[id] || null;
 };

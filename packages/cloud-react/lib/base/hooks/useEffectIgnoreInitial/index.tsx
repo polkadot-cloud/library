@@ -8,7 +8,9 @@ export const useEffectIgnoreInitial = (fn: AnyFunction, deps: AnyJson[]) => {
   const isInitial = useRef<boolean>(true);
   useEffect(
     () => {
-      if (!isInitial.current) fn();
+      if (!isInitial.current) {
+        fn();
+      }
       isInitial.current = false;
     },
     deps ? [...deps] : undefined

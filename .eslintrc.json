@@ -12,6 +12,9 @@
   ],
   "plugins": ["@typescript-eslint", "import", "unused-imports"],
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/extensions": [".ts", ".tsx"],
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
@@ -39,19 +42,33 @@
     }
   },
   "rules": {
-    "import/no-named-as-default": "off",
-    "import/no-named-as-default-member": "off",
-    "import/no-unresolved": "error",
+    // Stylistic
+    // ---------
+    "curly": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "object-shorthand": "error",
     "unused-imports/no-unused-imports": "error",
+    "semi": [2, "always"],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "js": "never",
-        "jsx": "never",
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-unresolved": "error"
   }
 }

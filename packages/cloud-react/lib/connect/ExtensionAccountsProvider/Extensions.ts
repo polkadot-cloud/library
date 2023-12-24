@@ -81,19 +81,17 @@ export class Extensions {
   // Return successfully connected extensions.
   static connected = (
     extensions: ExtensionEnableResults
-  ): ExtensionEnableResults => {
-    return new Map(
+  ): ExtensionEnableResults =>
+    new Map(
       Array.from(extensions.entries()).filter(([, state]) => state.connected)
     );
-  };
 
   static withError = (
     extensions: ExtensionEnableResults
-  ): ExtensionEnableResults => {
-    return new Map(
+  ): ExtensionEnableResults =>
+    new Map(
       Array.from(extensions.entries()).filter(([, state]) => !state.connected)
     );
-  };
 
   // Calls `enable` and formats the results of an extension's `enable` function.
   static getAllAccounts = async (

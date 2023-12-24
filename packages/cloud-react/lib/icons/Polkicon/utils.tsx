@@ -25,9 +25,9 @@ export const outerCircle = (fill: string): Circle => ({
   r: C,
 });
 
-export const renderCircle = ({ cx, cy, fill, r }: Circle, key: number) => {
-  return <circle cx={cx} cy={cy} fill={fill} key={key} r={r} />;
-};
+export const renderCircle = ({ cx, cy, fill, r }: Circle, key: number) => (
+  <circle cx={cx} cy={cy} fill={fill} key={key} r={r} />
+);
 
 const getRotation = (
   ch: ChainName

@@ -79,7 +79,9 @@ export const OverlayProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const openModal = ({ key, size = "lg", options = {} }: ModalConfig) => {
-    if (canvasStatus !== "closed") return;
+    if (canvasStatus !== "closed") {
+      return;
+    }
 
     setModalConfig({ key, size, options });
     setModalStatus("opening");
@@ -104,24 +106,33 @@ export const OverlayProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const setModalHeight = (height: number, transition = true) => {
-    if (modalStatusRef.current === "closed") return;
+    if (modalStatusRef.current === "closed") {
+      return;
+    }
 
     // Ensure transition class is removed if not transitioning. Otherwise, ensure class exists.
-    if (transition) transitionOn();
-    else transitionOff();
+    if (transition) {
+      transitionOn();
+    } else {
+      transitionOff();
+    }
 
     // Limit maximum height to 80% of window height, or 90% if window width <= 600.
     const maxHeight =
       window.innerWidth <= 600
         ? window.innerHeight * 0.9
         : window.innerHeight * 0.8;
-    if (height > maxHeight) height = maxHeight;
+    if (height > maxHeight) {
+      height = maxHeight;
+    }
 
     // Update height state.
     setModalHeightState(height);
 
     // If transitioning, remove after enough time to finish transition.
-    if (transition) setTimeout(() => transitionOff(), 500);
+    if (transition) {
+      setTimeout(() => transitionOff(), 500);
+    }
   };
 
   // Increments modal resize to trigger a height transition.

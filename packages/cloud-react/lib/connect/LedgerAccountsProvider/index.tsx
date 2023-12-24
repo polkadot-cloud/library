@@ -33,11 +33,10 @@ export const LedgerAccountsProvider = ({
   const ledgerAccountsRef = useRef(ledgerAccounts);
 
   // Check if a Ledger address exists in imported addresses.
-  const ledgerAccountExists = (address: string) => {
-    return !!getLocalLedgerAccounts().find((account) =>
+  const ledgerAccountExists = (address: string) =>
+    !!getLocalLedgerAccounts().find((account) =>
       isLocalLedgerAccount(network, account, address)
     );
-  };
 
   // Adds a ledger address to the list of fetched addresses.
   const addLedgerAccount = (
@@ -92,16 +91,22 @@ export const LedgerAccountsProvider = ({
   const removeLedgerAccount = (address: string, callback?: () => void) => {
     // Remove th account from local storage records
     const newLedgerAccounts = getLocalLedgerAccounts().filter((account) => {
-      if (account.address !== address) return true;
-      if (account.network !== network) return true;
+      if (account.address !== address) {
+        return true;
+      }
+      if (account.network !== network) {
+        return true;
+      }
       return false;
     });
-    if (!newLedgerAccounts.length) localStorage.removeItem("ledger_accounts");
-    else
+    if (!newLedgerAccounts.length) {
+      localStorage.removeItem("ledger_accounts");
+    } else {
       localStorage.setItem(
         "ledger_accounts",
         JSON.stringify(newLedgerAccounts)
       );
+    }
 
     // Update state with the new list of accounts.
     setStateWithRef(
@@ -141,7 +146,9 @@ export const LedgerAccountsProvider = ({
   // Gets an imported address along with its Ledger metadata.
   const getLedgerAccount = (address: string) => {
     const localLedgerAccounts = getLocalLedgerAccounts();
-    if (!localLedgerAccounts) return null;
+    if (!localLedgerAccounts) {
+      return null;
+    }
     return (
       localLedgerAccounts.find((account) =>
         isLocalLedgerAccount(network, account, address)

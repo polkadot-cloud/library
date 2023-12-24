@@ -6,14 +6,12 @@ import "@polkadot-cloud/core/css/base/structure/Card/index.css";
 import { CardProps } from "../../types";
 import { valEmpty } from "../../../utils";
 
-export const Card = ({ children, style, animations, className }: CardProps) => {
-  return (
-    <motion.div
-      {...animations}
-      style={style}
-      className={"core-card" + valEmpty(className, className)}
-    >
-      {children}
-    </motion.div>
-  );
-};
+export const Card = ({ children, style, animations, className }: CardProps) => (
+  <motion.div
+    {...animations}
+    style={style}
+    className={"core-card" + valEmpty(className, className)}
+  >
+    {children}
+  </motion.div>
+);

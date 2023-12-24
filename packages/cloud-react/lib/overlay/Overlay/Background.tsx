@@ -19,15 +19,21 @@ export const Background = ({
   } = useOverlay();
 
   let { openOverlayInstances } = useOverlay();
-  if (externalOverlayStatus === "open") openOverlayInstances++;
+  if (externalOverlayStatus === "open") {
+    openOverlayInstances++;
+  }
 
   const onIn = async () => await controls.start("visible");
 
   const onOut = async () => await controls.start("hidden");
 
   useEffect(() => {
-    if (openOverlayInstances > 0) onIn();
-    if (openOverlayInstances === 0) onOut();
+    if (openOverlayInstances > 0) {
+      onIn();
+    }
+    if (openOverlayInstances === 0) {
+      onOut();
+    }
   }, [openOverlayInstances]);
 
   return (

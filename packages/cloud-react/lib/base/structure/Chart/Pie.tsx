@@ -83,16 +83,14 @@ export const Pie = ({
   return (
     <svg width={diameter} height={diameter} style={{ overflow: "initial" }}>
       <g transform={`translate(${rad},${rad})`}>
-        {segments.map((segment) => {
-          return (
-            <path
-              key={segment.color}
-              stroke={segment.color}
-              fill={segment.color}
-              d={segment.path}
-            />
-          );
-        })}
+        {segments.map((segment) => (
+          <path
+            key={segment.color}
+            stroke={segment.color}
+            fill={segment.color}
+            d={segment.path}
+          />
+        ))}
       </g>
     </svg>
   );

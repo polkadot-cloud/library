@@ -11,20 +11,18 @@ export const Overlay = ({
   canvas = {},
   fallback,
   externalOverlayStatus,
-}: OverlayProps) => {
-  return (
-    <>
-      <Background externalOverlayStatus={externalOverlayStatus} />
-      <Modal
-        fallback={fallback}
-        modals={modals}
-        externalOverlayStatus={externalOverlayStatus}
-      />
-      <Canvas
-        fallback={fallback}
-        canvas={canvas}
-        externalOverlayStatus={externalOverlayStatus}
-      />
-    </>
-  );
-};
+}: OverlayProps) => (
+  <>
+    <Background externalOverlayStatus={externalOverlayStatus} />
+    <Modal
+      fallback={fallback}
+      modals={modals}
+      externalOverlayStatus={externalOverlayStatus}
+    />
+    <Canvas
+      fallback={fallback}
+      canvas={canvas}
+      externalOverlayStatus={externalOverlayStatus}
+    />
+  </>
+);

@@ -122,7 +122,9 @@ export const Odometer = ({
       <span className="odometer-inner" ref={odometerRef}>
         {spaceBefore ? <span style={{ paddingLeft: spaceBefore }} /> : null}
         {digits.map((d, i) => {
-          if (d === "dot") foundDecimal = true;
+          if (d === "dot") {
+            foundDecimal = true;
+          }
 
           // If transitioning, get digits needed to animate.
           let childDigits = null;

@@ -13,14 +13,12 @@ import { parse } from "yaml";
 //--------------------------------------------------
 
 // Gets the packages directory from the current directory.
-export const getPackagesDirectory = () => {
-  return join(dirname(fileURLToPath(import.meta.url)), "..", "packages");
-};
+export const getPackagesDirectory = () =>
+  join(dirname(fileURLToPath(import.meta.url)), "..", "packages");
 
 // Gets the top level directory from the current directory.
-export const getTopDirectory = () => {
-  return join(dirname(fileURLToPath(import.meta.url)), "..");
-};
+export const getTopDirectory = () =>
+  join(dirname(fileURLToPath(import.meta.url)), "..");
 
 // Checks that all given files are present in all the provided packages.
 export const checkFilesExistInPackages = async (pkgs, files) => {
@@ -66,9 +64,8 @@ export const checkFoldersInDirectory = async (dir, folders) => {
 //--------------------------------------------------
 
 // Formats npm package name from package source folder name.
-export const formatNpmPackageName = (name) => {
-  return `@${PACKAGE_SCOPE}/${removePrefix(name, "cloud-")}`;
-};
+export const formatNpmPackageName = (name) =>
+  `@${PACKAGE_SCOPE}/${removePrefix(name, "cloud-")}`;
 
 // Remove a prefix from a string if it exists.
 export const removePrefix = (str, prefix) => {
@@ -96,24 +93,21 @@ export const bumpSemverPatch = (currentVersion) => {
 };
 
 // Format the package introduction data in the README file.
-export const formatDirectoryHeaders = (pkg, description) => {
-  return (
-    "\n#### `" +
-    formatNpmPackageName(pkg) +
-    "`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
-    pkg +
-    ") &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/" +
-    formatNpmPackageName(pkg) +
-    ")]\n\n" +
-    description +
-    "\n"
-  );
-};
+export const formatDirectoryHeaders = (pkg, description) =>
+  "\n#### `" +
+  formatNpmPackageName(pkg) +
+  "`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/" +
+  pkg +
+  ") &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/" +
+  formatNpmPackageName(pkg) +
+  ")]\n\n" +
+  description +
+  "\n";
 
 // Format the package content data in the README file.
-export const formatDirectoryEntry = (directory) => {
-  return directory.reduce((str, { name, description, doc }) => {
-    return (
+export const formatDirectoryEntry = (directory) =>
+  directory.reduce(
+    (str, { name, description, doc }) =>
       str +
       "\n- [" +
       name +
@@ -121,29 +115,24 @@ export const formatDirectoryEntry = (directory) => {
       doc +
       ")" +
       (description ? ": " + description : "") +
-      "\n"
-    );
-  }, "");
-};
+      "\n",
+    ""
+  );
 
 // License content on dist/README.md.
-export const npmLicenseContent = (license) => {
-  return (
-    "## License" +
-    "\n\n" +
-    "[" +
-    license +
-    "](https://spdx.org/licenses/" +
-    license +
-    ".html)" +
-    "\n"
-  );
-};
+export const npmLicenseContent = (license) =>
+  "## License" +
+  "\n\n" +
+  "[" +
+  license +
+  "](https://spdx.org/licenses/" +
+  license +
+  ".html)" +
+  "\n";
 
 // Header content on dist/README.md.
-export const npmHeaderContent = (title, description) => {
-  return "# " + title + "\n\n" + "**" + description + "**" + "\n\n";
-};
+export const npmHeaderContent = (title, description) =>
+  "# " + title + "\n\n" + "**" + description + "**" + "\n\n";
 
 //--------------------------------------------------
 // Package build utils
@@ -156,9 +145,8 @@ export const getPackages = async () => {
 };
 
 // Checks whether properties exist in an object.
-export const allPropertiesExist = (obj, properties) => {
-  return properties.every((property) => obj.includes(property));
-};
+export const allPropertiesExist = (obj, properties) =>
+  properties.every((property) => obj.includes(property));
 
 // Attempts to retrieve a package.json's scripts property, or returns an empty object.
 export const getPackageScripts = async (pkg) => {
@@ -224,20 +212,18 @@ export const getSourcePackageJson = async (path) => {
 };
 
 // Gets a dist package.json file.
-export const getDistPackageJson = async (path) => {
-  return JSON.parse(
+export const getDistPackageJson = async (path) =>
+  JSON.parse(
     await fs.readFile(
       `${getPackagesDirectory()}/${path}/${PACKAGE_OUTPUT}/package.json`
     )
   );
-};
 
 // Get the source index.yml file for a package.
-export const getSourceIndexYml = async (path) => {
-  return parse(
+export const getSourceIndexYml = async (path) =>
+  parse(
     await fs.readFile(`${getPackagesDirectory()}/${path}/index.yml`, "utf-8")
   );
-};
 
 // Writes a package.json file to source directory.
 export const writePackageJsonToSource = async (path, data) => {

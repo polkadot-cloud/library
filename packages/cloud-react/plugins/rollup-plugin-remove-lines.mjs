@@ -29,7 +29,9 @@ export default ({
         } else {
           const filePath = path.join(dir, "/", file);
           const ext = path.extname(filePath);
-          if (extensions.includes(ext)) files.push(filePath);
+          if (extensions.includes(ext)) {
+            files.push(filePath);
+          }
         }
       }
       return files;

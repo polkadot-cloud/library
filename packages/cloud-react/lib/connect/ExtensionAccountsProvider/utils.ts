@@ -27,13 +27,10 @@ export const getActiveAccountLocal = (network: string, ss58: number) => {
 export const getActiveExtensionAccount = (
   { network, ss58 }: NetworkSS58,
   accounts: ExtensionAccount[]
-) => {
-  return (
-    accounts.find(
-      ({ address }) => address === getActiveAccountLocal(network, ss58)
-    ) ?? null
-  );
-};
+) =>
+  accounts.find(
+    ({ address }) => address === getActiveAccountLocal(network, ss58)
+  ) ?? null;
 
 // Connects to active account, and calls an optional callback, if provided.
 export const connectActiveExtensionAccount = (

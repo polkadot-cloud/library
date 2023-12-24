@@ -25,7 +25,9 @@ export const Menu = () => {
   }, []);
 
   const throttleCallback = () => {
-    if (window.innerWidth >= 1150) setSideMenu(false);
+    if (window.innerWidth >= 1150) {
+      setSideMenu(false);
+    }
   };
 
   const ref = useRef(null);

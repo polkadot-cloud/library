@@ -19,21 +19,14 @@ const buildComponents = () => {
     .pipe(gulp.dest("dist"));
 };
 
-const buildSvg = () => {
-  return src("lib/**/*.svg").pipe(dest("dist/"));
-};
+const buildSvg = () => src("lib/**/*.svg").pipe(dest("dist/"));
 
-const buildJsons = () => {
-  return src("lib/**/*.json").pipe(dest("dist/"));
-};
+const buildJsons = () => src("lib/**/*.json").pipe(dest("dist/"));
 
-const stripComments = () => {
-  return src("dist/**/*.js").pipe(strip()).pipe(gulp.dest("dist"));
-};
+const stripComments = () =>
+  src("dist/**/*.js").pipe(strip()).pipe(gulp.dest("dist"));
 
-const copyLicense = () => {
-  return src(["LICENSE"]).pipe(dest("dist"));
-};
+const copyLicense = () => src(["LICENSE"]).pipe(dest("dist"));
 
 export default series(
   buildComponents,

@@ -33,10 +33,13 @@ export const generateExportEntries = async ({ ignore }) => {
       folders.push(dir);
     } else {
       // for each folder in this directory, loop again.
-      for (let file of await fs.readdir(dir))
-        if ((await fs.stat(dir + "/" + file)).isDirectory())
-          if (!ignore.includes(file))
+      for (let file of await fs.readdir(dir)) {
+        if ((await fs.stat(dir + "/" + file)).isDirectory()) {
+          if (!ignore.includes(file)) {
             folders.push(...(await getDirFolders(dir + "/" + file)));
+          }
+        }
+      }
     }
     return folders;
   };

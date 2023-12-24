@@ -40,24 +40,33 @@ export const Canvas = ({
     }
     await controls.start("hidden");
 
-    if (closing) setCanvasStatus("closed");
+    if (closing) {
+      setCanvasStatus("closed");
+    }
   };
 
   // Control dim help status change.
   useEffect(() => {
-    if (externalOverlayStatus === "open" && status === "open") onOut(false);
+    if (externalOverlayStatus === "open" && status === "open") {
+      onOut(false);
+    }
 
-    if (externalOverlayStatus === "closing")
+    if (externalOverlayStatus === "closing") {
       if (activeOverlayInstance === "canvas") {
         setCanvasStatus("open");
         onIn();
       }
+    }
   }, [externalOverlayStatus]);
 
   // Control fade in and out on opening and closing states.
   useEffect(() => {
-    if (status === "open") onIn();
-    if (status === "closing") onOut(true);
+    if (status === "open") {
+      onIn();
+    }
+    if (status === "closing") {
+      onOut(true);
+    }
   }, [status]);
 
   const ActiveCanvas: FC | null = canvas?.[key] || null;

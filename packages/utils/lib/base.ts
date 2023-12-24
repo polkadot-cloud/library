@@ -11,7 +11,9 @@ import { AnyFunction, AnyJson } from "./types";
 export const camelize = (str: string) => {
   const convertToString = (string: AnyJson) => {
     if (string) {
-      if (typeof string === "string") return string;
+      if (typeof string === "string") {
+        return string;
+      }
       return String(string);
     }
     return "";
@@ -57,8 +59,12 @@ export const ellipsisFn = (
 
   // having an amount less than 4 is a bit extreme so we default there
   if (amount <= 4) {
-    if (position === "center") return str.slice(0, 4) + "..." + str.slice(-4);
-    if (position === "end") return str.slice(0, 4) + "...";
+    if (position === "center") {
+      return str.slice(0, 4) + "..." + str.slice(-4);
+    }
+    if (position === "end") {
+      return str.slice(0, 4) + "...";
+    }
     return "..." + str.slice(-4);
   }
   // if the amount requested is in a "logical" amount - meaning that it can display the address
@@ -70,10 +76,14 @@ export const ellipsisFn = (
   }
   // else, the user has been mistaskenly extreme, so just show the maximum possible amount
   if (amount >= str.length) {
-    if (position === "end") return str.slice(0, str.length - 3) + "...";
+    if (position === "end") {
+      return str.slice(0, str.length - 3) + "...";
+    }
     return "..." + str.slice(-(str.length - 3));
   } else {
-    if (position === "end") return str.slice(0, amount) + "...";
+    if (position === "end") {
+      return str.slice(0, amount) + "...";
+    }
     return "..." + str.slice(amount);
   }
 };

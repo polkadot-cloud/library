@@ -22,7 +22,9 @@ const main = async () => {
     { path: "./lib/hooks", options: { recursive: true, force: true } },
   ];
   for (const { path, options } of pathsToRemove) {
-    if (existsSync(path)) fs.rmSync(path, options);
+    if (existsSync(path)) {
+      fs.rmSync(path, options);
+    }
   }
 };
 

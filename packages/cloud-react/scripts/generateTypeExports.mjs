@@ -3,7 +3,9 @@ import path from "path";
 
 export const generateTypeExports = (folderPath, outputFilePath) => {
   // Ensure folder exists folders.
-  if (!existsSync(`./lib/types`)) fs.mkdirSync("./lib/types");
+  if (!existsSync(`./lib/types`)) {
+    fs.mkdirSync("./lib/types");
+  }
 
   let exportedTypes = [];
 

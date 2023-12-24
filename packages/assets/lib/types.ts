@@ -39,9 +39,7 @@ export interface ValidatorEntry {
   twitter?: string;
   website?: string;
   // Must have at least one active validator on at least one network.
-  validators: Partial<{
-    [K in ValidatorSupportedChains]: string[];
-  }>;
+  validators: Partial<Record<ValidatorSupportedChains, string[]>>;
 }
 
 // Global types.

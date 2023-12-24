@@ -45,7 +45,9 @@ const getWalletSnaps = async (): Promise<GetSnapsResponse> => {
 
 // Determines if Metamask Polkadot Snap is available and supported.
 export const polkadotSnapAvailable = async (): Promise<boolean> => {
-  if (!hasMetaMask()) return false;
+  if (!hasMetaMask()) {
+    return false;
+  }
 
   try {
     await getWalletSnaps();

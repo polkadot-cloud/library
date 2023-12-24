@@ -140,7 +140,9 @@ export const Polkicon = ({
         if (!initialColors[i]) {
           initialColors[i] = initialColors[initColIdx++];
         }
-        if (initColIdx == initialColors.length) initColIdx = 0;
+        if (initColIdx == initialColors.length) {
+          initColIdx = 0;
+        }
       }
     }
     const defaultColors = new Array<string>(circleXy.length).fill("#ddd");

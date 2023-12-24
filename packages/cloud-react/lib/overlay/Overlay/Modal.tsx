@@ -47,41 +47,55 @@ export const Modal = ({
   const onOut = async () => await controls.start("out");
 
   const windowResize = () => {
-    if (!options?.disableWindowResize)
+    if (!options?.disableWindowResize) {
       window.addEventListener("resize", handleResize);
+    }
   };
 
   const handleResize = () => {
-    if (status !== "open" || options?.disableWindowResize) return;
+    if (status !== "open" || options?.disableWindowResize) {
+      return;
+    }
     setModalHeight(modalRef.current?.clientHeight || 0);
   };
 
   // Control on modal status change.
   useEffect(() => {
-    if (activeOverlayInstance === "modal" && status === "open") onIn();
-    if (status === "closing") onOutClose();
+    if (activeOverlayInstance === "modal" && status === "open") {
+      onIn();
+    }
+    if (status === "closing") {
+      onOutClose();
+    }
   }, [status]);
 
   // Control on canvas status change.
   useEffect(() => {
     // fade out modal if canvas has been opened.
-    if (canvasStatus === "open" && status === "open") onOut();
+    if (canvasStatus === "open" && status === "open") {
+      onOut();
+    }
     // fade in modal if its open & canvas is closing.
     if (canvasStatus === "closing") {
-      if (status === "open") onIn();
+      if (status === "open") {
+        onIn();
+      }
     }
   }, [canvasStatus]);
 
   // Control dim external overlay change.
   useEffect(() => {
     // fade out modal if external overlay has been opened.
-    if (externalOverlayStatus === "open" && status === "open") onOut();
+    if (externalOverlayStatus === "open" && status === "open") {
+      onOut();
+    }
     // fade in modal if its open & external overlay is closing.
     if (
       externalOverlayStatus === "closing" &&
       activeOverlayInstance === "modal"
-    )
+    ) {
       onIn();
+    }
   }, [externalOverlayStatus]);
 
   // Resize modal on status or resize change.
