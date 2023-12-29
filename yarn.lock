@@ -2091,10 +2091,10 @@
     webdriverio "8.27.0"
     ws "^8.13.0"
 
-"@wdio/cli@^8.27.0":
-  version "8.27.0"
-  resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-8.27.0.tgz#99eb3c0ac86eb0dd7360a8a1dd05bf8aa99ac60e"
-  integrity sha512-wdNYNvu52XxOqNHqDMGAtexBz+MM0RE2Z5U5ljyllbP3ed5vcvvK9vswURtI4cFGoqobVeoC7wif3VeD3aN+aQ==
+"@wdio/cli@^8.27.1":
+  version "8.27.1"
+  resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-8.27.1.tgz#3412a9a3e77a555415141197afc83ec51ee894f6"
+  integrity sha512-RY9o4h0iN6UGpU31X5c9mu/TK2FlHtKtDaRJYunm5ycZvGahQcN+naYpea1ftDr4IpI2gGGlHxvEeHkJF7urDQ==
   dependencies:
     "@types/node" "^20.1.1"
     "@wdio/config" "8.27.0"
