@@ -1,4 +1,4 @@
-// Copyright 2023 @polkadot-cloud/library authors & contributors
+// Copyright 2024 @polkadot-cloud/library authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
 import { createContext, useEffect, useRef, useState } from "react";
