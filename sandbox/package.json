@@ -14,7 +14,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
-    "svgo": "^3.1.0"
+    "svgo": "^3.2.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.1.2",
