@@ -44,7 +44,7 @@
     "@polkadot/keyring": "^12.6.2",
     "@polkadot/util": "^12.6.2",
     "@polkadot/util-crypto": "^12.6.2",
-    "framer-motion": "^10.17.0",
+    "framer-motion": "^10.17.4",
     "react-error-boundary": "^4.0.12"
   }
 }
