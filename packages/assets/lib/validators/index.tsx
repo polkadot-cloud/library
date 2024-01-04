@@ -208,6 +208,8 @@ export const ValidatorCommunity: ValidatorEntry[] = [
       kusama: [
         "GC8fuEZG4E5epGf5KGXtcDfvrc6HXE7GJ5YnbiqSpqdQYLg",
         "GougF9o6LNGrAMb1ZtH9XWePVCz1PBAvwatjvCtw75M6M3q",
+        "Gfwy4tGZvCnKmwQDE1tHjGPNY2LDqezW6bPY4mYMrrjiWnE",
+        "D2S7Qa6oPYAaJeX7vciJFUCDqBHBkHBfBCGbpm7bog8bBMZ",
       ],
     },
   },
