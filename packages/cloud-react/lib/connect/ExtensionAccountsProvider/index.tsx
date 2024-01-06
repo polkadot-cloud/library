@@ -268,7 +268,7 @@ export const ExtensionAccountsProvider = ({
           maybeOnExtensionEnabled(id);
           setExtensionStatus(id, "connected");
 
-          // If account subscriptions are not supported, simply get the account(s) from the extnsion. Otherwise, subscribe to accounts.
+          // If account subscriptions are not supported, simply get the account(s) from the extension. Otherwise, subscribe to accounts.
           if (!extensionHasFeature(id, "subscribeAccounts")) {
             const accounts = await extension.accounts.get();
             handleAccounts(accounts);
@@ -385,16 +385,15 @@ export const ExtensionAccountsProvider = ({
     });
   };
 
-  // Re-sync extensions accounts on `unsynced`.
-  useEffect(() => {
-    // wait for injectedWeb3 check to finish before starting account import process.
+  const handleSyncExtensionAccounts = async () => {
+    // Wait for injectedWeb3 check to finish before starting account import process.
     if (!checkingInjectedWeb3 && extensionAccountsSynced === "unsynced") {
-      // unsubscribe from all accounts and reset state
+      // Unsubscribe from all accounts and reset state
       unsubscribe();
       setStateWithRef([], setExtensionAccounts, extensionAccountsRef);
       setStateWithRef([], setExtensionsInitialised, extensionsInitialisedRef);
-      // if extensions have been fetched, get accounts if extensions exist and
-      // local extensions exist (previously connected).
+      // If extensions have been fetched, get accounts if extensions exist and local extensions
+      // exist (previously connected).
       if (Object.keys(extensionsStatus).length) {
         // get active extensions
         const localExtensions = localStorageOrDefault(
@@ -404,12 +403,19 @@ export const ExtensionAccountsProvider = ({
         );
         if (Object.keys(extensionsStatus).length && localExtensions.length) {
           setExtensionAccountsSynced("syncing");
-          connectActiveExtensions();
-        } else {
-          setExtensionAccountsSynced("synced");
+          await connectActiveExtensions();
         }
       }
+
+      // Syncing is complete. Also covers case where no extensions were found.
+      setExtensionAccountsSynced("synced");
     }
+  };
+
+  // Re-sync extensions accounts on `unsynced`.
+  useEffect(() => {
+    handleSyncExtensionAccounts();
+
     return () => unsubscribe();
   }, [extensionsStatus, checkingInjectedWeb3, extensionAccountsSynced]);
 

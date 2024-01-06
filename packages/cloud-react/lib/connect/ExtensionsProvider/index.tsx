@@ -34,7 +34,7 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
 
   // Listen for window.injectedWeb3 with an interval.
   let injectedWeb3Interval: ReturnType<typeof setInterval>;
-  const injectCounter = 0;
+  const injectCounter = useRef<number>(0);
 
   // Handle completed interval check for `injectedWeb3`.
   //
@@ -128,10 +128,11 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Check for `injectedWeb3` and Metamask Snap on mount. To trigger interval on soft page
-  // refreshes, no empty dependency array is provided to this `useEffect`.
+  // refreshes, no empty dependency array is provided to this `useEffect`. Checks for `injectedWeb3`
+  // for a total of 3 seconds before giving up.
   //
   // Interval duration.
-  const checkEveryMs = 500;
+  const checkEveryMs = 300;
   // Total interval iterations.
   const totalChecks = 10;
   useEffect(() => {
@@ -139,10 +140,12 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
       intervalInitialisedRef.current = true;
 
       injectedWeb3Interval = setInterval(() => {
-        if (injectCounter + 1 === totalChecks) {
+        injectCounter.current++;
+
+        if (injectCounter.current === totalChecks) {
           handleClearInterval(false);
         } else {
-          // if injected is present
+          // `injectedWeb3` is present
           const injectedWeb3 = (window as AnyJson)?.injectedWeb3 || null;
           if (injectedWeb3 !== null) {
             handleClearInterval(true);
@@ -158,7 +161,7 @@ export const ExtensionsProvider = ({ children }: { children: ReactNode }) => {
     <ExtensionsContext.Provider
       value={{
         extensionsStatus: extensionsStatusRef.current,
-        checkingInjectedWeb3: checkingInjectedWeb3Ref.current,
+        checkingInjectedWeb3,
         setExtensionStatus,
         removeExtensionStatus,
         extensionInstalled,
