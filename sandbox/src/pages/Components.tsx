@@ -15,6 +15,9 @@ export const Components = () => {
   const [val, setVal] = useState<number>(1201903.456789);
   const updateValue = () => setVal(Number((val + 17491.390013).toFixed(4)));
 
+  const [val2, setVal2] = useState<number>(1201903.456789);
+  const updateValue2 = () => setVal2(Number((val2 + 17491.390013).toFixed(4)));
+
   // Chart colors
   const colors = [
     { value: 60, color: "red" },
@@ -52,6 +55,21 @@ export const Components = () => {
         <button
           type="button"
           onClick={() => updateValue()}
+          style={{ marginTop: "1rem" }}
+        >
+          Trigger Update
+        </button>
+      </div>
+
+      <div style={{ display: "flex" }}>
+        <h3 style={{ margin: "1rem 0 0 0", display: "flex" }}>
+          <Odometer value={new BigNumber(val2).toFormat()} />
+        </h3>
+      </div>
+      <div style={{ display: "flex" }}>
+        <button
+          type="button"
+          onClick={() => updateValue2()}
           style={{ marginTop: "1rem" }}
         >
           Trigger Update
