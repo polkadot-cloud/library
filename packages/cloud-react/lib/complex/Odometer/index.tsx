@@ -129,6 +129,7 @@ export const Odometer = ({
             position: "fixed",
             top: "-999%",
             left: " -999%",
+            userSelect: "none",
           }}
         >
           {d === "dot" ? "." : d === "comma" ? "," : d}
@@ -187,6 +188,7 @@ export const Odometer = ({
                     animationTimingFunction: "cubic-bezier(0.1, 1, 0.2, 1)",
                     animationDelay: delay,
                     color: foundDecimal ? decimalColor : wholeColor,
+                    userSelect: "none",
                   }}
                 >
                   {digitsToAnimate.map((c, j) => (
