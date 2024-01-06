@@ -1,9 +1,9 @@
 /* @license Copyright 2024 @polkadot-cloud/library authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { useEffect, useState, createRef, MutableRefObject } from "react";
+import { useEffect, useState, createRef } from "react";
 import "@polkadot-cloud/core/css/complex/Odometer/index.css";
-import { Direction, Props, Status } from "./types";
+import { Digit, DigitRef, Direction, Props, Status } from "./types";
 
 export const Odometer = ({
   value,
@@ -14,7 +14,7 @@ export const Odometer = ({
   zeroDecimals = 0,
 }: Props) => {
   // Store all possible digits.
-  const [allDigits] = useState([
+  const [allDigits] = useState<Digit[]>([
     "comma",
     "dot",
     "0",
@@ -30,10 +30,10 @@ export const Odometer = ({
   ]);
 
   // Store the digits of the current value.
-  const [digits, setDigits] = useState<string[]>([]);
+  const [digits, setDigits] = useState<Digit[]>([]);
 
   // Store digits of the previous value.
-  const [prevDigits, setPrevDigits] = useState<string[]>([]);
+  const [prevDigits, setPrevDigits] = useState<Digit[]>([]);
 
   // Store the status of the odometer (transitioning or stable).
   const [status, setStatus] = useState<Status>("inactive");
@@ -45,21 +45,20 @@ export const Odometer = ({
   const [odometerRef] = useState(createRef<HTMLSpanElement>());
 
   // Store refs of each digit.
-  const [digitRefs, setDigitRefs] = useState<
-    MutableRefObject<HTMLSpanElement>[]
-  >([]);
+  const [digitRefs, setDigitRefs] = useState<DigitRef[]>([]);
 
   // Store refs of each `all` digit.
-  const [allDigitRefs, setAllDigitRefs] = useState<
-    Record<string, MutableRefObject<HTMLSpanElement>>
-  >({});
+  const [allDigitRefs, setAllDigitRefs] = useState<Record<string, DigitRef>>(
+    {}
+  );
+
+  // Transition duration.
+  const DURATION_MS = 750;
+  const DURATION_SECS = `${DURATION_MS / 1000}s`;
 
   // Phase 0: populate `allDigitRefs`.
   useEffect(() => {
-    const all: Record<
-      string,
-      MutableRefObject<HTMLSpanElement>
-    > = Object.fromEntries(
+    const all: Record<string, DigitRef> = Object.fromEntries(
       Object.values(allDigits).map((v) => [`d_${v}`, createRef()])
     );
 
@@ -76,7 +75,7 @@ export const Odometer = ({
         .toString()
         .split("")
         .map((v) => (v === "." ? "dot" : v))
-        .map((v) => (v === "," ? "comma" : v));
+        .map((v) => (v === "," ? "comma" : v)) as Digit[];
 
       setDigits(newDigits);
 
@@ -94,6 +93,10 @@ export const Odometer = ({
   useEffect(() => {
     if (status === "new" && !digitRefs.find((d) => d.current === null)) {
       setStatus("transition");
+
+      setTimeout(() => {
+        setStatus("inactive");
+      }, DURATION_MS);
     }
   }, [status, digitRefs]);
 
@@ -165,7 +168,8 @@ export const Odometer = ({
                   top: 0,
                   left: 0,
                   animationName: direction === "none" ? undefined : animClass,
-                  animationDuration: direction === "none" ? undefined : "0.75s",
+                  animationDuration:
+                    direction === "none" ? undefined : DURATION_SECS,
                   animationFillMode: "forwards",
                   animationTimingFunction: "cubic-bezier(0.1, 1, 0.2, 1)",
                   animationDelay: delay,
@@ -211,6 +215,7 @@ export const Odometer = ({
                     top: 0,
                     height: lineHeight,
                     lineHeight,
+                    width: `${allDigitRefs[`d_${d}`]?.current?.offsetWidth}px`,
                   }}
                 >
                   {d === "dot" ? "." : d === "comma" ? "," : d}
