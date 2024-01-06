@@ -1,7 +1,7 @@
 /* @license Copyright 2024 @polkadot-cloud/library authors & contributors
 SPDX-License-Identifier: GPL-3.0-only */
 
-import { useEffect, useState, createRef } from "react";
+import { useEffect, useState, createRef, useRef } from "react";
 import "@polkadot-cloud/core/css/complex/Odometer/index.css";
 import { Digit, DigitRef, Direction, Props, Status } from "./types";
 
@@ -52,6 +52,9 @@ export const Odometer = ({
     {}
   );
 
+  // Keep track of active transitions.
+  const activeTransitionCounter = useRef<number>(0);
+
   // Transition duration.
   const DURATION_MS = 750;
   const DURATION_SECS = `${DURATION_MS / 1000}s`;
@@ -93,9 +96,13 @@ export const Odometer = ({
   useEffect(() => {
     if (status === "new" && !digitRefs.find((d) => d.current === null)) {
       setStatus("transition");
+      activeTransitionCounter.current++;
 
       setTimeout(() => {
-        setStatus("inactive");
+        activeTransitionCounter.current--;
+        if (activeTransitionCounter.current === 0) {
+          setStatus("inactive");
+        }
       }, DURATION_MS);
     }
   }, [status, digitRefs]);
