@@ -119,121 +119,129 @@ export const Odometer = ({
   let foundDecimal = false;
 
   return (
-    <span className="odometer">
+    <>
       {allDigits.map((d, i) => (
         <span
-          key={`template_digit_${i}`}
+          key={`odometer_template_digit_${i}`}
           ref={allDigitRefs[`d_${d}`]}
-          className="odometer-t-digit "
+          style={{
+            opacity: 0,
+            position: "fixed",
+            top: "-999%",
+            left: " -999%",
+          }}
         >
           {d === "dot" ? "." : d === "comma" ? "," : d}
         </span>
       ))}
-      <span className="odometer-inner" ref={odometerRef}>
-        {spaceBefore ? <span style={{ paddingLeft: spaceBefore }} /> : null}
-        {digits.map((d, i) => {
-          if (d === "dot") {
-            foundDecimal = true;
-          }
+      <span className="odometer">
+        <span className="odometer-inner" ref={odometerRef}>
+          {spaceBefore ? <span style={{ paddingLeft: spaceBefore }} /> : null}
+          {digits.map((d, i) => {
+            if (d === "dot") {
+              foundDecimal = true;
+            }
 
-          // If transitioning, get digits needed to animate.
-          let childDigits = null;
-          if (status === "transition") {
-            const digitsToAnimate = [];
-            const digitIndex = allDigits.indexOf(digits[i]);
-            const prevDigitIndex = allDigits.indexOf(prevDigits[i]);
-            const difference = Math.abs(digitIndex - prevDigitIndex);
-            const delay = `${0.01 * (digits.length - i - 1)}s`;
-            const direction: Direction =
-              digitIndex === prevDigitIndex ? "none" : "down";
-            const animClass = `slide-${direction}-${difference} `;
+            // If transitioning, get digits needed to animate.
+            let childDigits = null;
+            if (status === "transition") {
+              const digitsToAnimate = [];
+              const digitIndex = allDigits.indexOf(digits[i]);
+              const prevDigitIndex = allDigits.indexOf(prevDigits[i]);
+              const difference = Math.abs(digitIndex - prevDigitIndex);
+              const delay = `${0.01 * (digits.length - i - 1)}s`;
+              const direction: Direction =
+                digitIndex === prevDigitIndex ? "none" : "down";
+              const animClass = `slide-${direction}-${difference} `;
 
-            // Push current prev digit to stop of stack.
-            digitsToAnimate.push(prevDigits[i]);
+              // Push current prev digit to stop of stack.
+              digitsToAnimate.push(prevDigits[i]);
 
-            // If transitioning between two digits, animate all digits in between.
-            if (digitIndex < prevDigitIndex) {
-              digitsToAnimate.push(
-                ...Array.from(
-                  { length: difference },
-                  (_, k) => allDigits[prevDigitIndex - k - 1]
-                )
-              );
-            } else {
-              digitsToAnimate.push(
-                ...Array.from(
-                  { length: difference },
-                  (_, k) => allDigits[k + prevDigitIndex + 1]
-                )
+              // If transitioning between two digits, animate all digits in between.
+              if (digitIndex < prevDigitIndex) {
+                digitsToAnimate.push(
+                  ...Array.from(
+                    { length: difference },
+                    (_, k) => allDigits[prevDigitIndex - k - 1]
+                  )
+                );
+              } else {
+                digitsToAnimate.push(
+                  ...Array.from(
+                    { length: difference },
+                    (_, k) => allDigits[k + prevDigitIndex + 1]
+                  )
+                );
+              }
+
+              childDigits = (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    animationName: direction === "none" ? undefined : animClass,
+                    animationDuration:
+                      direction === "none" ? undefined : DURATION_SECS,
+                    animationFillMode: "forwards",
+                    animationTimingFunction: "cubic-bezier(0.1, 1, 0.2, 1)",
+                    animationDelay: delay,
+                    color: foundDecimal ? decimalColor : wholeColor,
+                  }}
+                >
+                  {digitsToAnimate.map((c, j) => (
+                    <span
+                      key={`child_digit_${j}`}
+                      className="odometer-digit odometer-child"
+                      style={{
+                        top: j === 0 ? 0 : `${100 * j}%`,
+                        height: lineHeight,
+                        lineHeight,
+                      }}
+                    >
+                      {c === "dot" ? "." : c === "comma" ? "," : c}
+                    </span>
+                  ))}
+                </span>
               );
             }
 
-            childDigits = (
+            return (
               <span
+                key={`digit_${i}`}
+                ref={digitRefs[i]}
+                className="odometer-digit"
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  animationName: direction === "none" ? undefined : animClass,
-                  animationDuration:
-                    direction === "none" ? undefined : DURATION_SECS,
-                  animationFillMode: "forwards",
-                  animationTimingFunction: "cubic-bezier(0.1, 1, 0.2, 1)",
-                  animationDelay: delay,
                   color: foundDecimal ? decimalColor : wholeColor,
+                  height: lineHeight,
+                  lineHeight,
+                  paddingRight:
+                    status === "transition"
+                      ? `${allDigitRefs[`d_${d}`]?.current?.offsetWidth}px`
+                      : "0",
                 }}
               >
-                {digitsToAnimate.map((c, j) => (
+                {status === "inactive" && (
                   <span
-                    key={`child_digit_${j}`}
                     className="odometer-digit odometer-child"
                     style={{
-                      top: j === 0 ? 0 : `${100 * j}%`,
+                      top: 0,
                       height: lineHeight,
                       lineHeight,
+                      width: `${allDigitRefs[`d_${d}`]?.current
+                        ?.offsetWidth}px`,
                     }}
                   >
-                    {c === "dot" ? "." : c === "comma" ? "," : c}
+                    {d === "dot" ? "." : d === "comma" ? "," : d}
                   </span>
-                ))}
+                )}
+                {status === "transition" && childDigits}
               </span>
             );
-          }
-
-          return (
-            <span
-              key={`digit_${i}`}
-              ref={digitRefs[i]}
-              className="odometer-digit"
-              style={{
-                color: foundDecimal ? decimalColor : wholeColor,
-                height: lineHeight,
-                lineHeight,
-                paddingRight:
-                  status === "transition"
-                    ? `${allDigitRefs[`d_${d}`]?.current?.offsetWidth}px`
-                    : "0",
-              }}
-            >
-              {status === "inactive" && (
-                <span
-                  className="odometer-digit odometer-child"
-                  style={{
-                    top: 0,
-                    height: lineHeight,
-                    lineHeight,
-                    width: `${allDigitRefs[`d_${d}`]?.current?.offsetWidth}px`,
-                  }}
-                >
-                  {d === "dot" ? "." : d === "comma" ? "," : d}
-                </span>
-              )}
-              {status === "transition" && childDigits}
-            </span>
-          );
-        })}
-        {spaceAfter ? <span style={{ paddingRight: spaceAfter }} /> : null}
+          })}
+          {spaceAfter ? <span style={{ paddingRight: spaceAfter }} /> : null}
+        </span>
       </span>
-    </span>
+    </>
   );
 };

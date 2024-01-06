@@ -10,13 +10,6 @@ SPDX-License-Identifier: GPL-3.0-only */
   line-height: inherit;
   width: fit-content;
 
-  > .odometer-t-digit {
-    opacity: 0;
-    position: fixed;
-    top: -999%;
-    left: -999%;
-  }
-
   > .odometer-inner {
     display: inline-block;
     vertical-align: bottom;
