@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
+    "prebuild": "node ./lib/external/polkadot_directory_repo.js",
     "build:mock": "node ../../builder/run.mjs -t package:build -p assets",
     "build": "rm -fr dist && gulp --silent && cp LICENSE dist && yarn build:mock",
+    "postbuild": "rm -rf ./lib/external/yaml ./lib/external/json ./lib/external/index.ts",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   }
 }

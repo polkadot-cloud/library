@@ -73,3 +73,71 @@ export const ValidatorCommunity = [
 | Ordering    | Please place your operator in alphabetical order within `ValidatorCommunity`. |
 
 Please submit an issue for any queries around adding your operator details.
+
+
+## Adding Network Information
+
+Network members can add the network's information by following the JSON interface as seen below:
+
+```ts
+export interface NetworkInformation {
+  name: string;
+  network_type: string;
+  chain: Chain;
+  chainspec: Chainspec;
+  goals: string[];
+  repository: string;
+  validators: string[];
+  release_cycle: string;
+  specs: Specs;
+  contacts: Contact[];
+  faucet?: any;
+  rpc_endpoints: RpcEndpoint[];
+  api_endpoints: ApiEndpoint[];
+  bootnodes: Bootnode[];
+  documentation: string[];
+  expectations: any[];
+  features: string[];
+  notes: any[];
+}
+
+export interface Chain {
+  type: string;
+  parent?: string;
+  consensus: string;
+  sudo: boolean;
+  para_id?: number;
+}
+
+export interface Chainspec {
+  http_url: string;
+}
+
+export interface Specs {
+  block_time: number;
+  decimals: number;
+  token: string;
+  ss58_format: number;
+  ed?: number;
+  lease_period?: number;
+  era?: any;
+}
+
+export interface Contact {
+  type: string;
+  contact: string;
+}
+
+export interface Endpoint {
+  name: string;
+  url: string;
+}
+
+export type RpcEndpoint = Endpoint;
+export type ApiEndpoint = Endpoint;
+export type Bootnode = Endpoint;
+```
+
+## Editing Network Information
+
+In case some information need to be updated, you can open a PR with the needed changes to the [asset's repository](https://github.com/polkadot-cloud/library);
