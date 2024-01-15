@@ -26,7 +26,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "@wdio/browser-runner": "^8.27.0",
-    "@wdio/cli": "^8.27.1",
+    "@wdio/cli": "^8.27.2",
     "@wdio/globals": "^8.26.1",
     "@wdio/mocha-framework": "^8.24.12",
     "@wdio/spec-reporter": "^8.27.0",
