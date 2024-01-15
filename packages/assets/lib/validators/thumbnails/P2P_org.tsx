@@ -30,4 +30,4 @@ const P2P_org = () => (
     </svg>
 );
 
-export default P2P_rg;
+export default P2P_org;
