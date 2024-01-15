@@ -75,7 +75,7 @@
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "vitest": "^1.1.3",
-    "yaml": "2.3.4"
+    "yaml": "^2.3.4"
   },
   "workspaces": [
     "packages/cloud-core",
