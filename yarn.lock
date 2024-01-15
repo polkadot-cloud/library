@@ -846,10 +846,10 @@
     picocolors "^1.0.0"
     tslib "^2.6.0"
 
-"@polkadot-cloud/assets@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@polkadot-cloud/assets/-/assets-0.3.0.tgz#d1906b5c72fc2a8d19b76b98e254b7a057f8fac0"
-  integrity sha512-9UncnTP/L6Y2GHMmESooKIDbTIV4qedWOgNNfMGEKKVYU7LV+A7JbC4hD5xOwSYucPC6Lwi1gnqZ/iYiPyigKQ==
+"@polkadot-cloud/assets@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@polkadot-cloud/assets/-/assets-0.3.2.tgz#26f6594ad93015f08cba2bc2e238493fa16fc2eb"
+  integrity sha512-gQK/UjDD3r8P7QpwC7kPn/HT9eb3iQEDcCAl6W4nQ7Mr7bCB2WrbiOyugjlc/pxOobY/S/udv5WRdY+25gZdsw==
 
 "@polkadot-cloud/core@^1.2.1":
   version "1.2.1"
@@ -2228,13 +2228,6 @@
     chalk "^5.1.2"
     easy-table "^1.2.0"
     pretty-ms "^7.0.0"
-
-"@wdio/types@8.27.0":
-  version "8.27.0"
-  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-8.27.0.tgz#ef2e3a9ae083f08ee5fe5bf9e5dfc70cc55cebcb"
-  integrity sha512-LbP9FKh8r0uW9/dKhTIUCC1Su8PsP9TmzGKXkWt6/IMacgJiB/zW3u1CgyaLw9lG0UiQORHGoeJX9zB2HZAh4w==
-  dependencies:
-    "@types/node" "^20.1.0"
 
 "@wdio/types@8.27.2":
   version "8.27.2"
