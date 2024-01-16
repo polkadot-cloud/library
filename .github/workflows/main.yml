@@ -22,8 +22,8 @@ jobs:
     - name: Check Markdown Links
     - uses: actions/checkout@master
     - uses: gaurav-nelson/github-action-markdown-link-check@v1
-    with:
-      base-branch: main
+      with:
+        base-branch: main
 
   build:
     runs-on: ubuntu-latest
