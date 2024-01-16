@@ -38,4 +38,4 @@
 
 ### Features
 
-- **styles:** amended theme structure ([#645](https://github.com/polkadot-cloud/library/issues/647)) ([5113d33](https://github.com/polkadot-cloud/library/commit/670dc87ad5586fb61cc99ddb5ffaefe357aaedca))
+- **styles:** amended theme structure
