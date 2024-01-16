@@ -25,8 +25,9 @@ jobs:
         with:
           base-branch: main
           use-quiet-mode: 'yes'
+          check-modified-files-only: 'yes'
           config-file: 'check-markdown-links-config.json'
-          
+
   build:
     runs-on: ubuntu-latest
     strategy:
