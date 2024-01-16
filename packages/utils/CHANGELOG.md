@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0](https://github.com/polkadot-cloud/library/compare/polkadot-cloud-utils-v0.1.1...polkadot-cloud-utils-v0.2.0) (2023-12-22)
+## 0.2.0 (2023-12-22)
 
 
 ### Features
@@ -18,7 +18,7 @@
 
 * [urgent] validator community ([8093a88](https://github.com/polkadot-cloud/library/commit/8093a889242f4b0f3c41ad8dded264ab41eae60d))
 
-## [0.1.0](https://github.com/polkadot-cloud/library/compare/polkadot-cloud-utils-v0.0.34...polkadot-cloud-utils-v0.1.0) (2023-12-18)
+## 0.1.0 (2023-12-18)
 
 
 ### Features

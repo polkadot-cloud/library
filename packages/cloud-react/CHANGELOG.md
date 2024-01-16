@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.3.0](https://github.com/polkadot-cloud/library/compare/polkadot-cloud-react-v0.2.1...polkadot-cloud-react-v0.3.0) (2023-12-22)
+## 0.3.0 (2023-12-22)
 
 
 ### Features
@@ -19,7 +19,7 @@
 
 * [urgent] validator community ([8093a88](https://github.com/polkadot-cloud/library/commit/8093a889242f4b0f3c41ad8dded264ab41eae60d))
 
-## [0.2.0](https://github.com/polkadot-cloud/library/compare/polkadot-cloud-react-v0.1.147...polkadot-cloud-react-v0.2.0) (2023-12-18)
+## 0.2.0 (2023-12-18)
 
 
 ### Features

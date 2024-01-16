@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0](https://github.com/polkadot-cloud/library/compare/polkadot-cloud-sandbox-v0.1.0...polkadot-cloud-sandbox-v0.2.0) (2023-12-18)
+## 0.2.0 (2023-12-18)
 
 
 ### Features
