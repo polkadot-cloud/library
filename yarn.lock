@@ -2090,18 +2090,18 @@
     webdriver "8.28.6"
     webdriverio "8.28.6"
 
-"@wdio/cli@^8.28.6":
-  version "8.28.6"
-  resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-8.28.6.tgz#a11e7120447f93b4f1e885a88652c4c95a7ca558"
-  integrity sha512-cBgm/RA12tlKGqIywsqAJaACST2tbcBtbkNl16io88iiBKAWOMlK5tX75+5dNEeyKs7JlQqBJ+3toXcypf68tA==
+"@wdio/cli@^8.28.8":
+  version "8.28.8"
+  resolved "https://registry.yarnpkg.com/@wdio/cli/-/cli-8.28.8.tgz#b8ed7ffcb40e6928cfda799d123cef162f3b1889"
+  integrity sha512-GVz15UnHZ7OTFVgtLuZguEAsGstCriDdnrnSROoiPpJdrD0Q+8W8qAvzLKcDgpaITxd4qaZdomuANGCyd5BPaQ==
   dependencies:
     "@types/node" "^20.1.1"
-    "@wdio/config" "8.28.6"
-    "@wdio/globals" "8.28.6"
+    "@wdio/config" "8.28.8"
+    "@wdio/globals" "8.28.8"
     "@wdio/logger" "8.28.0"
     "@wdio/protocols" "8.24.12"
     "@wdio/types" "8.28.6"
-    "@wdio/utils" "8.28.6"
+    "@wdio/utils" "8.28.8"
     async-exit-hook "^2.0.1"
     chalk "^5.2.0"
     chokidar "^3.5.3"
@@ -2116,7 +2116,7 @@
     lodash.union "^4.6.0"
     read-pkg-up "^10.0.0"
     recursive-readdir "^2.2.3"
-    webdriverio "8.28.6"
+    webdriverio "8.28.8"
     yargs "^17.7.2"
 
 "@wdio/config@8.28.6":
@@ -2153,7 +2153,7 @@
     expect-webdriverio "^4.8.0"
     webdriverio "8.28.6"
 
-"@wdio/globals@^8.27.0", "@wdio/globals@^8.28.8":
+"@wdio/globals@8.28.8", "@wdio/globals@^8.27.0", "@wdio/globals@^8.28.8":
   version "8.28.8"
   resolved "https://registry.yarnpkg.com/@wdio/globals/-/globals-8.28.8.tgz#b3c04b5a81dc34449b440b555e095e068903ab8f"
   integrity sha512-gNSQge9yAPaxS5qdJ/IGoXh5+8tGFG0sbiEtOntc8GlvlzuPBmqbCjhN9RK5hWX1w0A4FhmFjEEJ6L/nUllr9A==
@@ -11245,7 +11245,7 @@ webdriver@8.28.8:
     ky "^0.33.0"
     ws "^8.8.0"
 
-webdriverio@8.28.6, webdriverio@^8.27.0:
+webdriverio@8.28.6:
   version "8.28.6"
   resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-8.28.6.tgz#2a4707e878aedc14111c0ff277f2ec81e030febb"
   integrity sha512-vWo3Qx0bWubzUBBLaLYgeQkSN63KTfW5P3IbayhJ8Qx+NVVnclG0mu4mQj00gvj8+3a8opef6T54gdzitVSHSw==
@@ -11275,7 +11275,7 @@ webdriverio@8.28.6, webdriverio@^8.27.0:
     serialize-error "^11.0.1"
     webdriver "8.28.6"
 
-webdriverio@8.28.8:
+webdriverio@8.28.8, webdriverio@^8.27.0:
   version "8.28.8"
   resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-8.28.8.tgz#dbf3dcf1440c806b5c83b9d3e073e6e5104818b3"
   integrity sha512-QFHv5FRvEcNznggxQrI256AwdClrnhL7C9Vwx5KxljEK2qw01UgW2vkCcrRYyfof3t9/N0dcybvpV09zc0XklQ==
