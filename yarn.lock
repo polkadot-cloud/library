@@ -2244,14 +2244,14 @@
   dependencies:
     "@types/node" "^20.1.0"
 
-"@wdio/reporter@8.28.6":
-  version "8.28.6"
-  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-8.28.6.tgz#908719cb0b83ea7e7608f8393e34cd70e475679f"
-  integrity sha512-2KUSytk75fjT4XGEL43u1XLzZSvu1SUg3a7h8fRm2fU2q1dCC16TJk5eod4eSxHzjm2fL1vwFQIAZkwO3WyQZQ==
+"@wdio/reporter@8.29.0":
+  version "8.29.0"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-8.29.0.tgz#e6de5a1c414e1be4aa9a57a0d21842d9d0267cc9"
+  integrity sha512-CtxcHtVCGM76pxwuXJ+0FH48dPWka9kJ7SZZ8SIGdzBX59saLuPMDzdXTENpcefb/8/jxAulZDWtc11/hylJOw==
   dependencies:
     "@types/node" "^20.1.0"
     "@wdio/logger" "8.28.0"
-    "@wdio/types" "8.28.6"
+    "@wdio/types" "8.29.0"
     diff "^5.0.0"
     object-inspect "^1.12.0"
 
@@ -2272,13 +2272,13 @@
     webdriver "8.28.8"
     webdriverio "8.28.8"
 
-"@wdio/spec-reporter@^8.28.8":
-  version "8.28.8"
-  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-8.28.8.tgz#506b96cca1a233838cb2784a233b5e886f3efcad"
-  integrity sha512-BZWS7BFcTweDgbEQmuQR1YLO7zRprife+HBSCS3f56vRv83NoBHrqRfeqO/1q+sV4YX2JIZx+SyDGZre9CVlGA==
+"@wdio/spec-reporter@^8.29.0":
+  version "8.29.0"
+  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-8.29.0.tgz#817d52e48a47090c2065f273989b6868217c44b3"
+  integrity sha512-usOGAmuJ7GY1a/yU9RzGhkO2a8uQ5L2P/ZYCyie597SLco01sl0i/W41ZHltkhNAj8S/TANrQQ6uJg5jRa1LYA==
   dependencies:
-    "@wdio/reporter" "8.28.6"
-    "@wdio/types" "8.28.6"
+    "@wdio/reporter" "8.29.0"
+    "@wdio/types" "8.29.0"
     chalk "^5.1.2"
     easy-table "^1.2.0"
     pretty-ms "^7.0.0"
