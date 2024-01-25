@@ -28,7 +28,7 @@
     "@wdio/browser-runner": "^8.29.0",
     "@wdio/cli": "^8.29.0",
     "@wdio/globals": "^8.29.0",
-    "@wdio/mocha-framework": "^8.28.8",
+    "@wdio/mocha-framework": "^8.29.1",
     "@wdio/spec-reporter": "^8.29.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
