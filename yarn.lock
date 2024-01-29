@@ -2053,21 +2053,21 @@
     loupe "^2.3.7"
     pretty-format "^29.7.0"
 
-"@wdio/browser-runner@^8.29.1":
-  version "8.29.1"
-  resolved "https://registry.yarnpkg.com/@wdio/browser-runner/-/browser-runner-8.29.1.tgz#7168d84633c8a89ad6a70ec8666fe8e60ef526be"
-  integrity sha512-gHER5igfZh12HlOW+AyV5A82X4wGgHhoM7hIYnOrOnKsAO7TNIvCs8sq9RhznL2yAlX06JB/aj6LipVvSJWebw==
+"@wdio/browser-runner@^8.29.2":
+  version "8.29.2"
+  resolved "https://registry.yarnpkg.com/@wdio/browser-runner/-/browser-runner-8.29.2.tgz#ca5bceb4c51335d2914e3b889e9eae76f05f2b45"
+  integrity sha512-JHjO4nwZUyJlpa2H25zHbPzfNNxeEbIr9KCecL4th62Vz7XEJtaVO8yPbXLOVd6RxydoX7ACBiImYbpHqRZohg==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.18.6"
     "@originjs/vite-plugin-commonjs" "^1.0.3"
     "@types/istanbul-lib-source-maps" "^4.0.1"
     "@vitest/spy" "^1.0.1"
     "@wdio/globals" "8.29.1"
-    "@wdio/local-runner" "8.29.1"
+    "@wdio/local-runner" "8.29.2"
     "@wdio/logger" "8.28.0"
     "@wdio/mocha-framework" "8.29.1"
     "@wdio/protocols" "^8.24.12"
-    "@wdio/runner" "8.29.1"
+    "@wdio/runner" "8.29.2"
     "@wdio/types" "8.29.1"
     "@wdio/utils" "8.29.1"
     deepmerge-ts "^5.0.0"
@@ -2141,15 +2141,15 @@
     expect-webdriverio "^4.9.3"
     webdriverio "8.29.1"
 
-"@wdio/local-runner@8.29.1":
-  version "8.29.1"
-  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-8.29.1.tgz#15802705e84c3524e4b4044391b65335046cd3cc"
-  integrity sha512-Z3QAgxe1uQ97C7NS1CdMhgmHaLu/sbb47HTbw1yuuLk+SwsBIQGhNpTSA18QVRSUXq70G3bFvjACwqyap1IEQg==
+"@wdio/local-runner@8.29.2":
+  version "8.29.2"
+  resolved "https://registry.yarnpkg.com/@wdio/local-runner/-/local-runner-8.29.2.tgz#05eabc22a1d304c095b085b3e5c94646c310a494"
+  integrity sha512-5AFu8b+8jOjnSLdBmYwVBdZ/EjoLIO4lhcvOrBDoxiIV8bCl8uvf3nSroPyluVh338hrDO8hVLH4Lj+O/VWXOQ==
   dependencies:
     "@types/node" "^20.1.0"
     "@wdio/logger" "8.28.0"
     "@wdio/repl" "8.24.12"
-    "@wdio/runner" "8.29.1"
+    "@wdio/runner" "8.29.2"
     "@wdio/types" "8.29.1"
     async-exit-hook "^2.0.1"
     split2 "^4.1.0"
@@ -2200,10 +2200,10 @@
     diff "^5.0.0"
     object-inspect "^1.12.0"
 
-"@wdio/runner@8.29.1":
-  version "8.29.1"
-  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-8.29.1.tgz#5d9488bc0a693b052787e097e05251451be45782"
-  integrity sha512-MvYFf4RgRmzxjAzy6nxvaDG1ycBRvoz772fT06csjxuaVYm57s8mlB8X+U1UQMx/IzujAb53fSeAmNcyU3FNEA==
+"@wdio/runner@8.29.2":
+  version "8.29.2"
+  resolved "https://registry.yarnpkg.com/@wdio/runner/-/runner-8.29.2.tgz#7df938b5d9f6b70bbb12a595acd7b0f79b35eca8"
+  integrity sha512-ryAHVqC2pqyc6/n2ZYMIwLz8ShC1yIGylKFWqdJ5+4vHQauJTKmDVDPHdg6vBqTQrmq6opBqh0It4qeuhRuk4w==
   dependencies:
     "@types/node" "^20.1.0"
     "@wdio/config" "8.29.1"
