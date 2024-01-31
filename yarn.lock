@@ -2165,7 +2165,7 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^7.1.0"
 
-"@wdio/mocha-framework@8.29.1", "@wdio/mocha-framework@^8.29.1":
+"@wdio/mocha-framework@8.29.1":
   version "8.29.1"
   resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-8.29.1.tgz#fbe8363c05ef4aa852d5acb37e314ed74c69ec79"
   integrity sha512-R9dKMNqWgtUvZo33ORjUQV8Z/WLX5h/pg9u/xIvZSGXuNSw1h+5DWF6UiNFscxBFblL9UvBi6V9ila2LHgE4ew==
@@ -2175,6 +2175,18 @@
     "@wdio/logger" "8.28.0"
     "@wdio/types" "8.29.1"
     "@wdio/utils" "8.29.1"
+    mocha "^10.0.0"
+
+"@wdio/mocha-framework@^8.29.3":
+  version "8.29.3"
+  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-8.29.3.tgz#0c53eaebdb82a4c61bb211f09f2b4be8d61476aa"
+  integrity sha512-w+tJLRdNhYPScesPGVcuuM4McAfxzx3K39Jp5rmKxxah6/Fv8Hb2eOHxO4WLfhd5Tv3KkdCYHe4wCPGYNxnsng==
+  dependencies:
+    "@types/mocha" "^10.0.0"
+    "@types/node" "^20.1.0"
+    "@wdio/logger" "8.28.0"
+    "@wdio/types" "8.29.1"
+    "@wdio/utils" "8.29.3"
     mocha "^10.0.0"
 
 "@wdio/protocols@8.24.12", "@wdio/protocols@^8.24.12":
@@ -2247,6 +2259,25 @@
     deepmerge-ts "^5.1.0"
     edgedriver "^5.3.5"
     geckodriver "^4.2.0"
+    get-port "^7.0.0"
+    import-meta-resolve "^4.0.0"
+    locate-app "^2.1.0"
+    safaridriver "^0.1.0"
+    split2 "^4.2.0"
+    wait-port "^1.0.4"
+
+"@wdio/utils@8.29.3":
+  version "8.29.3"
+  resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-8.29.3.tgz#8c8d63ffd088b66bcf82265815d73dcea8cb03e0"
+  integrity sha512-WnZ5vZrc0oKX0u6dteB9j04Yl2EUKBLi6GtRCNTRPTpCRYiGfqSLhs0pUddTNXye7gErlqIzsVwh64q19Z5KIQ==
+  dependencies:
+    "@puppeteer/browsers" "^1.6.0"
+    "@wdio/logger" "8.28.0"
+    "@wdio/types" "8.29.1"
+    decamelize "^6.0.0"
+    deepmerge-ts "^5.1.0"
+    edgedriver "^5.3.5"
+    geckodriver "^4.3.1"
     get-port "^7.0.0"
     import-meta-resolve "^4.0.0"
     locate-app "^2.1.0"
@@ -5357,6 +5388,20 @@ geckodriver@^4.2.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/geckodriver/-/geckodriver-4.3.0.tgz#8586e80ddd23e5d5cd47382d9f6897051ca12ea3"
   integrity sha512-QfpvxFsMORwKpvnLslkHCr3NTCczHAvkte6+pQGsiUZXKBe6mO4TTb727b+9KMVSK6XZqhR6ZwImKdP+F5vS6A==
+  dependencies:
+    "@wdio/logger" "^8.24.12"
+    decamelize "^6.0.0"
+    http-proxy-agent "^7.0.0"
+    https-proxy-agent "^7.0.2"
+    node-fetch "^3.3.2"
+    tar-fs "^3.0.4"
+    unzipper "^0.10.14"
+    which "^4.0.0"
+
+geckodriver@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/geckodriver/-/geckodriver-4.3.1.tgz#e1b373ca17a9fcbcc9d4e0830f2a50dc94fc83ea"
+  integrity sha512-ol7JLsj55o5k+z7YzeSy2mdJROXMAxIa+uzr3A1yEMr5HISqQOTslE3ZeARcxR4jpAY3fxmHM+sq32qbe/eXfA==
   dependencies:
     "@wdio/logger" "^8.24.12"
     decamelize "^6.0.0"
