@@ -2250,10 +2250,10 @@
     webdriver "8.29.1"
     webdriverio "8.29.1"
 
-"@wdio/spec-reporter@^8.29.1":
-  version "8.29.1"
-  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-8.29.1.tgz#ffc1ee79fcdc27b849f94bd00bee8d1860321902"
-  integrity sha512-tuDHihrTjCxFCbSjT0jMvAarLA1MtatnCnhv0vguu3ZWXELR1uESX2KzBmpJ+chGZz3oCcKszT8HOr6Pg2a1QA==
+"@wdio/spec-reporter@^8.29.3":
+  version "8.29.3"
+  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-8.29.3.tgz#c7184a5f10e199475ef01404360f224bfb716b8d"
+  integrity sha512-di3SZKupuwW4/Uts9vqDkaVxe6TSnnpLmQg4zmlFhbixC89zM4EW/eXoLA9n0LFfx3HpuhRF/exgduJf71ZH/Q==
   dependencies:
     "@wdio/reporter" "8.29.1"
     "@wdio/types" "8.29.1"
