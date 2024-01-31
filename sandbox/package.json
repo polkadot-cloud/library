@@ -17,7 +17,7 @@
     "svgo": "^3.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "^14.1.2",
+    "@testing-library/react": "^14.2.0",
     "@types/mocha": "^10.0.6",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
