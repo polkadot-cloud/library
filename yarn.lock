@@ -2236,10 +2236,10 @@
     webdriver "8.29.7"
     webdriverio "8.29.7"
 
-"@wdio/spec-reporter@^8.29.3":
-  version "8.29.3"
-  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-8.29.3.tgz#c7184a5f10e199475ef01404360f224bfb716b8d"
-  integrity sha512-di3SZKupuwW4/Uts9vqDkaVxe6TSnnpLmQg4zmlFhbixC89zM4EW/eXoLA9n0LFfx3HpuhRF/exgduJf71ZH/Q==
+"@wdio/spec-reporter@^8.29.7":
+  version "8.29.7"
+  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-8.29.7.tgz#2e443e812396f7d8cd3ed926e88bdccb8341867e"
+  integrity sha512-zwqpcjcEPnPrQh5rez0WM0izkP0IALtudOjMZTlFTOmwD1HqI9QeIYDVbO+Yp5ugJca28R/n5bDExIIyBhXYpQ==
   dependencies:
     "@wdio/reporter" "8.29.1"
     "@wdio/types" "8.29.1"
