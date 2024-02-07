@@ -125,14 +125,21 @@ export const ValidatorCommunity: ValidatorEntry[] = [
   {
     name: "🌐 decentraDOT.com 🌐",
     thumbnail: "Decentradot",
-    bio: "decentraDOT is a high-quality Polkadot validator run by blockchain enthusiasts in the Netherlands. In addition to staking services we provide free of charge software such as our validator dashboard.",
+    bio: "decentraDOT is a leading provider of high-quality Polkadot validators, located in The Netherlands. Our edge lies in hosting exclusively on our own in-house hardware, ensuring top-notch security and performance.",
     email: "admin@decentradot.com",
     website: "https://decentradot.com",
     validators: {
-      polkadot: ["15wznkm7fMaJLFaw7B8KrJWkNcWsDziyTKVjrpPhRLMyXsr5"],
+      polkadot: [
+        "15wznkm7fMaJLFaw7B8KrJWkNcWsDziyTKVjrpPhRLMyXsr5",
+        "12QTG1GrqFtS6AJWw4NwHDXgbhPyjyT6BfJK5qAGedkvnrpQ",
+        "12ZKgiVzygpYvvVR3hXMDysNTmX4GLzMqtGrZY3rmwLcCdiT",
+        "15XtoWwkanySeWKduwoLGjJPCXTRdCDMfa5UKF2KvG7wmekj",
+        "133NkGSCzjzGTb2oepvrsWQLvD3E4sAZj6VR9B1eNiE6V26i"
+      ],
       kusama: [
         "GRSWBC1kCuNVp8KTgGyK7Bo3bP7CdLDPwfnx2L5JJLQ41Qj",
         "Em4HYqVrWX3uCvrC8NWoabfKpV9z8stdRKkXYXcZdWGxdXT",
+        "HqF6t7B84v2XTbAC4VZmjsyQhvRUJrcCdUPAYVCpYru32SU"
       ],
     },
   },
