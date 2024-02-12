@@ -72,7 +72,7 @@
     "stylelint-config-standard-scss": "^11.1.0",
     "tiny-lr": "^2.0.0",
     "tslib": "^2.6.2",
-    "tsup": "^8.0.1",
+    "tsup": "^8.0.2",
     "typescript": "^5.3.3",
     "vitest": "^1.2.2",
     "yaml": "^2.3.4"
