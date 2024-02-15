@@ -1,9 +1,8 @@
 import * as ReactDOM from "react-dom/client";
 import { App } from "./App";
 
-import "../../packages/cloud-core/dist/accent/cloud.css";
-import "../../packages/cloud-core/dist/theme/cloud/fonts/index.css";
-import "../../packages/cloud-core/dist/theme/cloud/index.css";
+import "./theme/fonts.css";
+import "./theme/theme.css";
 import "../../packages/cloud-core/dist/theme/default/index.css";
 import "../../packages/cloud-core/dist/css/styles/index.css";
 
