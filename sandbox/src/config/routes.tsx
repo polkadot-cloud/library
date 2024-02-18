@@ -3,7 +3,6 @@ SPDX-License-Identifier: GPL-3.0-only */
 
 import { ReactNode } from "react";
 import { Components } from "../pages/Components";
-import { Buttons } from "../pages/Buttons";
 
 type Routes = {
   name: string;
@@ -34,11 +33,6 @@ const pages = [
     element: <Components />,
     default: true,
   },
-  {
-    path: "buttons",
-    name: "Buttons",
-    element: <Buttons />,
-  },
 ];
 
 export const routes: Routes = [
@@ -55,7 +49,7 @@ export const routeCategories: RouteCategories = [
     name: "Navigation",
     paths: [
       {
-        paths: ["components", "buttons"],
+        paths: ["components"],
       },
     ],
   },
