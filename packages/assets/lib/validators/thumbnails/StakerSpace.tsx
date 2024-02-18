@@ -1,3 +1,6 @@
+/* @license Copyright 2024 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 const StakerSpace = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <rect width={512} height={512} rx={26} fill="#fff" />

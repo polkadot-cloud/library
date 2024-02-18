@@ -134,12 +134,12 @@ export const ValidatorCommunity: ValidatorEntry[] = [
         "12QTG1GrqFtS6AJWw4NwHDXgbhPyjyT6BfJK5qAGedkvnrpQ",
         "12ZKgiVzygpYvvVR3hXMDysNTmX4GLzMqtGrZY3rmwLcCdiT",
         "15XtoWwkanySeWKduwoLGjJPCXTRdCDMfa5UKF2KvG7wmekj",
-        "133NkGSCzjzGTb2oepvrsWQLvD3E4sAZj6VR9B1eNiE6V26i"
+        "133NkGSCzjzGTb2oepvrsWQLvD3E4sAZj6VR9B1eNiE6V26i",
       ],
       kusama: [
         "GRSWBC1kCuNVp8KTgGyK7Bo3bP7CdLDPwfnx2L5JJLQ41Qj",
         "Em4HYqVrWX3uCvrC8NWoabfKpV9z8stdRKkXYXcZdWGxdXT",
-        "HqF6t7B84v2XTbAC4VZmjsyQhvRUJrcCdUPAYVCpYru32SU"
+        "HqF6t7B84v2XTbAC4VZmjsyQhvRUJrcCdUPAYVCpYru32SU",
       ],
     },
   },

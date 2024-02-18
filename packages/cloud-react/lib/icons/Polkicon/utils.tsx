@@ -1,3 +1,6 @@
+/* @license Copyright 2024 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 import { decodeAddress, blake2AsU8a } from "@polkadot/util-crypto";
 
 /*

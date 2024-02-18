@@ -1,3 +1,6 @@
+/* @license Copyright 2024 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 const Polkachu = () => (
   <svg
     viewBox="0 0 44.426 44.424"

@@ -1,3 +1,6 @@
+/* @license Copyright 2024 @polkadot-cloud/library authors & contributors
+SPDX-License-Identifier: GPL-3.0-only */
+
 const Blockshard = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
     <path fill="#151c2c" d="M-6.87-11.4h813.73v822.81H-6.87z" />
