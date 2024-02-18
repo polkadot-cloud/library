@@ -63,38 +63,6 @@ export type SideProps = ComponentBase & {
   width?: string | number;
 };
 
-export type PageTitleProps = PageTitleTabsProps & {
-  // title of the page.
-  title?: string;
-  // a button right next to the page title.
-  button?: {
-    // title of the button.
-    title: string;
-    // function of the button when it is clicked.
-    onClick: () => void;
-  };
-};
-
-export type PageTitleTabsProps = {
-  // whether the title stick on the same position.
-  sticky?: boolean;
-  // an array of tab pages.
-  tabs?: Array<PageTitleTabProps>;
-};
-
-export type PageTitleTabProps = {
-  // whether the title stick on the same position.
-  sticky?: boolean;
-  // title of the tab button.
-  title: string;
-  // whether it is clicked.
-  active: boolean;
-  // it leads to the corresponding tab page.
-  onClick: () => void;
-  // a badge that can have a glance at before visting the tab page.
-  badge?: string | number;
-};
-
 export type RowProps = ComponentBase & {
   // whether there is margin space vertically.
   yMargin?: boolean;
