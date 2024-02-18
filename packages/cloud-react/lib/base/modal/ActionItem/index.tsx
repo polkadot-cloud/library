@@ -29,7 +29,7 @@ export const ActionItem = ({
       className={`modal-action-item`}
       style={{
         ...style,
-        opacity: inactive ? "var(--opacity-disabled)" : 1,
+        opacity: inactive ? 0.3 : 1,
       }}
     >
       {toggled === undefined ? (

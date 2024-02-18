@@ -62,7 +62,7 @@ SPDX-License-Identifier: GPL-3.0-only */
     color 0.15s;
 
   &:disabled {
-    opacity: var(--opacity-disabled);
+    opacity: 0.3;
     cursor: default;
   }
 }
