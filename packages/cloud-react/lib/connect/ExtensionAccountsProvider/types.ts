@@ -1,5 +1,5 @@
 /* @license Copyright 2024 @polkadot-cloud/library authors & contributors",
-    "SPDX-License-Identifier: GPL-3.0-only */
+"SPDX-License-Identifier: GPL-3.0-only */
 
 import { ReactNode } from "react";
 import { ExtensionAccount } from "../ExtensionsProvider/types";
