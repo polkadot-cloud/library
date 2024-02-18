@@ -1,5 +1,5 @@
-// Copyright 2024 @polkadot-cloud/library authors & contributors
-// SPDX-License-Identifier: GPL-3.0-only
+/* @license Copyright 2024 @polkadot-cloud/library authors & contributors",
+    "SPDX-License-Identifier: GPL-3.0-only */
 
 import { ExtensionFeature } from "@polkadot-cloud/assets/types";
 import { AnyJson, VoidFn } from "../../utils/types";

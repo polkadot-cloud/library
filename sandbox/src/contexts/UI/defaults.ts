@@ -1,5 +1,5 @@
-// Copyright 2024 @polkadot-cloud/library authors & contributors
-// SPDX-License-Identifier: GPL-3.0-only
+/* @license Copyright 2024 @polkadot-cloud/library authors & contributors",
+    "SPDX-License-Identifier: GPL-3.0-only */
 /* eslint-disable @typescript-eslint/no-empty-function, no-unused-vars, @typescript-eslint/no-unused-vars */
 
 import type { UIContextInterface } from "./types";
