@@ -1,7 +1,7 @@
 {
   "name": "polkadot-cloud-assets",
   "license": "GPL-3.0-only",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "type": "module",
   "contributors": [
     "Ross Bulat<ross@parity.io>",
@@ -16,7 +16,9 @@
     "Components",
     "UI"
   ],
-  "bugs": { "url": "https://github.com/polkadot-cloud/library/issues" },
+  "bugs": {
+    "url": "https://github.com/polkadot-cloud/library/issues"
+  },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p assets",
