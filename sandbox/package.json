@@ -29,7 +29,7 @@
     "@wdio/cli": "^8.32.2",
     "@wdio/globals": "^8.31.1",
     "@wdio/mocha-framework": "^8.32.2",
-    "@wdio/spec-reporter": "^8.31.1",
+    "@wdio/spec-reporter": "^8.32.2",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
