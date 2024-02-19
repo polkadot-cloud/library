@@ -25,7 +25,7 @@
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.6.0",
-    "@wdio/browser-runner": "^8.32.1",
+    "@wdio/browser-runner": "^8.32.2",
     "@wdio/cli": "^8.32.2",
     "@wdio/globals": "^8.31.1",
     "@wdio/mocha-framework": "^8.32.2",
