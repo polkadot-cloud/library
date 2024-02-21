@@ -27,7 +27,7 @@
     "@vitejs/plugin-react-swc": "^3.6.0",
     "@wdio/browser-runner": "^8.32.2",
     "@wdio/cli": "^8.32.2",
-    "@wdio/globals": "^8.31.1",
+    "@wdio/globals": "^8.32.3",
     "@wdio/mocha-framework": "^8.32.2",
     "@wdio/spec-reporter": "^8.32.2",
     "eslint": "^8.56.0",
