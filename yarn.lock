@@ -2269,13 +2269,6 @@
     easy-table "^1.2.0"
     pretty-ms "^7.0.0"
 
-"@wdio/types@8.31.1":
-  version "8.31.1"
-  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-8.31.1.tgz#7f3c6e414d1f7ff0aa445ef27fbb4cea59ec674d"
-  integrity sha512-KQ0EmjeVdshufhsxygaPzkJ8WD7hm8WlflZcLwKMZ0OM6f8pV9NMGGOvfBQXgTs447ScK6/6rX+lbJk3yvg65g==
-  dependencies:
-    "@types/node" "^20.1.0"
-
 "@wdio/types@8.32.2":
   version "8.32.2"
   resolved "https://registry.yarnpkg.com/@wdio/types/-/types-8.32.2.tgz#7b79f4156eabf5fc68c9cda1cf84441033c3acce"
@@ -9533,10 +9526,10 @@ safe-stringify@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass@^1.71.0:
-  version "1.71.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.71.0.tgz#b3085759b9b2ab503a977aecb7e91153bf941117"
-  integrity sha512-HKKIKf49Vkxlrav3F/w6qRuPcmImGVbIXJ2I3Kg0VMA+3Bav+8yE9G5XmP5lMj6nl4OlqbPftGAscNaNu28b8w==
+sass@^1.71.1:
+  version "1.71.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.71.1.tgz#dfb09c63ce63f89353777bbd4a88c0a38386ee54"
+  integrity sha512-wovtnV2PxzteLlfNzbgm1tFXPLoZILYAMJtvoXXkD7/+1uP41eKkIt1ypWq5/q2uT94qHjXehEYfmjKOvjL9sg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
