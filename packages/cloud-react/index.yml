@@ -17,10 +17,6 @@ directory:
     description: An odometer effect used for numbers and balances.
     doc: https://polkadot.cloud/odometer
 
-  - name: Overlay
-    description: Overlay Provider and UI component for modals and overlaying content.
-    doc: https://polkadot.cloud/overlay
-
 npm:
   title: "Polkadot Cloud: React"
   contents:

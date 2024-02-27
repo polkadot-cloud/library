@@ -36,8 +36,6 @@ Functional React components for Polkadot dApps.
 
 - [Odometer](https://polkadot.cloud/odometer): An odometer effect used for numbers and balances.
 
-- [Overlay](https://polkadot.cloud/overlay): Overlay Provider and UI component for modals and overlaying content.
-
 #### `@polkadot-cloud/utils`&nbsp; [[source](https://github.com/polkadot-cloud/library/tree/main/packages/utils) &nbsp;|&nbsp; [npm](https://www.npmjs.com/package/@polkadot-cloud/utils)]
 
 Common utility functions to aid in Polkadot dApp development.
