@@ -1,20 +1,14 @@
 {
   "name": "polkadot-cloud-core",
   "license": "GPL-3.0-only",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "contributors": [
     "Ross Bulat<ross@parity.io>",
     "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
   "description": "Core styles and themes for Polkadot dApps.",
-  "keywords": [
-    "Polkadot",
-    "CSS",
-    "UI"
-  ],
-  "bugs": {
-    "url": "https://github.com/polkadot-cloud/library/issues"
-  },
+  "keywords": ["Polkadot", "CSS", "UI"],
+  "bugs": { "url": "https://github.com/polkadot-cloud/library/issues" },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p cloud-core",
