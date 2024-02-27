@@ -2269,13 +2269,6 @@
     easy-table "^1.2.0"
     pretty-ms "^7.0.0"
 
-"@wdio/types@8.31.1":
-  version "8.31.1"
-  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-8.31.1.tgz#7f3c6e414d1f7ff0aa445ef27fbb4cea59ec674d"
-  integrity sha512-KQ0EmjeVdshufhsxygaPzkJ8WD7hm8WlflZcLwKMZ0OM6f8pV9NMGGOvfBQXgTs447ScK6/6rX+lbJk3yvg65g==
-  dependencies:
-    "@types/node" "^20.1.0"
-
 "@wdio/types@8.32.2":
   version "8.32.2"
   resolved "https://registry.yarnpkg.com/@wdio/types/-/types-8.32.2.tgz#7b79f4156eabf5fc68c9cda1cf84441033c3acce"
