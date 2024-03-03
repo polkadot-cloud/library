@@ -1,15 +1,23 @@
 {
   "name": "polkadot-cloud-react",
   "license": "GPL-3.0-only",
-  "version": "0.5.6",
+  "version": "0.6.0",
   "type": "module",
   "contributors": [
     "Ross Bulat<ross@parity.io>",
     "Nikolaos Kontakis<wirednkod@gmail.com>"
   ],
   "description": "Functional React components for Polkadot dApps.",
-  "keywords": ["Polkadot", "React", "Components", "UX", "UI"],
-  "bugs": { "url": "https://github.com/polkadot-cloud/library/issues" },
+  "keywords": [
+    "Polkadot",
+    "React",
+    "Components",
+    "UX",
+    "UI"
+  ],
+  "bugs": {
+    "url": "https://github.com/polkadot-cloud/library/issues"
+  },
   "homepage": "https://github.com/polkadot-cloud/library#readme",
   "scripts": {
     "build:mock": "node ../../builder/run.mjs -t package:build -p cloud-react -m index.js",
@@ -18,7 +26,10 @@
     "postbuild": "node ./scripts/postbuild.mjs",
     "clear": "rm -rf node_modules dist tsconfig.tsbuildinfo"
   },
-  "peerDependencies": { "react": "^18.2.0", "react-dom": "^18.2.0" },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "dependencies": {
     "@chainsafe/metamask-polkadot-adapter": "^0.6.0",
     "@chainsafe/metamask-polkadot-types": "^0.6.0",
